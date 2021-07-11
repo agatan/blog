@@ -1,5 +1,5 @@
 {
-  "name": "learn-starter",
+  "name": "agatan.github.io",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,16 +10,21 @@
   "dependencies": {
     "next": "^10.0.0",
     "react": "17.0.1",
-    "react-dom": "17.0.1",
+    "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "@chakra-ui/react": "^1.6.5",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@types/node": "^16.0.0",
+    "@types/react": "^17.0.13",
+    "framer-motion": "^4",
+    "gray-matter": "^4.0.3",
+    "prismjs": "^1.24.1",
     "remark": "^13.0.0",
     "remark-gfm": "^1.0.0",
     "remark-html": "^13.0.1",
-    "remark-prism": "^1.3.6"
-  },
-  "devDependencies": {
-    "@types/node": "^16.0.0",
-    "@types/react": "^17.0.13",
-    "gray-matter": "^4.0.3",
+    "remark-prism": "^1.3.6",
     "typescript": "^4.3.5"
   }
 }
