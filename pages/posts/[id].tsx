@@ -1,22 +1,24 @@
 import React from "react";
-import { getAllPostIds, getPostData, PostData } from "../../lib/posts";
+import { getPostById, getPostsOrderByDate, Post } from "../../lib/posts";
 
 type Props = {
-  postData: PostData,
+  post: Post,
 }
 
-const Post: React.VFC<Props> = (props: Props) => {
+const PostPage: React.VFC<Props> = (props: Props) => {
+  const { post } = props;
   return (
     <div>
-      {props.postData.id}
-      {props.postData.markdown}
+      <h1>{post.meta.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
     </div>
   );
 };
-export default Post;
+export default PostPage;
 
 export async function getStaticPaths() {
-  const paths = getAllPostIds();
+  const posts = await getPostsOrderByDate();
+  const paths = posts.map((v) => `/posts/${v.id}`);
   return {
     paths,
     fallback: false,
@@ -24,10 +26,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: { params: { id: string } }): Promise<{ props: Props }> {
-  const postData = getPostData(params.id);
+  const post = await getPostById(params.id);
   return {
     props: {
-      postData
+      post
     }
   }
 }
