@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { Container, HStack, StackDivider, VStack } from "@chakra-ui/react";
+import { Container, Flex, Spacer, StackDivider, Text, VStack } from "@chakra-ui/react";
 
 import { getPostsOrderByDate, Post } from "../lib/posts";
 import { Link } from "../components/Link";
@@ -36,14 +36,23 @@ export default function Home(props: Props) {
               <PostItem key={post.id} post={post} />
             ))}
           </VStack>
-          <HStack>
+          <Flex>
             {page <= 0 ? null : (
-              <Link href={`/?page=${page - 1}`}>← Previous</Link>
+              <Link p="4" href={`/?page=${page - 1}`}>
+                <Text fontSize="lg">
+                  ← Previous
+                </Text>
+              </Link>
             )}
+            <Spacer />
             {page >= totalPages ? null : (
-              <Link href={`/?page=${page + 1}`}>Next →</Link>
+              <Link p="4" href={`/?page=${page + 1}`}>
+                <Text fontSize="lg">
+                  Next →
+                </Text>
+              </Link>
             )}
-          </HStack>
+          </Flex>
         </Container>
       </main>
     </div>
