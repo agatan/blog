@@ -30,9 +30,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({
   params,
 }: {
-  params: { id: string };
+  params: { slug: string };
 }): Promise<{ props: Props }> {
-  const post = await getPostBySlug(params.id);
+  const post = await getPostBySlug(params.slug);
   return {
     props: {
       post,
