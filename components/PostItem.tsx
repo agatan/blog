@@ -22,7 +22,7 @@ export const PostItem: React.VFC<Props> = (props) => {
             colorScheme="blue"
             variant="outline"
           >
-            {tag}
+            <Link href={`/tags/${tag}`}>{tag}</Link>
           </Tag>
         ))}
       </HStack>
