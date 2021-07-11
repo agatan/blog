@@ -3,6 +3,7 @@ title: "C++ でパーサコンビネータを書きました"
 date: 2016-04-29T15:30:09.000Z
 tags: []
 ---
+
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> で<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B9%BD%CA%B8%B2%F2%C0%CF">構文解析</a>といえば，Boost.Spirit や <a class="keyword" href="http://d.hatena.ne.jp/keyword/yacc">yacc</a>系などが有名ですが，どうにも使うの辛かったので作りました．</p>
 
 <h3>2016/05/01 追記　</h3>
@@ -97,7 +98,6 @@ cbx::parser&lt;<span class="synType">int</span>, stream_type&gt; expression() {
 }
 </pre>
 
-
 <h2>特徴</h2>
 
 <p>parsec を知っている方であれば読めるはずです...<br/>
@@ -117,5 +117,6 @@ Boost.Spirit と違って普通に <a class="keyword" href="http://d.hatena.ne.j
 
 <p>あと PEG のプリミティブをまだ完全に実装していないと思います．先読みや否定先読みが出来ません．(実装します…)</p>
 
------
---------
+---
+
+---

@@ -3,6 +3,7 @@ title: "Golangでechoサーバ"
 date: 2015-09-08T07:14:10.000Z
 tags: []
 ---
+
 <p>最近 <a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> が気になります<br/>
 <a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> の特徴はもはやわざわざここに書くまでも無いことだと思うので書きませんが, 気になっている理由を書いてみます.</p>
 
@@ -13,7 +14,6 @@ tags: []
 <li><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%DE%A5%F3%A5%C9%A5%E9%A5%A4%A5%F3">コマンドライン</a><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%C4%A1%BC%A5%EB">ツール</a>からWeb アプリケーションのような高レイヤーまで十分得意であること</li>
 <li><code>interface</code> による抽象化が, 過度でなく調度良く感じられること</li>
 </ul>
-
 
 <p>こんな感じでしょうか.<br/>
 Compiled <a class="keyword" href="http://d.hatena.ne.jp/keyword/Python">Python</a> っていう感じが非常に良さそうだなーと思っています.</p>
@@ -69,9 +69,9 @@ Compiled <a class="keyword" href="http://d.hatena.ne.jp/keyword/Python">Python</
 }
 </pre>
 
-
 <p>さすがは <a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> というかなんというか. ものすごく普通な空気を感じますね.<br/>
 <a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a>はこういう普通さが売りの１つだと思っています.</p>
 
------
---------
+---
+
+---

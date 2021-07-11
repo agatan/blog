@@ -1,17 +1,17 @@
 ---
 title: "[論文紹介] Focal Loss for Dense Object Detection"
 date: 2018-12-02T18:41:00+09:00
-tags: ["DeepLearning","論文読み","ICCV"]
+tags: ["DeepLearning", "論文読み", "ICCV"]
 url: https://qiita.com/agatan/items/53fe8d21f2147b0ac982
 ---
+
 高速かつ高精度に物体検出を行う RetinaNet に使われている **Focal Loss** という損失関数を提案した論文を読んだので紹介します。
 FAIR(Facebook AI Research) が書いた論文で ICCV 2017 に採択されています。
 
 <img src="https://qiita-image-store.s3.amazonaws.com/0/39030/38ab1ef6-c4c5-fd78-d903-0954479143a6.png" width="60%">
 
-
-この記事は、Wantedlyの勉強会で取り上げられた論文・技術をまとめたものです。
-[2018年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
+この記事は、Wantedly の勉強会で取り上げられた論文・技術をまとめたものです。
+[2018 年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
 
 #### Reference
 

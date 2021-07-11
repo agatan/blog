@@ -3,6 +3,7 @@ title: "Rust でグラフ構造や木構造を作る"
 date: 2017-01-16T06:17:45.000Z
 tags: []
 ---
+
 <p>プログラムを書いていると何かしら<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a>っぽいものやグラフっぽいものを作りたい場面が多々あると思います．
 Rust は所有権や <code>Size</code> の都合で，これらを作ろうと思うと地味にハマるのでまとめておきます．</p>
 
@@ -15,7 +16,6 @@ Rust は所有権や <code>Size</code> の都合で，これらを作ろうと�
     <span class="synIdentifier">Node</span>(<span class="synType">Box</span><span class="synStatement">&lt;</span>Tree<span class="synStatement">&lt;</span>T<span class="synStatement">&gt;&gt;</span>, <span class="synType">Box</span><span class="synStatement">&lt;</span>Tree<span class="synStatement">&lt;</span>T<span class="synStatement">&gt;&gt;</span>),
 }
 </pre>
-
 
 <p>といった形で表せます．
 Rust では明示的に <a class="keyword" href="http://d.hatena.ne.jp/keyword/boxing">boxing</a> してあげないと<a class="keyword" href="http://d.hatena.ne.jp/keyword/%BA%C6%B5%A2">再帰</a>的なデータ構造は作れないのでちょっと複雑に見えるかもしれませんが，まぁ単純です．</p>
@@ -40,14 +40,12 @@ Rust では明示的に <a class="keyword" href="http://d.hatena.ne.jp/keyword/b
 }
 </pre>
 
-
 <h3>Rust で有向非巡回グラフ</h3>
 
 <p>有向非巡回グラフ構造は，グラフのエッジに向きがあり，かつ循環がない構造で，これは割りと単純に表現できます．</p>
 
 <pre class="code lang-rust" data-lang="rust" data-unlink><span class="synStatement">struct</span> <span class="synIdentifier">Node</span><span class="synStatement">&lt;</span>T<span class="synStatement">&gt;</span>(T, <span class="synType">Vec</span><span class="synStatement">&lt;</span>Rc<span class="synStatement">&lt;</span>Node<span class="synStatement">&lt;</span>T<span class="synStatement">&gt;&gt;&gt;</span>);
 </pre>
-
 
 <p><code>Node</code> は自身の値 <code>T</code> と，つながっているノードの <code>Vec</code> を持ちます．(対象問題によっては <code>Vec</code> ではなくて <code>HashMap</code> とか <code>HashSet</code> とか)</p>
 
@@ -77,7 +75,6 @@ mutable な参照を取っている間に，さらに mutable な参照を作ろ
     }
 }
 </pre>
-
 
 <h3>Rust で巡回有向グラフ</h3>
 
@@ -116,7 +113,6 @@ Rust で参照を共有するための <code>Rc</code> は参照カウントな�
 <span class="synStatement">struct</span> <span class="synIdentifier">Node</span><span class="synStatement">&lt;</span>T<span class="synStatement">&gt;</span>(NodeId, T, <span class="synType">Vec</span><span class="synStatement">&lt;</span>NodeId<span class="synStatement">&gt;</span>);
 </pre>
 
-
 <p>こんな感じです．</p>
 
 <p>こうすることで<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a>時の borrow check を諦めることなくグラフ構造を作ることができます．<br/>
@@ -129,5 +125,6 @@ Rust で参照を共有するための <code>Rc</code> は参照カウントな�
 (構築中は <code>Vec</code> で <code>Arena</code> を表現して，構造が固まったら <code>HashMap</code> を使った <code>Arena</code> に切り替えて参照されているidだけを残すみたいな)<br/>
 それでも構築中はオブジェクトがあまりまくるので辛いですね...</p>
 
------
---------
+---
+
+---

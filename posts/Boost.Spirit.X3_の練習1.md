@@ -3,6 +3,7 @@ title: "Boost.Spirit.X3 の練習1"
 date: 2015-12-17T10:05:05.000Z
 tags: []
 ---
+
 <h1>Boost.Spirit.X3 の練習1</h1>
 
 <p><a href="http://ciere.com/cppnow15/x3_docs/">Boost.Spirit.X3</a> という <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> のための パーサ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D3%A5%CD%A1%BC%A5%BF">コンビネータ</a>ライブラリを使ってみています．<br/>
@@ -42,13 +43,11 @@ tags: []
 }
 </pre>
 
-
 <h3><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a> &amp; 実行</h3>
 
 <pre class="code" data-lang="" data-unlink>$ clang++ -std=c++14 int_parser.cpp
 $ ./a.out
 Parse: 123</pre>
-
 
 <p><code>Boost.Spirit.X3</code> を使用する場合は, <code>#include &lt;boost/spirit/home/x3.hpp&gt;</code> とすればオッケーです．(これは使用していない機能のヘッダも読み込んでしまっているので，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a>は重くなります… が，これ以降使う機能を増やす度にヘッダを書き換えるのは面倒ですし，<code>X3</code> の機能の多くを使用するプログラムの場合は，大差ないと思います．)</p>
 
@@ -58,7 +57,6 @@ Parse: 123</pre>
 
 <pre class="code lang-cpp" data-lang="cpp" data-unlink><span class="synType">bool</span> success = x3::parse(first, last, x3::int_, result);
 </pre>
-
 
 <p>の部分です．<br/>
 <code>x3::parse</code> は，第一引数にソース文字列の先頭<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A4%A5%C6%A5%EC%A1%BC%A5%BF">イテレータ</a>，第二引数にソース文字列の終端<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A4%A5%C6%A5%EC%A1%BC%A5%BF">イテレータ</a>をとります．<br/>
@@ -72,7 +70,6 @@ Parse: 123</pre>
 
 <pre class="code lang-cpp" data-lang="cpp" data-unlink><span class="synStatement">if</span> (!success || first != last) {
 </pre>
-
 
 <p><code>success</code> はそもそもパーサにソースがマッチしなかった場合, <code>false</code> になります．<br/>
 また，<code>"123abc"</code> に <code>x3::int_</code> をマッチさせると，<code>"123"</code> だけが消費され，<code>"abc"</code> が残ります．この時，<code>first</code> は <code>"a"</code> の位置まで進んでいます．
@@ -90,7 +87,6 @@ Parse: 123</pre>
 <span class="synType">bool</span> success = x3::phrase_parse(first, last, parser, x3::ascii::space, result);
 </pre>
 
-
 <p>まずは <code>parser</code> の定義です．
 <code>x3::lit</code> は<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%EA%A5%C6%A5%E9%A5%EB">リテラル</a>を表します．引数にとった文字列にマッチし，何も返さないパーサです．<code>x3::lit("(")</code> は <code>(</code> にマッチし，何も返さないパーサということになります．<br/>
 <code>x3::double_</code> は <code>x3::int_</code> と同じく，定義済みパーサで，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%C9%E2%C6%B0%BE%AE%BF%F4%C5%C0%BF%F4">浮動小数点数</a>にマッチしその値を返します．</p>
@@ -107,7 +103,6 @@ Parse: 123</pre>
 
 <pre class="code lang-cpp" data-lang="cpp" data-unlink><span class="synType">bool</span> success = x3::phrase_parse(first, last, parser, x3::ascii::space, result);
 </pre>
-
 
 <p>ひとつ目の例と異なり，<code>x3::parse</code> ではなく <code>x3::phrase_parse</code> を使っています．<br/>
 こちらは，<code>attribute</code> を示す最後の引数の前に，スキップパーサを取ります．
@@ -141,7 +136,6 @@ Parse: 123</pre>
   }
 }
 </pre>
-
 
 <p>ちなみに，<code>x3::lit("(") &gt;&gt; x3::double_ &gt;&gt; x3::lit(")")</code> の部分ですが，<code>operator&lt;&lt;</code> の引数の内，片方がパーサであれば，<code>char const*</code> から暗黙変換が働くので， <code>"(" &gt;&gt; x3::double_ &gt;&gt; ")"</code> と書くことが出来ます．</p>
 
@@ -189,7 +183,6 @@ Parse: 123</pre>
 </li>
 </ul>
 
-
 <p>...</p>
 
 <p><code>&gt;</code> と <code>&gt;&gt;</code> の違いはわかりにくいですね．<br/>
@@ -204,5 +197,6 @@ Parse: 123</pre>
 <p>セマンティックアクションや <code>on_error</code> などの扱いががっつり変わっているようなので，一旦ここで切って，それぞれ調べてからまとめたいと思います．
 何か間違い等あればぜひご指摘お願いします．</p>
 
------
---------
+---
+
+---

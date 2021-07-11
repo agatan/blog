@@ -3,6 +3,7 @@ title: "C++ テンプレートの種類と構文"
 date: 2016-05-31T08:57:56.000Z
 tags: []
 ---
+
 <p>前回テンプレートがなぜ必要なのかについて簡単にまとめたので、今回はその構文や種類についてまとめたいと思います。</p>
 
 <p><iframe src="http://agtn.hatenablog.com/embed/2016/05/30/234647" title="C++ のテンプレートについてまとめる（１）なぜテンプレートが必要なのか - refer to 右上➚" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://agtn.hatenablog.com/entry/2016/05/30/234647">agtn.hatenablog.com</a></cite></p>
@@ -25,7 +26,6 @@ tags: []
 <li>まとめと今後</li>
 </ul>
 
-
 <h2>テンプレートの種類と構文</h2>
 
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> のテンプレートは，大きく 5 種類に分類することが出来ます。</p>
@@ -37,7 +37,6 @@ tags: []
 <li><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A8%A5%A4%A5%EA%A5%A2%A5%B9">エイリアス</a>テンプレート</li>
 <li>変数テンプレート</li>
 </ol>
-
 
 <p>これらについて、以降で詳しくまとめていきます。</p>
 
@@ -53,7 +52,6 @@ tags: []
 };
 </pre>
 
-
 <p>複数のテンプレート引数を取りたい場合や、型以外のテンプレート引数を取りたい場合には、以下のようにします。</p>
 
 <pre class="code lang-cpp" data-lang="cpp" data-unlink><span class="synType">template</span> &lt;<span class="synType">typename</span> T, <span class="synType">int</span> N&gt;
@@ -61,7 +59,6 @@ tags: []
   ...
 };
 </pre>
-
 
 <p>上の例はクラステンプレートでしたが、関数でも<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A8%A5%A4%A5%EA%A5%A2%A5%B9">エイリアス</a>でも、<code>template</code> を宣言する部分は共通です。</p>
 
@@ -75,7 +72,6 @@ tags: []
 <pre class="code lang-cpp" data-lang="cpp" data-unlink>stack&lt;<span class="synType">int</span>&gt; int_stack;
 my_array&lt;std::string, <span class="synConstant">5</span>&gt; five_strings;
 </pre>
-
 
 <p><code>テンプレート名 &lt; 引数 &gt;</code> という感じです。<br/>
 一応注意書きをしておきますと、<code>stack&lt;stack&lt;int&gt;&gt;</code> が<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B7%A5%F3%A5%BF%A5%C3%A5%AF%A5%B9">シンタックス</a>エラーになる場合があります。
@@ -119,7 +115,6 @@ my_array&lt;std::string, <span class="synConstant">5</span>&gt; five_strings;
 };
 </pre>
 
-
 <h2>関数テンプレート</h2>
 
 <p>関数テンプレートは以下の様なものです。</p>
@@ -137,7 +132,6 @@ T max(T left, T right) {
 <span class="synType">double</span> y = max&lt;<span class="synType">double</span>&gt;(<span class="synConstant">0.5</span>, <span class="synConstant">100.0</span>); <span class="synComment">// =&gt; y == 100.0</span>
 </pre>
 
-
 <p><code>max</code> 関数は、「ある型 T について、２つの引数のうち、大きい方を返す」関数です。<br/>
 明示的に <code>max&lt;int&gt;</code> や <code>max&lt;double&gt;</code> とすることで、<code>int</code> や <code>double</code> についての「大きい方を返す」関数を得ています。</p>
 
@@ -148,7 +142,6 @@ T max(T left, T right) {
 
 <pre class="code lang-cpp" data-lang="cpp" data-unlink><span class="synType">int</span> x = max(<span class="synConstant">1</span>, <span class="synConstant">0</span>);
 </pre>
-
 
 <p>これは、テンプレート引数の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B7%BF%BF%E4%CF%C0">型推論</a>の結果です。<br/>
 <code>max</code> 関数の第一引数、第二引数はそれぞれ <code>T</code> です。そして、実際に渡されている <code>1</code> や <code>0</code> は <code>int</code> 型です。<br/>
@@ -174,12 +167,10 @@ T max(T left, T right) {
 };
 </pre>
 
-
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%E1%A5%F3%A5%D0%B4%D8%BF%F4">メンバ関数</a>テンプレートは、関数テンプレートとほとんど同じです。違いは、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%E1%A5%F3%A5%D0%B4%D8%BF%F4">メンバ関数</a>として定義されていることだけです。</p>
 
 <pre class="code lang-cpp" data-lang="cpp" data-unlink>printer p(std::cout);
 </pre>
-
 
 <p>ここまではテンプレートでもなんでもないただのクラスです。</p>
 
@@ -187,7 +178,6 @@ T max(T left, T right) {
 p.print(<span class="synConstant">&quot;abc&quot;</span>);
 p.print&lt;<span class="synType">double</span>&gt;(<span class="synConstant">0.1</span>);
 </pre>
-
 
 <p>こんな感じで使います。関数テンプレートとほぼ同じですね。</p>
 
@@ -202,13 +192,11 @@ p.print&lt;<span class="synType">double</span>&gt;(<span class="synConstant">0.1
 <span class="synStatement">using</span> with_int_t = pair&lt;T, <span class="synType">int</span>&gt;;
 </pre>
 
-
 <p><code>using</code> で型名の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A8%A5%A4%A5%EA%A5%A2%A5%B9">エイリアス</a>を作ることが出来ますが、それをテンプレートにすることが出来ます。</p>
 
 <pre class="code lang-cpp" data-lang="cpp" data-unlink>with_int_t&lt;<span class="synType">bool</span>&gt; p(<span class="synConstant">true</span>, <span class="synConstant">0</span>);  <span class="synComment">// pair&lt;bool, int&gt; p(true, 0);</span>
 with_int_t&lt;std::string&gt; s(<span class="synConstant">&quot;abc&quot;</span>, <span class="synConstant">100</span>);  <span class="synComment">// pair&lt;std::string, int&gt; s(&quot;abc&quot;, 100);</span>
 </pre>
-
 
 <p>ちなみに <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a>11 より前は、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A8%A5%A4%A5%EA%A5%A2%A5%B9">エイリアス</a>テンプレートの代替として、</p>
 
@@ -219,7 +207,6 @@ with_int_t&lt;std::string&gt; s(<span class="synConstant">&quot;abc&quot;</span>
 
 with_int&lt;<span class="synType">bool</span>&gt;::type p(<span class="synConstant">true</span>, <span class="synConstant">0</span>); <span class="synComment">// pair&lt;bool, int&gt; p(true, 0);</span>
 </pre>
-
 
 <p>という記述をしていました。(今でもライブラリなどで現役の表現ですので覚えておきましょう)</p>
 
@@ -234,7 +221,6 @@ constexpr T pi = <span class="synStatement">static_cast</span>&lt;T&gt;(<span cl
 <span class="synType">double</span> y = pi&lt;<span class="synType">double</span>&gt;;
 </pre>
 
-
 <p><code>constexpr</code> は定数式というやつです。</p>
 
 <p>ちなみに <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a>14 より前は、代替として</p>
@@ -248,7 +234,6 @@ constexpr T pi = <span class="synStatement">static_cast</span>&lt;T&gt;(<span cl
 <span class="synType">double</span> y = pi&lt;<span class="synType">double</span>&gt;::value;
 </pre>
 
-
 <p>という記述をしていました。(こちらも現役の表現です)</p>
 
 <h2>まとめと今後</h2>
@@ -256,5 +241,6 @@ constexpr T pi = <span class="synStatement">static_cast</span>&lt;T&gt;(<span cl
 <p>というわけで今回はテンプレートの種類とそれぞれの<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B7%A5%F3%A5%BF%A5%C3%A5%AF%A5%B9">シンタックス</a>についてまとめてみました。<br/>
 今後、特殊化や部分特殊化などのお話をするときに種類によって微妙に違いがあったりするので、しっかり区別しておいたほうが良さそうです。</p>
 
------
---------
+---
+
+---

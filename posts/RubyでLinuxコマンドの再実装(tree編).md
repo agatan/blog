@@ -1,18 +1,19 @@
 ---
 title: "RubyでLinuxコマンドの再実装(tree編)"
 date: 2014-10-16T16:20:33+09:00
-tags: ["Ruby","Linux"]
+tags: ["Ruby", "Linux"]
 url: https://qiita.com/agatan/items/4c50554ae22aa4181cc1
 ---
 
-Rubyの勉強にRubyで有名ドコロのLinuxコマンドたちを再実装してみたいとおもいます。
+Ruby の勉強に Ruby で有名ドコロの Linux コマンドたちを再実装してみたいとおもいます。
 
 少しずつ追記する形にできればと思っています。よりよい実装方法などありましたらぜひご教授いただけると幸いです。
 
-[RubyでLinuxコマンドの再実装(ls編) - Qiita](http://qiita.com/agatan/items/af0c3bbc881f60667c85)
-[RubyでLinuxコマンドの再実装(tree編) - Qiita](http://qiita.com/agatan/items/4c50554ae22aa4181cc1)
+[Ruby で Linux コマンドの再実装(ls 編) - Qiita](http://qiita.com/agatan/items/af0c3bbc881f60667c85)
+[Ruby で Linux コマンドの再実装(tree 編) - Qiita](http://qiita.com/agatan/items/4c50554ae22aa4181cc1)
 
 ## tree
+
 `tree`コマンドに挑戦します。
 `tree`コマンドは, 指定したディレクトリ以下のファイルを木構造にして表示してくれます。
 
@@ -77,9 +78,8 @@ puts target
 display_entries target_fullpath, init_prefix, options
 ```
 
-ファイルのタイプを調べる際の処理をls編とちょっとだけ変えてみました。
+ファイルのタイプを調べる際の処理を ls 編とちょっとだけ変えてみました。
 シンボリックリンクのリンク先を表示する修正が必要ですね...
 `color`は`ls`のときとほとんど変わらないので省きました。
 `File.ftype`では実行可能ファイルかどうかは判定できないんですかね??そこがちょっと気になります。
 あとはオプションのあたりなど複雑になってしまっているので綺麗にしたいです。
-

@@ -3,6 +3,7 @@ title: "C++ : なぜテンプレートが必要なのか"
 date: 2016-05-30T14:46:47.000Z
 tags: []
 ---
+
 <p>こんにちは。<br/>
 ちょっと <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> への熱を冷まさないために、<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> のテンプレートについてまとめてみたいと思います。</p>
 
@@ -13,7 +14,6 @@ tags: []
 <li><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a>エラーメッセージが怖い人</li>
 <li><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> の規格とブログポストを比較して誤りを探したい人(もし誤っていたら教えて下さい...)</li>
 </ul>
-
 
 <h2>テンプレートとは</h2>
 
@@ -56,7 +56,6 @@ tags: []
 };
 </pre>
 
-
 <p>簡単のため、かなりお粗末なスタックですが、最低限のスタックとしての見た目はしていると思います。</p>
 
 <p>では次に、<code>std::string</code> 型のスタックや <code>double</code> 型のスタックを作りたいとなったらどうすればよいでしょうか。<br/>
@@ -90,7 +89,6 @@ push(s, (<span class="synType">void</span>*)x);
 <span class="synType">int</span> *y = (<span class="synType">int</span>*)pop(s);
 printf(<span class="synConstant">&quot;</span><span class="synSpecial">%d\n</span><span class="synConstant">&quot;</span> *y); <span class="synComment">/* =&gt; 1 */</span>
 </pre>
-
 
 <p>こんな感じでしょうか。実装の細かい部分は省略しています。<br/>
 <code>push</code> の際にはあらゆるポインタを <code>void*</code> にキャストし、逆に <code>pop</code> する際には <code>void*</code> を求める型にキャストしています。<br/>
@@ -134,7 +132,6 @@ printf(<span class="synConstant">&quot;</span><span class="synSpecial">%d\n</spa
 };
 </pre>
 
-
 <p>先頭の <code>template &lt;typename T&gt;</code> (<code>template &lt;class T&gt;</code> でも可)は、型引数の導入の役割を果たしています。<br/>
 <code>stack</code> クラスの定義内に登場する <code>T</code> は型引数として導入された型を表します。</p>
 
@@ -151,7 +148,6 @@ str_stack.push(<span class="synConstant">&quot;abc&quot;</span>);
 str_stack.push(<span class="synConstant">1</span>); <span class="synComment">// =&gt; Compile error!</span>
 </pre>
 
-
 <p>このように、同じコードをコピペすることなく、複数の型に対応したスタックという汎用的なデータ構造を表現することが出来ています。<br/>
 さらに、この方法では、<code>void*</code> や <code>Object</code> と異なり、型的に誤った使用方法をしようとすると<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a>エラーになるというメリットがあります。<br/>
 ランタイムエラーより<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a>エラーのほうが<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%C7%A5%D0%A5%C3%A5%B0">デバッグ</a>しやすいし発見しやすいですよね。</p>
@@ -162,5 +158,6 @@ str_stack.push(<span class="synConstant">1</span>); <span class="synComment">// 
 次はテンプレートや<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B8%A5%A7%A5%CD%A5%EA%A5%AF%A5%B9">ジェネリクス</a>の実現方法、ランタイムにおける表現方法などについて書いてみます。<br/>
 そこからはテンプレート引数として値をとる話や、TMP についても触れていければと思っています。</p>
 
------
---------
+---
+
+---

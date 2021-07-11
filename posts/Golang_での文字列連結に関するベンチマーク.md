@@ -3,6 +3,7 @@ title: "Golang での文字列連結に関するベンチマーク"
 date: 2015-09-08T08:09:45.000Z
 tags: []
 ---
+
 <h1>まず結論</h1>
 
 <p><code>append</code> しよう. <code>bytes.Buffer</code> はそんなに速くない.</p>
@@ -31,7 +32,6 @@ tags: []
 }
 </pre>
 
-
 <p>こんな感じですね.<br/>
 これだと, 確実に n 回メモリ割り当てが発生するので遅いというのが問題となります.</p>
 
@@ -49,7 +49,6 @@ tags: []
     <span class="synStatement">return</span> <span class="synType">string</span>(buf)
 }
 </pre>
-
 
 <p><code>make([]byte, 0)</code> によって, 長さ0のスライスを作って, それを伸長していく方法となっています.<br/>
 このあたりは <a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> のスライスの表現について知っていないとわかりづらいと思うのですが, わかりやすい説明がいろいろなところで読めるので, ここでは説明しません.
@@ -85,7 +84,6 @@ tags: []
 </tbody>
 </table>
 
-
 <p>こんな感じでしょうか(あくまでイメージですが)<br/>
 <code>append</code> は3回呼ばれていますが, メモリ割り当ては2回に抑えられています.<br/>
 その分, <code>+=</code> よりも速いだろうということですね.</p>
@@ -105,7 +103,6 @@ tags: []
 }
 </pre>
 
-
 <h2>3. <code>bytes.Buffer</code> を使う</h2>
 
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/Java">Java</a> の <code>StringBuilder</code> に近い解法ですね.<br/>
@@ -121,7 +118,6 @@ tags: []
     <span class="synStatement">return</span> buf.String()
 }
 </pre>
-
 
 <p>こんな感じです.</p>
 
@@ -174,7 +170,6 @@ tags: []
 }
 </pre>
 
-
 <p><code>TestEquality</code> は, すべての方法で正しく文字列を生成できていることを確認するためのテストです. <a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D9%A5%F3%A5%C1%A5%DE%A1%BC%A5%AF">ベンチマーク</a>には関係ありません.</p>
 
 <h2>結果</h2>
@@ -187,7 +182,6 @@ BenchmarkAppendString-8           200000          7346 ns/op       13056 B/op   
 BenchmarkAppendStringWithCap-8    300000          5461 ns/op        6144 B/op          2 allocs/op
 BenchmarkBufferString-8           100000         16847 ns/op       12256 B/op          8 allocs/op
 ok      github.com/agatan/bench 6.881s</pre>
-
 
 <p>というわけで, <code>make</code> の時点で十分なメモリを確保しておく 2' の方法が最も速く最もメモリを消費しないことがわかりました.<br/>
 まぁ当たり前ですねｗｗ</p>
@@ -205,7 +199,6 @@ BenchmarkAppendStringWithCap-8  10000000           142 ns/op          64 B/op   
 BenchmarkBufferString-8          5000000           251 ns/op         144 B/op          2 allocs/op
 ok      github.com/agatan/bench 6.581s</pre>
 
-
 <h2>N = 10000 の場合</h2>
 
 <pre class="code" data-lang="" data-unlink>PASS
@@ -215,11 +208,11 @@ BenchmarkAppendStringWithCap-8     30000         55262 ns/op       65536 B/op   
 BenchmarkBufferString-8            10000        151665 ns/op      109280 B/op         11 allocs/op
 ok      github.com/agatan/bench 7.393s</pre>
 
-
 <h1>結論</h1>
 
 <p>連結する文字列の長さや連結の回数にもよるが, おおよそ <code>append</code> のほうが速い！！<br/>
 <code>bytes.Buffer</code> はいつ使えばいいの...</p>
 
------
---------
+---
+
+---

@@ -3,6 +3,7 @@ title: "C++テンプレートイディオム CRTP"
 date: 2016-06-16T10:27:08.000Z
 tags: []
 ---
+
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a>テンプレートの有名なイディオムとして、CRTPというものがあります。
 今回はそれについて。
 複雑な部分特殊化みたいな話もないですし、メリットもわかりやすい良いイディオムだと思うので、ちょっとまとめておきます。
@@ -69,7 +70,6 @@ Template Method パターンは、いわゆるクラスベースの動的な<a c
 }
 </pre>
 
-
 <p><code>person</code> クラスには <code>operator==</code> など定義していないにもかかわらず、<code>person</code> を比較することが出来ています。</p>
 
 <p>CRTPの中心となるのは <code>struct person : comparable&lt;person&gt;</code> という部分です。
@@ -97,7 +97,6 @@ Template Methodパターンをご存じの方ならすんなり理解できる�
   max, min <span class="synStatement">::</span> a <span class="synStatement">-&gt;</span> a <span class="synStatement">-&gt;</span> a
 </pre>
 
-
 <p><code>Ord</code> 型クラスの<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A4%A5%F3%A5%B9%A5%BF%A5%F3%A5%B9">インスタンス</a>になるためには、最低でも <code>compare</code> を実装している必要があります。
 逆にいえば、<code>compare</code> だけ実装すれば、他の関数は自動的に実装されます。</p>
 
@@ -110,12 +109,12 @@ Template Methodパターンをご存じの方ならすんなり理解できる�
 };
 </pre>
 
-
 <p>こんな感じでしょうか。もちろん型クラスの代替にはなりえないんですけどね。
 <a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a> の型クラスの利点のひとつである、最小限のインターフェース実装による関数の自動導出っぽいこともできるよというお話でした。</p>
 
 <p>実際にテンプレートライブラリを書いてみて改めて有用性がわかったテクニックでした。
 拙作の coco にも導入したい... すべてのパーサにユーティリティ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%E1%A5%F3%A5%D0%B4%D8%BF%F4">メンバ関数</a>を追加するみたいなことが出来るはず... いつかやります。</p>
 
------
---------
+---
+
+---

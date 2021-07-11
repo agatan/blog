@@ -3,6 +3,7 @@ title: "Sokoban.nim を書いてみた"
 date: 2015-10-29T13:10:42.000Z
 tags: []
 ---
+
 <h1>Sokoban.nim を書いてみた</h1>
 
 <p><a href="http://www.nim-lang.org">Nim</a> という言語を使って<a class="keyword" href="http://d.hatena.ne.jp/keyword/%C1%D2%B8%CB%C8%D6">倉庫番</a>を書いてみました.</p>
@@ -37,5 +38,6 @@ tags: []
 
 <p>Nim で <a class="keyword" href="http://d.hatena.ne.jp/keyword/Lisp">Lisp</a> 処理系を書いたりしていて，息抜きに<a class="keyword" href="http://d.hatena.ne.jp/keyword/GUI">GUI</a>っぽいものをと思って書きました． Cライブラリとの連携も非常にスムーズでしたし，Nim 流行んないかなぁと思っています．</p>
 
------
---------
+---
+
+---

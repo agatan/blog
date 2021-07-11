@@ -3,6 +3,7 @@ title: "Rust で Unix のシグナルを channel 経由でキャッチする"
 date: 2017-07-10T11:59:04.000Z
 tags: []
 ---
+
 <p>Rust でシグナルハンドリングをする必要があったのですが，あまり自分の用途にあるライブラリがなかったので作りました．
 僕が <a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows">Windows</a> のことをほとんどわからないので，<a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows">Windows</a> 未対応です．</p>
 
@@ -32,7 +33,6 @@ tags: []
 }
 </pre>
 
-
 <p>Rust で <a class="keyword" href="http://d.hatena.ne.jp/keyword/Unix">Unix</a> シグナルを取るライブラリとしては <a href="https://github.com/BurntSushi/chan-signal">GitHub - BurntSushi/chan-signal: Respond to OS signals with channels.</a> というのが有名です．
 こちらは標準ライブラリの <code>mpsc::channel</code> ではなく，<code>chan</code> クレイトの <code>channel</code> を使っています．
 <code>chan</code> クレイトはケースによってはかなり便利で，</p>
@@ -41,7 +41,6 @@ tags: []
 <li>複数の consumer を作れる (<code>receiver.clone()</code> ができる)</li>
 <li><code>chan_select!</code> マクロによって <a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> の <code>select</code> 的なことができる</li>
 </ol>
-
 
 <p>という利点があります．</p>
 
@@ -68,7 +67,6 @@ tags: []
 </li>
 </ol>
 
-
 <p>という仕組みで動いています．
 自信がなかったのは，「シグナルハンドラでやっていいこと一覧」をちゃんと把握していないという点です．
 一応 <code>sigaction</code> の man を見ると <code>write</code> は読んでもいい関数一覧にいる気がするし，実際動いてはいるのでセーフだろうと判断しました．
@@ -87,7 +85,6 @@ tags: []
 <li>監視用スレッドで <code>sigwait</code> して適切な <code>Sender</code> に <code>send</code> する</li>
 </ol>
 
-
 <p>という仕組みで動いているようです．
 <code>sigwait</code> は指定したシグナルが投げられるまでブロックします．
 ただし，<a class="keyword" href="http://d.hatena.ne.jp/keyword/macOS">macOS</a> で <code>sigwait</code> の man を見ると，</p>
@@ -103,5 +100,6 @@ tags: []
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/CLI">CLI</a> を書いていると意外と普通に <code>SIGINT</code> は取りたくなることがあると思うので，ぜひ使ってみてください．
 issue 報告等お待ちしています．</p>
 
------
---------
+---
+
+---

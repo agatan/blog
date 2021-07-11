@@ -3,6 +3,7 @@ title: "Haskellでechoサーバ"
 date: 2015-07-23T12:43:44.000Z
 tags: []
 ---
+
 <p>はいどうもー<br/>
 引き続き<a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>の話題です. ちょっと<a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>で<a class="keyword" href="http://d.hatena.ne.jp/keyword/TCP">TCP</a>ソケットを使ってみたくなったので, まず簡単なものから実装してみます.</p>
 
@@ -31,7 +32,6 @@ serveSocket port <span class="synStatement">=</span> <span class="synStatement">
     return soc
 </pre>
 
-
 <p>これで引数に渡したポート番号にbindされたソケットが作成されます.</p>
 
 <h2>accept</h2>
@@ -55,7 +55,6 @@ acceptLoop soc <span class="synStatement">=</span> forever <span class="synState
     forkIO <span class="synStatement">$</span> echoLoop conn
 </pre>
 
-
 <p><code>forever :: Monad m =&gt; m a -&gt; m b</code>は引数にIOアクションを受け取り, それを無限に繰り返し実行し続けます. (無限にくりかえすので返り値の型変数<code>b</code>は不定)<br/>
 <code>forever</code>の引数には, <code>accept</code>して<code>forkIO</code>するアクションを渡しています.</p>
 
@@ -70,7 +69,6 @@ echoLoop conn <span class="synStatement">=</span> <span class="synStatement">do<
         (str, _, _) <span class="synStatement">&lt;-</span> recvFrom soc <span class="synConstant">64</span>
         send soc str
 </pre>
-
 
 <p><code>recvFrom :: Socket -&gt; Int -&gt; IO (String, Int, SockAddr)</code>は, <code>recvFrom conn n</code> で, <code>conn</code>から最大で<code>n</code>文字まで読み込みます.
 返り値は, <code>(読み込んだ文字列, 読み込んだ文字数, 読み込み元のアドレス??)</code> を返します.<br/>
@@ -92,7 +90,6 @@ echoLoop conn <span class="synStatement">=</span> <span class="synStatement">do<
    <span class="synStatement">`catch`</span> (<span class="synStatement">\</span>(SomeException e) <span class="synStatement">-&gt;</span> return ())
    <span class="synStatement">`finally`</span> close conn
 </pre>
-
 
 <p><code>catch</code>と<code>finally</code>を追加しています.<br/>
 どちらも<a class="keyword" href="http://d.hatena.ne.jp/keyword/Java">Java</a>とかのそれと同じように動きます.<br/>
@@ -138,7 +135,6 @@ echoLoop conn <span class="synStatement">=</span> <span class="synStatement">do<
     <span class="synStatement">`finally`</span> close conn
 </pre>
 
-
 <p><code>main</code>内で <code>listen</code>するのを忘れずに！また, <code>acceptLoop</code>中に例外が発生してもソケットをクローズするように<code>finally</code>を使っています. (まぁプログラム終了するのでいらない気もします)</p>
 
 <h1>動作確認</h1>
@@ -156,7 +152,6 @@ aaa
 hooooogle
 hooooogle</pre>
 
-
 <p>ちょっとわかりづらいですが, 入力した文字列が即座にそのまま帰ってきていることがわかります. バッファリングの関係で, 一行ずつになっていますが.</p>
 
 <h1>まとめ</h1>
@@ -164,5 +159,6 @@ hooooogle</pre>
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>でechoサーバ, 意外とすんなりかけましたね. 例外関係があまりよく理解できていない感じがしますが...<br/>
 非同期版が気になります. 調べてみます.</p>
 
------
---------
+---
+
+---

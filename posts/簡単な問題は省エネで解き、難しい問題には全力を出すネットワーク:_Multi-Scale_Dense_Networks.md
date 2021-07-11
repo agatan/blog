@@ -1,9 +1,10 @@
 ---
 title: "簡単な問題は省エネで解き、難しい問題には全力を出すネットワーク: Multi-Scale Dense Networks"
 date: 2018-12-07T22:34:37+09:00
-tags: ["DeepLearning","論文読み"]
+tags: ["DeepLearning", "論文読み"]
 url: https://qiita.com/agatan/items/9ea14206bf7a3881ed6d
 ---
+
 CNN による画像分類を現実のアプリケーションで使う際には、限られた計算資源で推論をする必要があります。
 推論を待って処理するような場合は latency が重要になり、バッチ処理でも throughput を最大化したいという要求があります。
 
@@ -18,24 +19,20 @@ CNN による画像分類を現実のアプリケーションで使う際には�
 
 （この図の "easy" と書かれている行の画像は省エネで、 "hard" と書かれている行の画像は全力で予測する）
 
-この記事は、Wantedlyの勉強会で取り上げられた論文・技術をまとめたものです。
-[2018年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
-
+この記事は、Wantedly の勉強会で取り上げられた論文・技術をまとめたものです。
+[2018 年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
 
 ### Reference
 
-- Multi-Scale Dense Networks for Resource Efficient Image Classification
-      - Gao Huang, Danlu Chen, Tianhong Li, Felix Wu, Laurens van der Maaten, Kilian Q. Weinberger, et al., ICLR 2018
+- Multi-Scale Dense Networks for Resource Efficient Image Classification - Gao Huang, Danlu Chen, Tianhong Li, Felix Wu, Laurens van der Maaten, Kilian Q. Weinberger, et al., ICLR 2018
 - https://arxiv.org/abs/1703.09844
 
 文中の図表は論文より引用しています。
-
 
 ### モチベーション
 
 先にも書きましたが、DNN は計算量の大きなアルゴリズムであり、実際に利用するケースを考えると、その速度や計算効率が気になってきます。
 現実の入力画像は様々な難易度のものがあるので、簡単な画像は浅いネットワークで解きたくなりますし、難しい画像は深いネットワークで解きたくなります。
-
 
 こう表現すると単純そうに見えますが、これを実現するためには「この画像は簡単か（浅いネットワークで解くべきか）、難しいか（深いネットワークで解くべきか）」を決定しなければなりません。
 実際に解く前に難易度を推定するのは難しく、事前に 2 つの model を定義しておく方法ではうまくいきません。
@@ -43,15 +40,15 @@ CNN による画像分類を現実のアプリケーションで使う際には�
 Multi-Scale Dense Networks は、ひとつのモデルで逐次的に推論結果を出しつつ、十分に精度が出せそうであれば早期に Exit し、それ以降の計算を省略します。
 
 ### アーキテクチャ
+
 ![image.png](https://qiita-image-store.s3.amazonaws.com/0/39030/c6304ac6-1ccc-369b-0de0-2654fe5cef8d.png)
-↑がモデルのイメージです。
+↑ がモデルのイメージです。
 `classifier` と書かれた module が複数回出てきているように、それぞれが逐次的な推論結果を出す module になります。
 
 このような構造を単純にとると以下の２点が問題になります。
 
 1. 粒度の大きい特徴を捉えづらい
 2. 浅い層の classifier が深い層の classifier の精度を下げてしまう
-
 
 #### 粒度の大きい特徴を捉えづらい
 
@@ -65,7 +62,6 @@ Multi-Scale Dense Networks は、ひとつのモデルで逐次的に推論結�
 浅い層につけた分類器ほどエラー率が高くなっていることがわかります。
 
 receptive field を大きく取った視野の広い特徴を効率的に獲得するためには feature map の解像度を下げる operation （2x2, stride 2 の convolution や pooling など）がよく使われますが、浅いうちにそれらの operation をやってしまうと、細かい粒度の特徴を獲得しづらくなってしまいます。
-
 
 ##### 解決策
 
@@ -102,5 +98,3 @@ ResNet で提案された Residual Module は、入力とそれを convolution �
 僕らも Wantedly People というスマートフォンのカメラを使ったアプリケーションを提供しているので、モバイル上での推論をしたいというモチベーションがあって読んだ論文でした。
 DenseNet の特徴をきれいに活用していて面白い論文だなと思いました。
 DenseBlock の有効性をちゃんと検証していてこの論文の提案のいいところがわかりやすいのも好きなところです。
-
-

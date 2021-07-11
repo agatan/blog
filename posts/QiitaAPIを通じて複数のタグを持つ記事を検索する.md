@@ -1,14 +1,15 @@
 ---
 title: "QiitaAPIを通じて複数のタグを持つ記事を検索する"
 date: 2014-10-13T18:11:43+09:00
-tags: ["Qiita","Ruby"]
+tags: ["Qiita", "Ruby"]
 url: https://qiita.com/agatan/items/55dce1d2bc887de0cd71
 ---
 
-Ruby初心者なのでなにかお気づきの点がありましたらご教授いただけると幸いです。
+Ruby 初心者なのでなにかお気づきの点がありましたらご教授いただけると幸いです。
 
 ## QiitaApiAccessor
-QiitaAPIとの通信, 受信情報のハッシュ化を担当している。
+
+QiitaAPI との通信, 受信情報のハッシュ化を担当している。
 `@result_json`をローカル変数にしたいのだけど, `open`ブロック内のローカル変数になってしまうので出来ない...
 `get_with_tag`内のローカル変数にならできるけど結局`result_json = {}`として`open`内で更新みたいな書き方になってしまって綺麗じゃない...
 
@@ -34,12 +35,13 @@ end
 ```
 
 ## QiitaArticle
+
 一つの記事についての情報を保持する。
 `has_tag?`メソッドでは, 大文字小文字にかかわらず判定が出来るよう`upcase`を使用している。
 
 ```rb
 class QiitaArticle
-  
+
   def initialize (article_hash)
     @data = article_hash
     @title = article_hash[:title]
@@ -59,6 +61,7 @@ end
 ```
 
 ## MultiTagsSearcher
+
 これがメインのクラス。コンストラクタに`QiitaApiAccessor#get_with_tag`の戻り値と検索したいタグのリストを渡してやる。
 `group_by_relevance`によって含んでいる対象タグの数によってグループ化する。
 
@@ -82,13 +85,15 @@ end
 ```
 
 ## 使い方
+
 `QiitaApiAccessor#get_with_tag`にメインとなるキーワードタグを渡す。
 その戻り値と、キーワードタグを含む検索したいタグ名のリストを、`MultiTagsSearcher`に渡して`group_by_relevance`してやる。
-すると`含んでいる対象タグ数 => [QiitaArticleのインスタンス]`というハッシュが得られるので、適当に`QiitaArticle#url`とかで記事のurlを取ってこられます。
+すると`含んでいる対象タグ数 => [QiitaArticleのインスタンス]`というハッシュが得られるので、適当に`QiitaArticle#url`とかで記事の url を取ってこられます。
 
 ## 問題点・改善点
-QiitaAPIの都合上一度に100件までしか記事の情報を取得できないので, 本当はループで全件取得してから`MultiTagsSearcher`に渡したい。
-が、そうすると5000件とか普通に行く場合もあるから`QiitaArticle`のインスタンスが無駄に大量生成されてしまうし、時間もかかる。
+
+QiitaAPI の都合上一度に 100 件までしか記事の情報を取得できないので, 本当はループで全件取得してから`MultiTagsSearcher`に渡したい。
+が、そうすると 5000 件とか普通に行く場合もあるから`QiitaArticle`のインスタンスが無駄に大量生成されてしまうし、時間もかかる。
 なので、検索の際のキーワードタグには記事数の少なそうなものを選ぶことでお茶を濁す...
 `ruby`ではなく`sinatra`をキーワードにするだけで結果がかなり違ってくる。
 けどそれじゃ根本的な解決になってない。なにか良い方法ありましたら教えて下さい。

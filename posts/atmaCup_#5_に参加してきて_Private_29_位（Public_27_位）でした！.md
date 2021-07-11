@@ -3,6 +3,7 @@ title: "atmaCup #5 に参加してきて Private 29 位（Public 27 位）でし
 date: 2020-06-07T11:00:00.000Z
 tags: []
 ---
+
 <p>atmaCup #5 に参加してきました！
 <iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fatma.connpass.com%2Fevent%2F175139%2F" title="【おうちで】atmaCup オンサイトデータコンペ#5 (2020/05/29 18:00〜)" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://atma.connpass.com/event/175139/">atma.connpass.com</a></cite></p>
 
@@ -96,7 +97,6 @@ tags: []
 </li>
 </ul>
 
-
 <h4>LightGBM</h4>
 
 <p>こちらは最終日にもう何も思い付かず、とはいえサブを余らせて終わるのも悔しかったので、やってみるかぁという惰性で挑戦したものでした。
@@ -117,7 +117,6 @@ CV は Stacking した LightGBM の方がかなり高かったので興奮した
 </ul>
 </li>
 </ul>
-
 
 <h3>うまくいかなかったこと</h3>
 
@@ -148,6 +147,6 @@ CV は Stacking した LightGBM の方がかなり高かったので興奮した
 <li><a class="keyword" href="http://d.hatena.ne.jp/keyword/%C8%F9%CA%AC">微分</a>して入力チャネルに追加して CNN に通す</li>
 </ul>
 
+---
 
------
---------
+---

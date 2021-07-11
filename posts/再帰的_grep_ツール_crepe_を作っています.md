@@ -3,6 +3,7 @@ title: "再帰的 grep ツール crepe を作っています"
 date: 2016-07-08T15:36:15.000Z
 tags: []
 ---
+
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%BA%C6%B5%A2">再帰</a>的にパスをたどりながらパターンにマッチする行を検索する <a class="keyword" href="http://d.hatena.ne.jp/keyword/grep">grep</a> 系のツールを作っています。</p>
 
 <p><a href="https://github.com/agatan/crepe">agatan/crepe</a></p>
@@ -40,23 +41,25 @@ tags: []
 <li><a class="keyword" href="http://d.hatena.ne.jp/keyword/%C0%B5%B5%AC%C9%BD%B8%BD">正規表現</a>マッチ</li>
 </ul>
 
-
 <p>あたりから順にやっていきたいなと思っています。とりあえずこっちからやろうかなと思います。</p>
 
 <p>というわけで気合を入れる意味も込めて記事にしました。プルリクやフィードバック大歓迎なのでぜひよろしくお願いします。</p>
 
------
+---
+
 COMMENT:
 AUTHOR: smaranrebub
 EMAIL: ruysqucp@gmail.com
 URL: http://cialisvipsale.com
 IP: 200.26.168.127
 DATE: 03/24/2018 15:30:29
- 
+
 Very good info, Thanks!
 walgreens price for cialis <a href="http://cialisvipsale.com">buy brand cialis cheap</a>
 prices on cialis 10 mg <a href="http://cialisvipsale.com">http://cialisvipsale.com</a>
 acheter du cialis a geneve <a href="http://cialisvipsale.com">effetti del cialis</a>
 prices for cialis 50mg
------
---------
+
+---
+
+---

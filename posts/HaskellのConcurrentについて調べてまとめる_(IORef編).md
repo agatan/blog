@@ -3,6 +3,7 @@ title: "HaskellのConcurrentについて調べてまとめる (IORef編)"
 date: 2015-07-21T14:46:58.000Z
 tags: []
 ---
+
 <p>こんばんは. <a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>(<a class="keyword" href="http://d.hatena.ne.jp/keyword/GHC">GHC</a>)で並行処理を必要とするアプリケーションを書いてみようと思ったのですが, 並列処理に関するいろいろについてよくわかっていない部分が多かったので, 調べたついでにまとめておこうと思います.</p>
 
 <p>もし間違い等ありましたらコメントいただけるとありがたいです</p>
@@ -40,14 +41,12 @@ main = do
     threadDelay $ 2 * 10 ^ 6
     putStrLn &#34;end&#34;</pre>
 
-
 <p>実行結果</p>
 
 <pre class="code" data-lang="" data-unlink>sleep 3
 wake up 3
 sleep 2 and wakeup
 end</pre>
-
 
 <p>全体として, 3秒->2秒->2秒とスリープするので7秒ほどの実行時間になります.</p>
 
@@ -73,14 +72,12 @@ main = do
     threadDelay $ 2 * 10 ^ 6
     putStrLn &#34;end&#34;</pre>
 
-
 <p>実行結果</p>
 
 <pre class="code" data-lang="" data-unlink>sleep 3
 sleep 2 and wakeup
 wake up 3
 end</pre>
-
 
 <p>１つのスレッドが3秒スリープしている間に, もう一つのスレッドのスリープが始まるので, 全体で4秒ほどの実行時間になります.</p>
 
@@ -104,12 +101,10 @@ main = do
     v&#39; &lt;- readIORef ref
     print v&#39;</pre>
 
-
 <p>実行結果</p>
 
 <pre class="code" data-lang="" data-unlink>0
 1</pre>
-
 
 <p>このように変数として中身を書き換えることができます.<br/>
 これは変数なので, ひとつのスレッドで行った書き換えが他のスレッドにも影響を及ぼします.(State<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%E2%A5%CA%A5%C9">モナド</a>のように変数を模倣しているだけではこれはできない)</p>
@@ -131,7 +126,6 @@ main = do
     threadDelay 1000000
     v &lt;- readIORef ref
     print v</pre>
-
 
 <h2>データ競合</h2>
 
@@ -159,7 +153,6 @@ main = do
     print res
     print v</pre>
 
-
 <p><code>inc</code> は<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%B8%C0%B8%EC">C言語</a>の<code>i++;</code>のような動きをする. 加算する前の値を返し, 変数をインクリメントする.<br/>
 <code>atomicModifyIORef</code> は名前の通り atomic な操作であり, 分割不可能になるため他のスレッドと処理が競合することがなくなる.</p>
 
@@ -170,5 +163,6 @@ main = do
 
 <p><code>MVar</code> や <code>STM</code> を使用する方法もあり, そっちのほうが良い場合もあるっぽいのでそっちについてもまとめたいと思います.</p>
 
------
---------
+---
+
+---

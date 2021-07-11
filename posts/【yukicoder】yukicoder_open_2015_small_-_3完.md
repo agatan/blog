@@ -3,6 +3,7 @@ title: "【yukicoder】yukicoder open 2015 small - 3完"
 date: 2015-04-26T15:47:58.000Z
 tags: []
 ---
+
 <h1>yukicoder open 2015 small に挑戦してきました！</h1>
 
 <p><a href="http://yukicoder.me/">yukicoder</a>さん主催のコンテストに初挑戦してきました！<br/>
@@ -55,5 +56,6 @@ Leading Zero を <code>eval</code> すると八進数扱いになったりして
 
 <p>この2問は問題文すらろくに見られていないのでまた後日復習したいと思います！</p>
 
------
---------
+---
+
+---

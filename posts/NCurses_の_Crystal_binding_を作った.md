@@ -3,6 +3,7 @@ title: "NCurses の Crystal binding を作った"
 date: 2016-12-08T13:33:17.000Z
 tags: []
 ---
+
 <p>この記事は、 Crystal Advent Calendar 2016 の８日目の記事です。
 <iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fqiita.com%2Fadvent-calendar%2F2016%2Fcrystal" title="Crystal Advent Calendar 2016 - Qiita" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://qiita.com/advent-calendar/2016/crystal">qiita.com</a></cite></p>
 
@@ -28,7 +29,6 @@ tags: []
   <span class="synType">NCurses</span>.getch
 <span class="synStatement">end</span>
 </pre>
-
 
 <p><code>NCurses.addstr</code> とか <code>NCurses.move</code> とかは ncurses で言う <code>addstr</code> や <code>move</code> に当たる関数で，<code>stdscr</code> に対して <code>waddstr</code> とか <code>wmove</code> するやつです．</p>
 
@@ -58,16 +58,12 @@ tags: []
 <span class="synPreProc">end</span>
 </pre>
 
-
-
-
 <pre class="code lang-crystal" data-lang="crystal" data-unlink><span class="synPreProc">class</span> <span class="synType">Window</span>
   <span class="synPreProc">def</span> <span class="synIdentifier">move</span>(y, x)
      <span class="synType">LibNCurses</span>.wmove(<span class="synIdentifier">@win</span>, y, x)
   <span class="synPreProc">end</span>
 <span class="synPreProc">end</span>
 </pre>
-
 
 <p>みたいな感じです．（多少簡略化しています）</p>
 
@@ -79,5 +75,6 @@ tags: []
 <p>C は型変換を勝手にやってくれるので，<code>unsigned int</code> を返す関数から受け取った値を <code>short</code> を受け取る関数に渡すみたいなことをよくやっていて，Crystal のような型変換を暗黙にやらない言語から使おうとすると難しいんだなぁと思いました．
 なにか良い方法があればぜひ知りたいです．</p>
 
------
---------
+---
+
+---

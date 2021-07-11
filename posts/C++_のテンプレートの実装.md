@@ -3,6 +3,7 @@ title: "C++ のテンプレートの実装"
 date: 2016-06-13T07:59:27.000Z
 tags: []
 ---
+
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> のテンプレートがなぜ必要で，どんな構文・種類のものがあるかについては前回までにまとめました。<br/>
 というわけで次は <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> ではテンプレートという機能を使用するとどんな<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D0%A5%A4">バイ</a>ナリが生成されるのかについて見ていきます。<br/>
 <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> のテンプレートの強力さとか勘所みたいなものを把握するために非常に重要な部分なので、覚えておくとよいと思います。</p>
@@ -31,11 +32,9 @@ T identity(T x) {
 }
 </pre>
 
-
 <p>clang++ で <a class="keyword" href="http://d.hatena.ne.jp/keyword/LLVM">LLVM</a> IR を生成させるには，<code>-S -emit-llvm</code> をオプションに指定します。また、今回のコードは最適化されてしまうとほとんどコードが残らないので、最適化を抑制するよう、<code>-O0</code> を付けます。</p>
 
 <pre class="code" data-lang="" data-unlink>$ clang++ -O0 -S -emit-llvm main.cpp</pre>
-
 
 <p>すると <code>main.ll</code> というファイルが出来ています。これが <a class="keyword" href="http://d.hatena.ne.jp/keyword/LLVM">LLVM</a> IR です。</p>
 
@@ -74,7 +73,6 @@ define linkonce_odr i32 @_Z8identityIiET_S0_(i32 %x) #1 { ;; identity&lt;int&gt;
   ret i32 %2
 }</pre>
 
-
 <p>コメントでも書きましたが、3 つの関数が定義されていることがわかると思います。
 ここで重要なのは、 <strong>identity&lt;int>とidentity&lt;float>がそれぞれ別の関数として定義されている</strong> ことです。</p>
 
@@ -105,7 +103,6 @@ define linkonce_odr i32 @_Z8identityIiET_S0_(i32 %x) #1 { ;; identity&lt;int&gt;
   }
 }
 </pre>
-
 
 <p><code>javac Main.java</code> してから、<code>javap -v Main</code> します。これで<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D0%A5%A4%A5%C8%A5%B3%A1%BC%A5%C9">バイトコード</a>が出力されます。</p>
 
@@ -161,7 +158,6 @@ define linkonce_odr i32 @_Z8identityIiET_S0_(i32 %x) #1 { ;; identity&lt;int&gt;
 }
 SourceFile: &#34;Main.java&#34;</pre>
 
-
 <p>注目すべきは <code>// Method identity:(Ljava/lang/Object;)Ljava/lang/Object;</code> というコメントのついた行です。<br/>
 2 行ありますが、それぞれ <code>identity(d)</code> と <code>identity(f)</code> に相当します。</p>
 
@@ -198,7 +194,6 @@ SourceFile: &#34;Main.java&#34;</pre>
 </li>
 </ul>
 
-
 <h3><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> 方式</h3>
 
 <ul>
@@ -217,7 +212,6 @@ SourceFile: &#34;Main.java&#34;</pre>
 </li>
 </ul>
 
-
 <p>こんな感じでしょうか。<br/>
 この比較はあくまで型を汎用化したいという目的に関しての比較です。<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> のテンプレートにできて <a class="keyword" href="http://d.hatena.ne.jp/keyword/Java">Java</a> の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B8%A5%A7%A5%CD%A5%EA%A5%AF%A5%B9">ジェネリクス</a>に出来ないことはたくさんあります。</p>
 
@@ -228,5 +222,6 @@ SourceFile: &#34;Main.java&#34;</pre>
 
 <p>というわけで今回はテンプレートの実現方法について、<a class="keyword" href="http://d.hatena.ne.jp/keyword/Java">Java</a> と比較しながら説明してみました。</p>
 
------
---------
+---
+
+---

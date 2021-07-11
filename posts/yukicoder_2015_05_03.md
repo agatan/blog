@@ -3,6 +3,7 @@ title: "yukicoder 2015/05/03"
 date: 2015-05-04T09:38:47.000Z
 tags: []
 ---
+
 <p>今週は土日共に予定があって<a class="keyword" href="http://d.hatena.ne.jp/keyword/AtCoder">AtCoder</a>さんもyukicoderさんも出場したかったのですが出来ず...</p>
 
 <h1><a class="keyword" href="http://d.hatena.ne.jp/keyword/AtCoder">AtCoder</a> - ARC</h1>
@@ -57,7 +58,6 @@ tags: []
 }
 </pre>
 
-
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a>にもBigInt的なものはあるんですかね？あんまり<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a>も詳しくないのでわかりませんが多分あるでしょう。どっちがはやいんだろうなー</p>
 
 <h2><a href="http://yukicoder.me/problems/476">No.202 1円玉投げ - yukicoder</a></h2>
@@ -107,7 +107,6 @@ tags: []
     <span class="synStatement">return</span> <span class="synConstant">0</span>;
 }
 </pre>
-
 
 <p>投げるたびに、今までのコイン達と重なっているかどうかをチェックし、どれとも重なっていなかった場合は追加する、というナイーブな実装です。これだと答えは合うのですが、TLEになってしまいました。<br/>
 はじめはx軸方向にソートして、x軸方向で20より離れていればチェックの必要がないので、チェックの必要がある部分を二分探索で求めるという方法を考えたのですが、なんかあんまりうまい方法に思えなくて詰まりまくりました。</p>
@@ -178,7 +177,6 @@ array&lt;array&lt;vector&lt;P&gt;, <span class="synConstant">2000</span>&gt;, <s
 }
 </pre>
 
-
 <p>10 × 10 のマスに区切って、コインが重なる可能性のある部分(つまり隣接するマス)についてのみチェックをするという実装です。<br/>
 今思ったのですが、10 × 10 のマスに区切ったらその中に存在できるコインの数って多分1子だけですよね？そしたら <code>array&lt; array&lt;P, 2000&gt;, 2000&gt;</code> でもよかったかもですね！(あ、でもそれだとコインが存在しないときの値がよくわからなくなるなーoption型とか欲しくなる)</p>
 
@@ -189,5 +187,6 @@ array&lt;array&lt;vector&lt;P&gt;, <span class="synConstant">2000</span>&gt;, <s
 
 <p>学びとしては、きちんと問題の対象範囲をよく読むことと、検索の範囲を狭めることで解決できる問題の場合はフィールドをマス目状に区切る方法があるということですね！次回に活かします！</p>
 
------
---------
+---
+
+---

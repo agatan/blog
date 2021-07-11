@@ -3,6 +3,7 @@ title: "Rust のパーサコンビネータライブラリ combine を使う時�
 date: 2016-05-14T16:03:19.000Z
 tags: []
 ---
+
 <p>Rust のパーサ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D3%A5%CD%A1%BC%A5%BF">コンビネータ</a>ライブラリの一つである <a href="https://github.com/Marwes/combine">Marwes/combine: A parser combinator library for Rust</a> を使ってみています．<br/>
 詳しい使い方はきちんとしたドキュメントがあるのでそちらを参照してください．<br/>
 ざっくりいうと <a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a> の <a href="https://hackage.haskell.org/package/parsec">parsec: Monadic parser combinators | Hackage</a> の Rust 版という感じです．</p>
@@ -50,7 +51,6 @@ fn expr&lt;I: Stream&gt;(input: State&lt;I&gt;) -&gt; ParseResult&lt;I, &amp;str
 <li>&amp;str のみを受理するパーサ</li>
 <li><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B8%A5%A7%A5%CD%A5%EA%A5%C3%A5%AF">ジェネリック</a>な構造体の中に定義された<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B8%A5%A7%A5%CD%A5%EA%A5%C3%A5%AF">ジェネリック</a>でないパーサ</li>
 </ol>
-
 
 <p>の三種類について，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a>時間をはかってみます．</p>
 
@@ -107,7 +107,6 @@ fn expr&lt;I: Stream&gt;(input: State&lt;I&gt;) -&gt; ParseResult&lt;I, &amp;str
 }
 </pre>
 
-
 <p>それぞれの関数が一つのパーサの役割を担います．それぞれのパーサが独立していて，それぞれ別々に型変数を導入しています．</p>
 
 <p>次に <code>&amp;str</code> だけを受け取るパーサです．これは上記の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B8%A5%A7%A5%CD%A5%EA%A5%C3%A5%AF">ジェネリック</a>なパーサの，型変数を <code>&amp;str</code> に置き換えるだけなのでとても簡単です．<br/>
@@ -128,7 +127,6 @@ fn expr&lt;I: Stream&gt;(input: State&lt;I&gt;) -&gt; ParseResult&lt;I, &amp;str
     <span class="synIdentifier">parser</span>(expr).<span class="synIdentifier">parse</span>(input)
 }
 </pre>
-
 
 <p>最後が，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B8%A5%A7%A5%CD%A5%EA%A5%C3%A5%AF">ジェネリック</a>な構造体のメソッド中に，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B8%A5%A7%A5%CD%A5%EA%A5%C3%A5%AF">ジェネリック</a>でないパーサを定義して閉じ込める方法です．</p>
 
@@ -179,7 +177,6 @@ fn expr&lt;I: Stream&gt;(input: State&lt;I&gt;) -&gt; ParseResult&lt;I, &amp;str
 }
 </pre>
 
-
 <p>言葉で説明すると難しいのですが，型変数を導入する部分を構造体の定義部分だけにしてあげることで，型変数をそれぞれのパーサが別々に導入する必要がなくなっています．<br/>
 コードも割りとすっきりしますね．</p>
 
@@ -211,7 +208,6 @@ fn expr&lt;I: Stream&gt;(input: State&lt;I&gt;) -&gt; ParseResult&lt;I, &amp;str
 </tbody>
 </table>
 
-
 <p>このような結果になりました．<br/>
 つまり，先ほどの issue で述べられている<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a>時間の短縮方法はかなり効き目があるということですね．<br/>
 構造体の中に閉じ込める方法が，<code>&amp;str</code> しか受理しないようにする方法よりもはやく<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a>できるのは意外でした&hellip; 参照を引数にとると暗黙に lifetime 変数が導入されたと記憶しているので，その関係なのかな？</p>
@@ -221,19 +217,22 @@ fn expr&lt;I: Stream&gt;(input: State&lt;I&gt;) -&gt; ParseResult&lt;I, &amp;str
 <p>注意点として，構造体内で別のパーサを呼ぶときには，必ず <code>P::term</code> という形ではなく，<code>P::&lt;I&gt;::term</code> という形で呼び出すようにする必要があるようです．<br/>
 きちんと明示的に指定しないと，結局<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B7%BF%BF%E4%CF%C0">型推論</a>するはめになって意味がないということのようです．</p>
 
------
+---
+
 COMMENT:
 AUTHOR: anevaden
 EMAIL: pgbsajrq@gmail.com
 URL: http://cialisvipsale.com
 IP: 60.173.69.118
 DATE: 03/24/2018 13:14:29
- 
-Regards. Quite a lot of posts. 
+
+Regards. Quite a lot of posts.
 
 tadalafil 20 mg <a href="http://cialisvipsale.com">cialis tablets australia</a>
 interactions for cialis <a href="http://cialisvipsale.com">http://cialisvipsale.com</a>
 cialis 5mg prix <a href="http://cialisvipsale.com">cialis generico</a>
 cialis dose 30mg
------
---------
+
+---
+
+---

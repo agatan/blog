@@ -3,6 +3,7 @@ title: "HaskellのConcurrentについて調べてまとめる (MVar編)"
 date: 2015-07-22T01:21:48.000Z
 tags: []
 ---
+
 <p>どうもこんにちは.</p>
 
 <p>前回(<a href="http://agtn.hatenablog.com/entry/2015/07/21/234658">HaskellのConcurrentについて調べてまとめる (IORef編) - プログラミングのメモ帳➚</a>)の続きです.</p>
@@ -22,7 +23,6 @@ newMVar :: a -&gt; IO (MVar a)
 takeMVar :: MVar a -&gt; IO a
 putMVar :: MVar a -&gt; a -&gt; IO ()
 readMVar :: MVar a -&gt; IO a</pre>
-
 
 <p>型を見ればなんとなく使い方もわかる気がしますね.<br/>
 <code>MVar</code>を作るには<code>newEmptyMVar</code>か<code>newMVar</code>を使用します. <code>newEmptyMVar</code>は空のメッセージボックスを作り, <code>newMVar</code>は第一引数を初期値としてもつメッセージボックスを作ります.</p>
@@ -55,14 +55,12 @@ main = do
     putMVar mvar &#34;A&#34;
     takeMVar mvar &gt;&gt;= print</pre>
 
-
 <p>実行結果</p>
 
 <pre class="code" data-lang="" data-unlink>sleep 1
 wake up
 recv: A
 &#34;B&#34;</pre>
-
 
 <p>確かにメッセージが格納されるまで <code>takeMVar</code>がブロックしていることがわかります</p>
 
@@ -79,7 +77,6 @@ recv: A
         -- 他のスレッドはMVarの中身に触れない
         putMVar mvar $ val + 1
     ...</pre>
-
 
 <p>この特徴はまさにロックの特徴といえます. ロックを取得し解放するまでは, 他のスレッドは同じロックで保護された区間にははいれません.<br/>
 というわけで<code>MVar</code>は型レベルでロックがついた共有変数とみなすことができますね！(このへんはRustのMutexに似た空気を感じます. どちらも型レベルでロックとそれが保護する中身がつながっています)<br/>
@@ -114,7 +111,6 @@ main = do
         let newTable = ...
         putMVar mvar newTable</pre>
 
-
 <p>このように<code>MVar</code>とimmutableなデータ構造を組み合わせることで, 粒度の小さいロックを実現することができます.<br/>
 一方, <code>MVar</code>とmutableなデータ構造(<code>IORef</code>など)を組み合わせる場合は, たとえ読み込みしかしない場合であっても操作が終わるまではロックを保持しておく必要があることに注意しなければなりません (<code>IORef</code>には前回紹介したように<code>atomicModifyIORef</code>があるのでなかなかこういう状況は起こりませんね)</p>
 
@@ -127,5 +123,6 @@ main = do
 
 <p>ロックはいろいろ厄介で, <a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%C7%A5%C3%A5%C9%A5%ED%A5%C3%A5%AF">デッドロック</a>とか解放忘れとかの問題がついて回ります. それを解決する１つの方法として<code>STM</code>があるようなので, 次はそれについて調べてみようと思います.</p>
 
------
---------
+---
+
+---

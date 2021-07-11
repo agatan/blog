@@ -3,6 +3,7 @@ title: "ISUCON7予選1日目に「都営三田線」で参加して通過でき�
 date: 2017-10-23T11:33:42.000Z
 tags: []
 ---
+
 <p>ISUCON7 予選お疲れ様でした！
 タイトルどおりですが，「<a class="keyword" href="http://d.hatena.ne.jp/keyword/%C5%D4%B1%C4%BB%B0%C5%C4%C0%FE">都営三田線</a><a class="keyword" href="http://d.hatena.ne.jp/keyword/%C5%EC%B5%DE%CC%DC%B9%F5%C0%FE">東急目黒線</a>直通急行日吉行」という学生チームで参加し，1日目3位枠で通過することができました．
 チーム編成は，去年2人チームで参加したときの相方である <a href="https://github.com/0gajun">0gajun</a> と，僕の内定先の同期の <a href="https://github.com/izumin5210">izumin</a> の 3 人チームでした．</p>
@@ -29,5 +30,6 @@ tags: []
 予選から複数台構成で面食らいましたが，複数台は難しい分，楽しさも増すし勉強になることもたくさんありました！
 本戦も楽しみにしています！</p>
 
------
---------
+---
+
+---

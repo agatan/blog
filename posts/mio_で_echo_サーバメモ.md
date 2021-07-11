@@ -3,6 +3,7 @@ title: "mio で echo サーバメモ"
 date: 2017-01-07T06:14:55.000Z
 tags: []
 ---
+
 <p>Rust の非同期 IO ライブラリのなかでももっとも低レベルなレイヤーを担っている <a href="https://github.com/carllerche/mio">mio</a> を使ってecho サーバを書いた。
 echo サーバばっかり書いているような気がするけど，echo サーバやっておくと簡単な割にライブラリの使い方とかがちゃんと分かる気がするので好きです。</p>
 
@@ -115,7 +116,6 @@ echo サーバばっかり書いているような気がするけど，echo サ�
 }
 </pre>
 
-
 <p>面倒だったので <code>unwrap</code> まみれですが。</p>
 
 <h2>やったこと</h2>
@@ -159,9 +159,9 @@ echo サーバばっかり書いているような気がするけど，echo サ�
 }
 </pre>
 
-
 <p>というのがあるんですが，これどうやったらスマートなんでしょう．
 <code>close = true</code> としている部分で <code>clients.remove(tok);</code> をやるのが普通だと思うんですが，<code>if let Some(mut stream) = clients.get_mut(tok) {</code> のところで <code>clients</code> は borrow されているから mutable borrow はこれ以上作れないのです．</p>
 
------
---------
+---
+
+---

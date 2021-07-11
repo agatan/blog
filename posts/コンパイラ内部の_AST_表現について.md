@@ -3,6 +3,7 @@ title: "コンパイラ内部の AST 表現について"
 date: 2015-12-29T14:25:44.000Z
 tags: []
 ---
+
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%E9">コンパイラ</a>は大体，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%BD%A1%BC%A5%B9%A5%B3%A1%BC%A5%C9">ソースコード</a>を<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B9%BD%CA%B8%B2%F2%C0%CF">構文解析</a>し，AST を作り，意味解析，コード生成という流れで実装されると思います．</p>
 
 <p>さて，AST は単純に書くと</p>
@@ -13,7 +14,6 @@ tags: []
   <span class="synStatement">|</span> <span class="synConstant">Apply</span> <span class="synStatement">of</span> expr <span class="synStatement">*</span> expr <span class="synType">list</span>
   <span class="synStatement">|</span> ...
 </pre>
-
 
 <p>みたいな感じに書けると思います．</p>
 
@@ -35,7 +35,6 @@ tags: []
   <span class="synStatement">|</span> <span class="synConstant">Typed_add</span> <span class="synStatement">of</span> texpr <span class="synStatement">*</span> texpr
   <span class="synStatement">|</span> <span class="synConstant">Typed_apply</span> <span class="synStatement">of</span> texpr <span class="synStatement">*</span> texpr <span class="synType">list</span>
 </pre>
-
 
 <p>このように AST の表現は，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a>としては同じだが付随する情報だけが異なるという場合があります．</p>
 
@@ -65,7 +64,6 @@ tags: []
     <span class="synStatement">|</span> GLShader String String Literal.GLShaderTipe
 </pre>
 
-
 <p>Elm <a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%E9">コンパイラ</a>は <a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a> で実装されています．
 <code>Expr</code> が型引数として，<code>annotation</code> などを持っています．(<code>definition</code>, <code>tipe</code> についてはいまいちなんのための抽象化か理解していません...)
 <code>annotation</code> は，AST に付随する情報です．<code>A.Annotated</code> という型が，核となる情報に，情報を annotate する役割を担います．</p>
@@ -74,11 +72,11 @@ tags: []
     <span class="synStatement">=</span> A annotation a
 </pre>
 
-
 <p>そして，AST の核となる構造自体は <code>Expr'</code> が持ちます．</p>
 
 <p>こうすることで，<code>annotation</code> の内容を変えるだけで，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a>を何度も書き直す必要なく，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%E9">コンパイラ</a>の各ステップに適した AST 表現を作る事ができます．
 ちなみに <code>variable</code> はどうやら変数などの名前を表現する型を表しているようです．(始めは単なる <code>String</code>)</p>
 
------
---------
+---
+
+---

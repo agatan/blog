@@ -3,6 +3,7 @@ title: "go generate する時のバイナリのバージョンを固定したい
 date: 2017-08-05T16:58:13.000Z
 tags: []
 ---
+
 <p><a href="https://github.com/golang/mock">https://github.com/golang/mock</a> は <code>mockgen</code> というコマンドを提供しています．
 これは，interface から mock を自動生成するコマンドで <code>go generate</code> と合わせて使うと interface に追従する mock がとても簡単に作れます．</p>
 
@@ -28,7 +29,6 @@ tags: []
 </li>
 </ul>
 
-
 <p>などがあります．</p>
 
 <p>これ結構嫌な問題だと思ったのですが，パッとぐぐってみてもあまり困っている声を聞かないので普通どうやって解決しているのか気になっています．
@@ -51,7 +51,6 @@ $ bindor <span class="synStatement">exec</span> which mockgen
 /path/to/current/.bindor/mockgen
 </pre>
 
-
 <p>という感じです．</p>
 
 <p><code>//go:generate bindor mockgen</code> としてもいいですが，<code>bindor exec go generate</code> とすれば<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%BD%A1%BC%A5%B9%A5%B3%A1%BC%A5%C9">ソースコード</a>を書き換えなくても <code>.bindor</code> 以下のバイナリを使うようになるはずです．</p>
@@ -60,5 +59,6 @@ $ bindor <span class="synStatement">exec</span> which mockgen
 
 <p>というわけでバイナリを vendoring する <code>bindor</code> を作った話でした．もっといい解決方法があったら教えてください．</p>
 
------
---------
+---
+
+---

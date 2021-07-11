@@ -1,19 +1,19 @@
 ---
 title: "RubyでLinuxコマンドの再実装(ls編)"
 date: 2014-10-13T23:10:08+09:00
-tags: ["Ruby","Linux"]
+tags: ["Ruby", "Linux"]
 url: https://qiita.com/agatan/items/af0c3bbc881f60667c85
 ---
 
-Rubyの勉強にRubyで有名ドコロのLinuxコマンドたちを再実装してみたいとおもいます。
+Ruby の勉強に Ruby で有名ドコロの Linux コマンドたちを再実装してみたいとおもいます。
 
 少しずつ追記する形にできればと思っています。よりよい実装方法などありましたらぜひご教授いただけると幸いです。
 
-[RubyでLinuxコマンドの再実装(ls編) - Qiita](http://qiita.com/agatan/items/af0c3bbc881f60667c85)
-[RubyでLinuxコマンドの再実装(tree編) - Qiita](http://qiita.com/agatan/items/4c50554ae22aa4181cc1)
-
+[Ruby で Linux コマンドの再実装(ls 編) - Qiita](http://qiita.com/agatan/items/af0c3bbc881f60667c85)
+[Ruby で Linux コマンドの再実装(tree 編) - Qiita](http://qiita.com/agatan/items/4c50554ae22aa4181cc1)
 
 ## ls
+
 ではまずは`ls`です。簡単そうだったし個人的に一番良く使うコマンドなので。
 
 ```rb
@@ -46,8 +46,10 @@ puts entries.join(' ')
 コマンドライン引数の順番や, `-a -l -F`と`-alF`などややこしそうな部分は制約をつけてお茶を濁してしまうかもしれません...
 
 ### 追記
---------
-@riocamposさんにコメントでコマンドライン引数の利用方法を教えていただきました！
+
+---
+
+@riocampos さんにコメントでコマンドライン引数の利用方法を教えていただきました！
 `require 'optparse'`とすればパーサが利用できるようになります。
 
 というわけでこれを反映し修正したものがこちらです。

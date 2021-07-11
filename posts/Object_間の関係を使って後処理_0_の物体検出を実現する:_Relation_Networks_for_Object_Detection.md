@@ -1,9 +1,10 @@
 ---
 title: "Object 間の関係を使って後処理 0 の物体検出を実現する: Relation Networks for Object Detection"
 date: 2018-12-10T23:35:40+09:00
-tags: ["画像処理","DeepLearning","論文読み","物体検出"]
+tags: ["画像処理", "DeepLearning", "論文読み", "物体検出"]
 url: https://qiita.com/agatan/items/1c2cadeaabfc9f122f6f
 ---
+
 Object Detection は、一枚の画像中の「どこに」「なにが」うつっているかを当てるタスクです。
 典型的な手法では、オブジェクトごとの bounding box を予測し、それぞれがどのクラスに分類されるかを**個別で**予測します。
 また、ひとつのオブジェクトに対してすこしずつ座標のずれた box を複数予測してしまう可能性があるという問題があり、1 object 1 box になるように重複を削除しなければなりません。
@@ -15,13 +16,13 @@ Object Detection は、一枚の画像中の「どこに」「なにが」うつ
 
 （青い box について分類する際に、オレンジの box との関連が強く活用されている）
 
-この記事は、Wantedlyの勉強会で取り上げられた論文・技術をまとめたものです。
-[2018年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
+この記事は、Wantedly の勉強会で取り上げられた論文・技術をまとめたものです。
+[2018 年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
 
 ## Reference
 
 - Relation Networks for Object Detection
-    - Han Hu, Jiayuan Gu, Zheng Zhang, Jifeng Dai, Yichen Wei, et al., CVPR 2018
+  - Han Hu, Jiayuan Gu, Zheng Zhang, Jifeng Dai, Yichen Wei, et al., CVPR 2018
 - https://arxiv.org/abs/1711.11575
 
 文中の図表は論文より引用しています。
@@ -46,7 +47,7 @@ relation module は box 間の attention をとる module です。
 完全に後処理をなくすためには、大量の box のなかから採用すべき box だけを残す必要があります。（通常は non maximum supression で、スコアの高い box を優先的に残しつつ、重複した領域の大きい box はすてる）
 そこでこの論文では、Attention module をいくつか通したのち、box ごとに 0~1 の値を出力し、残すべき box は 1 になり捨てるべき box は 0 になるように学習します。
 
-## Object Relation Module 
+## Object Relation Module
 
 物体間の関係には 2 つの意味があります。1 つは意味的な関連で、もう一つは座標的な関連です。
 ボールっぽいものとバットっぽいものがあったとしても、ものすごく離れた場所にあるのであれば無関係かもしれないですが、近くにあればきっとボールとバットのペアと予測するのが正しそうです。

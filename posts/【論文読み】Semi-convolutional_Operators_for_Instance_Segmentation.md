@@ -1,15 +1,16 @@
 ---
 title: "【論文読み】Semi-convolutional Operators for Instance Segmentation"
 date: 2019-02-11T16:59:46+09:00
-tags: ["DeepLearning","論文読み"]
+tags: ["DeepLearning", "論文読み"]
 url: https://qiita.com/agatan/items/2cf1209b7370db45eba5
 ---
+
 Instance Segmentation のタスクに対する手法を整理・分解し、精度をより向上する `Semi-convolutional operators` を提案した論文です。
 
 ![image.png](https://qiita-image-store.s3.amazonaws.com/0/39030/8164ed4c-3f5d-c772-e21d-7d02d5146461.png)
 
-この記事は、Wantedlyの勉強会で取り上げられた論文・技術をまとめたものです。
-[2018年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
+この記事は、Wantedly の勉強会で取り上げられた論文・技術をまとめたものです。
+[2018 年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
 
 ## Reference
 
@@ -26,7 +27,6 @@ Instance Segmentation とは、画像の各 Pixel について、 **どのクラ
 入力画像を「この領域は人、この領域は車、...」というように色塗りしていくタスクです。
 
 ![image.png](https://qiita-image-store.s3.amazonaws.com/0/39030/146f0988-659b-4f15-df32-e065ddae5e70.png)(Fig. 5 より)
-
 
 Instance Segmentation において重要なのが **どのインスタンスに属するか** も予測しなければならないという点です。
 たとえば人が 3 人で肩を組んでいるような画像の場合、どこからどこまでが 1 人目かを予測しなければなりません。
@@ -46,7 +46,7 @@ Mask R-CNN は、物体のクラスと bounding box だけを予測する Object
 まず Object Detection をすることで「この bounding box に人間が 1 人いる」ということを予測し、その後 bounding box 内を色塗りしていきます。
 Object Detection として bounding box を予測している時点で Instance を分離することが出来ています。色塗りのフェーズでは、すでに Instance が分離されているので単なる Pixel 単位の 2 クラス分類をやればよいことになります。
 
-はじめに Region を提案し、その中を精査するこれらの手法を、この論文では *propose & verify* (P&V) と呼んでいます。
+はじめに Region を提案し、その中を精査するこれらの手法を、この論文では _propose & verify_ (P&V) と呼んでいます。
 
 ここで、 **P&V は必ず一度矩形で切り取ってから色塗りをしなければならない** という点が問題になります。
 予測したい物体は必ずしも矩形で近似できるような形状をしているとは限りません。
@@ -57,7 +57,7 @@ Object Detection として bounding box を予測している時点で Instance 
 ### instance coloring
 
 P&V の問題点を解決する方法として、Pixel ごとに **ラベル + Instance の identifier となる何か** を予測する方法があります。
-これらをこの論文では *instance coloring* (IC) と呼んでいます。
+これらをこの論文では _instance coloring_ (IC) と呼んでいます。
 
 「Instance の identifier となる何か」 は、連番などではうまく学習できません（どの Object が ID 1 なのか ID 2 なのかわからない）。
 そこで、 Pixel ごとに低次元の embedding を出力し、**同じ Instance に所属する Pixel の embedding たちが似たものになるように学習します**。
@@ -91,7 +91,7 @@ Semi-convolutinal 版では、 $\Phi$ の代わりに次のような $\Psi$ を�
 ここで、 $u$ は Pixel の座標を表し、 $f$ は $\Phi$ の結果と座標情報を合成するなんらかの関数です。
 $f$ の簡単な例としては、単純な足し算が考えられます。
 $\Psi$ は、CNN の結果に加えて座標情報も持ち合わせているため、IC の弱点を克服できています。
-$f$ を単純な加算とし、うまく学習が成功した場合、各 Instance ごとに centroid $c_k$ が決定され、 
+$f$ を単純な加算とし、うまく学習が成功した場合、各 Instance ごとに centroid $c_k$ が決定され、
 
 ```math
 \forall u \in S_k: \Phi_u(x) + u = c_k
@@ -120,7 +120,6 @@ Mask R-CNN との統合もこの論文の重要な topic なのですが、ぶ�
 
 ![image.png](https://qiita-image-store.s3.amazonaws.com/0/39030/e7516b68-9a66-154b-45ae-61199e0de90a.png)(Fig. 3 より)
 
-
 まずはじめに、 画像的にそっくりな領域が繰り返されてもうまく Instance を分離できることを確認しています。
 (c) は通常の Conv. のみを使って IC を行った場合の結果です。クラスタリングに大失敗していることがわかります。
 一方 (d) の Semi-conv. 版ではきれいな分離が実現されています。
@@ -131,7 +130,6 @@ Mask R-CNN との統合もこの論文の重要な topic なのですが、ぶ�
 現在主流である Mask RCNN よりも良い結果が示されています。
 
 ![image.png](https://qiita-image-store.s3.amazonaws.com/0/39030/77a2f7fe-ee56-13ae-f49b-faf825cbf406.png)
-
 
 より一般的なデータである PASCAL VOC2012 に対しても Mask RCNN より良い結果となっています（Mask RCNN に Semi-conv. の仕組みを組み込んだもので比較しています。）
 

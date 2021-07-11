@@ -3,6 +3,7 @@ title: "BK-tree を golang で実装した"
 date: 2017-05-13T09:33:10.000Z
 tags: []
 ---
+
 <p>先日はてぶに  <a href="http://postd.cc/bk-tree/">&#x8208;&#x5473;&#x6DF1;&#x3044;&#x30C7;&#x30FC;&#x30BF;&#x69CB;&#x9020;&#xFF1A;BK&#x6728; | &#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0; | POSTD</a> という翻訳記事 ( 元記事 <a href="http://signal-to-noise.xyz/post/bk-tree/">http://signal-to-noise.xyz/post/bk-tree/</a>) があがっているのをみて初めて BK-tree というものを知ったので，<a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> で実装してみました．</p>
 
 <p><iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fagatan%2Fbktree" title="agatan/bktree" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://github.com/agatan/bktree">github.com</a></cite></p>
@@ -84,7 +85,6 @@ BK-tree は，ある<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B5%F
 }
 </pre>
 
-
 <p>これを実行すると，</p>
 
 <pre class="code" data-lang="" data-unlink>0000000000000000 (distance: 0)
@@ -104,7 +104,6 @@ BK-tree は，ある<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B5%F
 0010000000000000 (distance: 1)
 0100000000000000 (distance: 1)
 1000000000000000 (distance: 1)</pre>
-
 
 <p>という感じで 0x0000 とのハミング距離が 0 ~ 1 である要素がとれます．</p>
 
@@ -152,7 +151,6 @@ BK-tree は，ある<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B5%F
 </tbody>
 </table>
 
-
 <p>fuzziness が小さければ小さいほど ( = tolerance が小さければ小さいほど ) 高速に探索できることが分かります．</p>
 
 <p>また，データ量が増えるほど Linear Search より有利になるので，距離に対してデータが十分に大量にある場合はかなり有効といえそうです．</p>
@@ -180,7 +178,6 @@ tree を構築する際には，allocate + read + write をかなりの回数行
 <span class="synStatement">return</span> <span class="synStatement">nil</span>
 </pre>
 
-
 <p>という感じになります．あんまりきれいではないんですが，こっちの方がほとんどのケース倍以上速かったので，こちらを採用しました．<br/>
 部分木の数が増えてくると，map のほうが速いと思われるのですが，ハミング距離の場合最大でも bit 数までしか部分木が増えないので．<br/>
 レーベンシュタイン距離を用いたスペルチェックの場合でも，単語の最大文字数以上の距離にはなりません．
@@ -190,5 +187,6 @@ tree を構築する際には，allocate + read + write をかなりの回数行
 データ構造を <a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> で提供する以上このオーバヘッドは避けられないです．( もちろん BK-tree そのものを，自分の利用形態に特化して作れば回避できますが&hellip; )<br/>
 ちょっと Rust や <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> で書きたくなりました．十分速いし書きやすいので良いんですが&hellip;</p>
 
------
---------
+---
+
+---

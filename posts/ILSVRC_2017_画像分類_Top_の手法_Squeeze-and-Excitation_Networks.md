@@ -1,9 +1,10 @@
 ---
 title: "ILSVRC 2017 画像分類 Top の手法 Squeeze-and-Excitation Networks"
 date: 2018-12-13T22:25:45+09:00
-tags: ["画像処理","ComputerVision","MachineLearning","DeepLearning","CNN"]
+tags: ["画像処理", "ComputerVision", "MachineLearning", "DeepLearning", "CNN"]
 url: https://qiita.com/agatan/items/8cf2566908228eaa5450
 ---
+
 ILSVRC 2017 の画像分類タスクでは Squeeze-and-Excitation という手法が 1 位を記録しました。
 シンプルなアイディア・実装で、既存モデルの拡張にも利用できるうえ、精度も 2016 年の top 1 と比べてエラー率を約 25% 減らすという大きな成果をあげています。
 
@@ -15,8 +16,8 @@ ILSVRC 2017 の画像分類タスクでは Squeeze-and-Excitation という手�
 
 文中の図表は論文から引用しています。
 
-この記事は、Wantedlyの勉強会で取り上げられた論文・技術をまとめたものです。
-[2018年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
+この記事は、Wantedly の勉強会で取り上げられた論文・技術をまとめたものです。
+[2018 年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
 
 ## Squeeze and Excitation
 

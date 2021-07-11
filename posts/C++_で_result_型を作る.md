@@ -3,6 +3,7 @@ title: "C++ で result 型を作る"
 date: 2016-07-01T14:30:09.000Z
 tags: []
 ---
+
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a> や Rust など多くの強力な型システムを持つ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%B0%A5%E9%A5%DF%A5%F3%A5%B0%B8%C0%B8%EC">プログラミング言語</a>は、<code>Either</code> とか <code>Result</code> といった「失敗するかもしれない」計算の値を示す型を持っています。</p>
 
 <p>現在の <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> の標準ライブラリにはこのような型はありませんので、それを自作してみようというわけです。</p>
@@ -18,7 +19,6 @@ tags: []
   <span class="synConstant">Err</span>(E),
 }
 </pre>
-
 
 <p>Rust における <code>Result</code> 型はだいたいこんな感じで定義されています。</p>
 
@@ -94,7 +94,6 @@ tags: []
 };
 </pre>
 
-
 <p>かなり雑ですが、ざっくりこんな感じになるはずです。
 <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a>11 から拡張されて自由度がかなり高くなった <code>union</code> がとても便利です。</p>
 
@@ -112,7 +111,6 @@ Rust では、<code>Ok(1isize)</code> とか <code>Err("error!".to_owned())</cod
 <pre class="code lang-cpp" data-lang="cpp" data-unlink><span class="synType">template</span> &lt;<span class="synType">typename</span> T, <span class="synType">typename</span> E&gt; 
 result&lt;T, E&gt; ok(T);
 </pre>
-
 
 <p>これだと <code>T</code> は推論されても <code>E</code> が推論されないので、<code>ok&lt;int, std::string&gt;(1)</code> などとしなければなりません。これは使いづらすぎます。</p>
 
@@ -145,7 +143,6 @@ ok_value&lt;T&gt; ok(T t) {
 }
 </pre>
 
-
 <p><code>ok</code> 側だけ示しました。<br/>
 <code>ok</code> 関数はテンプレートになっており、<code>T</code> 型の値をとって <code>ok_value&lt;T&gt;</code> を返します。（本当は値渡し以外にも対応すべきですが、簡単のために値渡しだけ実装しています）</p>
 
@@ -165,7 +162,6 @@ ok_value&lt;T&gt; ok(T t) {
 }
 </pre>
 
-
 <p>というように書けます。</p>
 
 <h2>まとめ</h2>
@@ -176,5 +172,6 @@ ok_value&lt;T&gt; ok(T t) {
 <p>暗黙の型変換って危険だしあまり良いイメージはないと思うのですが、やっぱりあれば便利ですね。
 <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> を使っている時点で気を抜いたら死なので、「取り扱いを把握して全力で注意しながら使えば危険じゃない」という気持ちで便利に使いたいものです。</p>
 
------
---------
+---
+
+---

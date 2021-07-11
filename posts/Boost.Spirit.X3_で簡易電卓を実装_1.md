@@ -3,6 +3,7 @@ title: "Boost.Spirit.X3 で簡易電卓を実装 1"
 date: 2015-12-18T14:27:05.000Z
 tags: []
 ---
+
 <p><iframe src="http://agtn.hatenablog.com/embed/2015/12/17/190505" title="Boost.Spirit.X3 の練習1 - プログラミングのメモ帳➚" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://agtn.hatenablog.com/entry/2015/12/17/190505">agtn.hatenablog.com</a></cite>
 <iframe src="http://agtn.hatenablog.com/embed/2015/12/17/232003" title="Boost.Spirit.X3 の練習 2 - プログラミングのメモ帳➚" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://agtn.hatenablog.com/entry/2015/12/17/232003">agtn.hatenablog.com</a></cite></p>
 
@@ -19,7 +20,6 @@ tags: []
 <li><code>*</code></li>
 <li><code>/</code></li>
 </ul>
-
 
 <p>の 4 つの演算と単項の <code>-</code> をサポートします．<br/>
 また，整数型のみを扱うものとします．<br/>
@@ -53,7 +53,6 @@ tags: []
   x3::rule&lt;expression, <span class="synType">int</span>&gt; <span class="synType">const</span> expression;
 </pre>
 
-
 <p>それぞれのパーサは attribute として整数型を持ちます．ここに演算結果が格納されることになります．<br/>
 <code>struct primary</code> などは，今は前方宣言のみで十分です．<code>on_error</code> などを実装したくなった時に定義します．</p>
 
@@ -67,7 +66,6 @@ tags: []
   | <span class="synConstant">&quot;(&quot;</span> &gt; expression &gt; <span class="synConstant">&quot;)&quot;</span>
   ;
 </pre>
-
 
 <p>attribute を考慮しなければこんな感じでしょうか．<code>expression</code> は既に宣言されているので使用可能です．(<code>expression</code> の実装がこの時点で見えていなくても使用できます.)</p>
 
@@ -85,7 +83,6 @@ tags: []
 } <span class="synComment">// namespace detail</span>
 </pre>
 
-
 <p><code>assign</code> は attribute を結果に代入する関数オブジェクトを返します．<br/>
 関数にする必要が特にありませんが，この後出てくるヘルパと見た目を合わせたいので関数にしました．</p>
 
@@ -96,7 +93,6 @@ tags: []
   | (<span class="synConstant">&quot;(&quot;</span> &gt; expression &gt; <span class="synConstant">&quot;)&quot;</span>)[detail::assign()]
   ;
 </pre>
-
 
 <p>こんな感じで <code>primary</code> が定義できます．</p>
 
@@ -111,7 +107,6 @@ tags: []
   ;
 </pre>
 
-
 <p>となります．<br/>
 <code>"-" &gt; primary</code> のセマンティックアクションとしては，attribute を符号反転して結果に格納するというアクションが求められます．<br/>
 ここはちょっと汎用的に，attribute に関数オブジェクトを適用して結果に格納するアクションを返すような関数を定義して解決してみます．</p>
@@ -125,7 +120,6 @@ tags: []
 } <span class="synComment">// namespace detail</span>
 </pre>
 
-
 <p><code>assign_f</code> は <code>assign</code> と異なり，関数オブジェクトを１つ引数に取ります．<br/>
 そして，その関数オブジェクトを <code>_attr(ctx)</code> に適用し結果に格納します．</p>
 
@@ -136,7 +130,6 @@ tags: []
   | (<span class="synConstant">&quot;-&quot;</span> &gt; primary)[detail::assign(std::negate&lt;<span class="synType">int</span>&gt;<span class="synError">{</span>})]
   ;
 </pre>
-
 
 <p>となります．<code>std::negate</code> は <code>&lt;functional&gt;</code> で定義された型で，ここでは <code>int</code> 型の値を符号反転する関数オブジェクトとして使用しています．</p>
 
@@ -154,7 +147,6 @@ tags: []
   ;
 </pre>
 
-
 <p>と定義できます．<code>mul_expr</code> は <code>1</code> や <code>(1 + 2)</code>, <code>-1</code> の後に，<code>* 1</code> とか <code>/ -3</code> とか <code>* (1 - 2)</code> とかが 0 回以上現れるような式です．<br/>
 <code>1 * -2</code> はちょっと気持ち悪い気もしますが… 今気がついたので許してください．</p>
 
@@ -166,7 +158,6 @@ tags: []
 <pre class="code lang-cpp" data-lang="cpp" data-unlink>[](<span class="synType">auto</span>&amp;&amp; ctx) { _val(ctx) = _val(ctx) * _attr(ctx); }
 </pre>
 
-
 <p>です．</p>
 
 <p>さて，では <code>/</code> の場合を考えます．<br/>
@@ -175,7 +166,6 @@ tags: []
 
 <pre class="code lang-cpp" data-lang="cpp" data-unlink>[](<span class="synType">auto</span>&amp;&amp; ctx) { _val(ctx) = _val(ctx) / _attr(ctx); }
 </pre>
-
 
 <p>であり，<code>*</code> と <code>/</code> の違いしか有りません．</p>
 
@@ -192,7 +182,6 @@ tags: []
 } <span class="synComment">// namespace detail</span>
 </pre>
 
-
 <p>こんな関数を定義して，</p>
 
 <pre class="code lang-cpp" data-lang="cpp" data-unlink><span class="synType">auto</span> <span class="synType">const</span> mul_expr_def =
@@ -203,7 +192,6 @@ tags: []
     )
   ;
 </pre>
-
 
 <p>と使います．<br/>
 <code>calc_op</code> は関数オブジェクトを引数に取り，<code>_val(ctx)</code> と <code>_attr(ctx)</code> に適用した結果を格納するアクションを返します．</p>
@@ -219,7 +207,6 @@ tags: []
     add_expr[detail::assign()]
   ;
 </pre>
-
 
 <h2>確認</h2>
 
@@ -332,7 +319,6 @@ tags: []
 }
 </pre>
 
-
 <p>実行してみます．</p>
 
 <pre class="code" data-lang="" data-unlink>$ clang++ -std=c++14 main.cpp
@@ -342,7 +328,6 @@ Parsed: 7
 $ ./a.out
 (1 + 2) * 3
 Parsed: 9</pre>
-
 
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%B1%E9%BB%BB%BB%D2">演算子</a>の優先順位が正しく解決できていることが確認出来ます．</p>
 
@@ -357,5 +342,6 @@ Parsed: 9</pre>
 
 <p>今回のコードでは <code>decltype(auto)</code> など，<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a>14 の機能を使っています．<code>X3</code> は <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a>14 前提のライブラリなので，迷いなくこういった機能を使用できて幸せデスね．</p>
 
------
---------
+---
+
+---

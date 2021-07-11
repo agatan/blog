@@ -3,6 +3,7 @@ title: "Rust の Result と Iterator"
 date: 2016-09-05T14:47:25.000Z
 tags: []
 ---
+
 <p>Rust には失敗するかもしれない値を表す <code>Result&lt;T, E&gt;</code> という型があります。
 <a href="https://doc.rust-lang.org/std/result/enum.Result.html">std::result::Result</a></p>
 
@@ -22,11 +23,11 @@ tags: []
 <pre class="code lang-rust" data-lang="rust" data-unlink><span class="synStatement">let</span> result <span class="synStatement">=</span> <span class="synPreProc">std</span><span class="synSpecial">::</span><span class="synPreProc">io</span><span class="synSpecial">::</span><span class="synIdentifier">stdin</span>().<span class="synIdentifier">bytes</span>().<span class="synIdentifier">collect</span><span class="synSpecial">::</span><span class="synStatement">&lt;</span><span class="synType">Result</span><span class="synStatement">&lt;</span><span class="synType">Vec</span><span class="synStatement">&lt;</span>_<span class="synStatement">&gt;</span>, _<span class="synStatement">&gt;&gt;</span>();
 </pre>
 
-
 <p>これだけです。これで要件を満たす <code>Result&lt;Vec&lt;_&gt;, _&gt;</code> が返って来ます。すばらしい。</p>
 
 <p>タネは簡単な話で <code>Result</code> が <code>FromIterator</code> trait を <code>impl</code> しているので <code>collect</code> で変換が可能であるというお話でした。
 <a href="https://doc.rust-lang.org/stable/std/iter/trait.FromIterator.html">std::iter::FromIterator</a></p>
 
------
---------
+---
+
+---

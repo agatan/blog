@@ -3,6 +3,7 @@ title: "golang でテストのために時間を操作するライブラリ time
 date: 2017-12-14T14:21:24.000Z
 tags: []
 ---
+
 <p>現在時刻に依存するコードをテストするとき，<a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> で <code>time.Now</code> を普通に使っているとモックできずうまくテストが書けないという問題があります．
 時間の操作は time パッケージをそのまま使えば良いのですが，time.Now だけはモックできるようにしたいところです．</p>
 
@@ -30,7 +31,6 @@ tags: []
 }
 </pre>
 
-
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> の使用上，<a class="keyword" href="http://d.hatena.ne.jp/keyword/Ruby">Ruby</a> の timecop のようなことは出来ないので，こういう工夫をするしかありません．</p>
 
 <p>なんとなく<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B0%A5%ED%A1%BC%A5%D0%A5%EB%CA%D1%BF%F4">グローバル変数</a>をテストのために置いて書き換えるのが嫌なのと，なんにも考えずに <code>t.Parallel()</code> を置けなくなるのがちょっと嫌だなと思っていました．
@@ -55,7 +55,6 @@ tags: []
 }
 </pre>
 
-
 <p>とします．</p>
 
 <p><code>timejump.Activate</code> な<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B6%E8%B4%D6">区間</a>はロックをとっているので，テストを並列で走らせても並列に走らなくなります．</p>
@@ -67,5 +66,6 @@ tags: []
 <p>もともとあるパッケージのテストをするために書いたパッケージだったのですが，目的だったテストを書く前にテストしたいパッケージが御役御免になってしまったので，timejump も御役御免になってしまいました．
 いつか使う日が来る気がするので，ここに寝かせておきます．</p>
 
------
---------
+---
+
+---

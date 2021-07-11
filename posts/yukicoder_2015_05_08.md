@@ -3,6 +3,7 @@ title: "yukicoder 2015/05/08"
 date: 2015-05-08T15:02:19.000Z
 tags: []
 ---
+
 <p>yukicoderさんのコンテストに出てきましたー</p>
 
 <p>★から★★★までの四問ということでもしかしたら完答いけるんじゃないかとか甘いことを考えていたのですが...ｗｗ</p>
@@ -21,7 +22,6 @@ tags: []
 
 <pre class="code" data-lang="" data-unlink>oxoooxx
 xxoxxoo</pre>
-
 
 <p>のように一週間ごとにわかれているのでそのまま素直に一週間ごとに入力受け付けるとハマる気がしますｗ<br/>
 単純に14要素の配列を用意してそこに入れていけば単なる最長の連続区間を求める問題ですね！！</p>
@@ -51,20 +51,17 @@ submit回数がすごいことになってましたね全体的に</p>
 <pre class="code" data-lang="" data-unlink>az
 za</pre>
 
-
 <p>というような問題があります。<br/>
 この場合、<code>a</code> が最小なので</p>
 
 <pre class="code" data-lang="" data-unlink>z
 za</pre>
 
-
 <p>となります。<br/>
 次の一文字を決定する際に、何も考えずに辞書順最小の文字を考えると</p>
 
 <pre class="code" data-lang="" data-unlink>(空)
 za</pre>
-
 
 <p>となります。<br/>
 そして出来上がる文字列は <code>azza</code> となります。<br/>
@@ -85,5 +82,6 @@ za</pre>
 
 <p>前よりはまし！すこしだけ！</p>
 
------
---------
+---
+
+---

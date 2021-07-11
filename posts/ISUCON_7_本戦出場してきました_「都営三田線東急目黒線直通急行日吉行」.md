@@ -3,6 +3,7 @@ title: "ISUCON 7 本戦出場してきました 「都営三田線東急目黒�
 date: 2017-11-26T05:18:59.000Z
 tags: []
 ---
+
 <p>ISUCON 7 お疲れ様でした！</p>
 
 <p>僕らのチーム，「<a class="keyword" href="http://d.hatena.ne.jp/keyword/%C5%D4%B1%C4%BB%B0%C5%C4%C0%FE">都営三田線</a><a class="keyword" href="http://d.hatena.ne.jp/keyword/%C5%EC%B5%DE%CC%DC%B9%F5%C0%FE">東急目黒線</a>直通急行日吉行」は学生枠 2 位，全体で 10 位という結果でした．</p>
@@ -65,7 +66,6 @@ tags: []
 </li>
 </ul>
 
-
 <p>という感じで，最高スコアが 17000 くらい，最終スコアが 16700 で終了しました．</p>
 
 <h3>反省</h3>
@@ -102,18 +102,20 @@ tags: []
 </li>
 </ul>
 
-
 <p>予選のときも練習のときも，「遅いのはわかっているけど複雑そうでやりたくない」部分を触らないとだめっていう教訓は得ていたはずなんだけど，結局そこでやられてしまったのが一番くやしいですね...</p>
 
 <p>来年は学生枠ではなくなるのですが，社会人枠でも本戦にでて勝ちたいです！</p>
 
 <p>去年に引き続き本戦に出られたのはほんとうに良かったし，またまた勉強になる良い経験でした！運営の皆様お疲れ様でした ＆ ありがとうございました！</p>
 
------
+---
+
 COMMENT:
 AUTHOR: davidcruise
 IP: 117.98.190.10
 DATE: 11/27/2017 21:25:12
 <a href='https://www.kikforpcapp.com/kik-for-pc-windows-xp788-110-free-download/'>pc kik</a> article on an innovative messaging amenity that is continually on, permanently linked with fast and unswerving than any added applications that are existing due to some of the following reasons.
------
---------
+
+---
+
+---

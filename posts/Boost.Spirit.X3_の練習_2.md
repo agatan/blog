@@ -3,6 +3,7 @@ title: "Boost.Spirit.X3 の練習 2"
 date: 2015-12-17T14:20:03.000Z
 tags: []
 ---
+
 <p><a href="http://agtn.hatenablog.com/entry/2015/12/17/190505">Boost.Spirit.X3 の練習1 - プログラミングのメモ帳➚</a>に引き続き，<code>Boost.Spirit.X3</code> のお勉強メモです．</p>
 
 <h2>セマンティックアクション</h2>
@@ -45,13 +46,9 @@ tags: []
 }
 </pre>
 
-
-
-
 <pre class="code" data-lang="" data-unlink>$ clang++ -std=c++14 main.cpp
 $ ./a.out
 123.4</pre>
-
 
 <p>パーサの結果を受け取らないようにしています．<code>parser</code> は <code>double</code> を返しますが，その結果は無視しています．<br/>
 そして，セマンティックアクション部分で，出力を行っています．</p>
@@ -113,7 +110,6 @@ $ ./a.out
   }
 }
 </pre>
-
 
 <p><code>namespace detail</code> の中身がパーサの定義になっています．
 (<code>namespace</code> を分けたのは，<code>constant</code> そのものの名前以外を隠すためです．)
@@ -177,7 +173,6 @@ $ ./a.out
 }
 </pre>
 
-
 <p>セマンティックアクション内では，パーサの <code>result type</code> に <code>_val(ctx)</code> でアクセス出来ます．
 <code>_val(ctx)</code> は参照を返すので，ここに適当な値を代入してやれば，パーサの返り値にすることが出来ます．<br/>
 <code>_attr(ctx)</code> は先程と同じです．<code>x3::int_</code> の attribute は <code>int</code> です．</p>
@@ -192,5 +187,6 @@ $ ./a.out
 
 <p>また，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%BA%C6%B5%A2">再帰</a>的パーサを定義できるようにパーサの宣言をまとめたのに，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%BA%C6%B5%A2">再帰</a>的パーサを書いていませんが，これは別記事に電卓でも作ってまとめたいと思います．</p>
 
------
---------
+---
+
+---

@@ -3,6 +3,7 @@ title: "Type Erasure による Visitor パターンの実装"
 date: 2016-01-25T11:07:38.000Z
 tags: []
 ---
+
 <p>プログラミングしていて，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a>をうまく扱いたいという状況は結構良くあると思います．<br/>
 代数的データ型とパターンマッチを持つ言語であればとても美しく完結に表現できる<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a>ですが，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%AA%A5%D6%A5%B8%A5%A7%A5%AF%A5%C8%BB%D8%B8%FE%B8%C0%B8%EC">オブジェクト指向言語</a>でやろうと思うと結構たいへんです．<br/>
 典型的には Visitor パターンというやつを用います．<a href="http://qiita.com/lyrical_logical/items/bc6126f34a571a2c4f97">デザインパターン - Visitor パターン再考 - Qiita</a>が非常にわかりやすく，理解の助けになりました．ありがとうございます．</p>
@@ -23,7 +24,6 @@ boost::apply_visitor([](<span class="synType">auto</span> <span class="synType">
 boost::apply_visitor([](<span class="synType">auto</span> <span class="synType">const</span>&amp; v) <span class="synError">{</span> std::cout &lt;&lt; v &lt;&lt; std::endl; }, s2); <span class="synComment">// =&gt; 2.0</span>
 boost::apply_visitor([](<span class="synType">auto</span> <span class="synType">const</span>&amp; v) <span class="synError">{</span> std::cout &lt;&lt; v &lt;&lt; std::endl; }, s3); <span class="synComment">// =&gt; sample3</span>
 </pre>
-
 
 <p>しかし，Boost.Variant は非常に高機能ですが，テンプレートをガンガン使っていたりするので，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a>コストが大きいという問題があります．</p>
 
@@ -79,7 +79,6 @@ Visitor クラスは，<code>visit</code> という<a class="keyword" href="http
 };
 </pre>
 
-
 <p>今回は <code>const</code> 修飾についてすべて無視しています．( <code>const</code> を考慮するならば，各 <code>visit</code> について，visitor の <code>const</code> 性と node の <code>const</code> 性を考える必要があります．つまり 4 種類の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%E1%A5%F3%A5%D0%B4%D8%BF%F4">メンバ関数</a>を定義しなければなりません．）<br/>
 visit した対象となるそれぞれのデータについて<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%AA%A1%BC%A5%D0%A1%BC%A5%ED%A1%BC%A5%C9">オーバーロード</a>する形で <code>visit</code> を定義しています．<br/>
 <code>visitor</code> の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%B9%A5%C8%A5%E9%A5%AF%A5%BF">コンストラクタ</a>に，<code>operator()(add&amp;)</code>, <code>operator()(mul&amp;)</code>, <code>operator()(constant&amp;)</code> を全て持つオブジェクト（<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a>14 の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B8%A5%A7%A5%CD%A5%EA%A5%C3%A5%AF">ジェネリック</a>ラムダでもOK）を渡すことで，型消去された visitor が出来上がります．<br/>
@@ -134,7 +133,6 @@ visit される側のデータを統一的に扱う（ <code>vector</code> に�
 };
 </pre>
 
-
 <p>これ結構わかりにくと思うのですが，自分でも<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%E9">コンパイラ</a>に怒られながら書いたのでいまいちよく分かってません．<br/>
 先ほどの <code>visitor</code> の場合と異なり，<code>node</code> には特別満たすべきインターフェースは有りません．<br/>
 Type Erasure を使う理由は，適切な <code>visit</code> 関数へのディスパッチのためです．</p>
@@ -159,14 +157,12 @@ Type Erasure を使う理由は，適切な <code>visit</code> 関数へのデ�
 };
 </pre>
 
-
 <p><code>add</code> や <code>mul</code> のフィールドに，<code>node</code> が使用されている点が大事です．<br/>
 <code>add.lhs</code> や <code>mul.rhs</code> には，<code>constant</code> が来るか <code>add</code> が来るか <code>mul</code> が来るか分かりません．<br/>
 そこで，visit 可能な型なら何でもOKという意味で，<code>node</code> 型の値をフィールドとします．</p>
 
 <pre class="code lang-cpp" data-lang="cpp" data-unlink>node n = mul{add{constant{<span class="synConstant">1</span>}, constant{<span class="synConstant">2</span>}}, constant{<span class="synConstant">3</span>}};
 </pre>
-
 
 <p>これで，<code>(1 + 2) * 3</code> が表現できています．
 <code>add</code> や <code>constant</code> から <code>node</code> へと暗黙変換が行われていることに注意してください．</p>
@@ -218,7 +214,6 @@ Type Erasure を使う理由は，適切な <code>visit</code> 関数へのデ�
 };
 </pre>
 
-
 <p>こんな感じです．<br/>
 <code>visit</code> や <code>accept</code> を <code>void</code> を返す関数として定義したので，<code>calculator</code> は自前のフィールドに結果を保持する必要があります．
 (あとで改善します)</p>
@@ -235,7 +230,6 @@ Type Erasure を使う理由は，適切な <code>visit</code> 関数へのデ�
   <span class="synStatement">return</span> <span class="synConstant">0</span>;
 </pre>
 
-
 <p>です．</p>
 
 <h1>まとめ</h1>
@@ -251,5 +245,6 @@ Type Erasure を使う理由は，適切な <code>visit</code> 関数へのデ�
 
 <p>難しすぎて普通の visitor パターンで良くね？感出てきた</p>
 
------
---------
+---
+
+---

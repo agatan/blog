@@ -15,7 +15,7 @@ const POSTS_PER_PAGE = 10;
 export default function Home(props: Props) {
   const { posts } = props;
   const router = useRouter();
-  const page = parseInt(router.query.page as string || '0');
+  const page = parseInt((router.query.page as string) || "0");
   const totalPages = (posts.length - 1) / POSTS_PER_PAGE + 1;
   const slice = posts.slice(POSTS_PER_PAGE * page, POSTS_PER_PAGE * (page + 1));
   return (
@@ -32,11 +32,17 @@ export default function Home(props: Props) {
             spacing={4}
             align="stretch"
           >
-            {slice.map((post) => <PostItem key={post.id} post={post} />)}
+            {slice.map((post) => (
+              <PostItem key={post.id} post={post} />
+            ))}
           </VStack>
           <HStack>
-            {page <= 0 ? null : <Link href={`/?page=${page - 1}`}>← Previous</Link>}
-            {page >= totalPages ? null : <Link href={`/?page=${page + 1}`}>Next →</Link>}
+            {page <= 0 ? null : (
+              <Link href={`/?page=${page - 1}`}>← Previous</Link>
+            )}
+            {page >= totalPages ? null : (
+              <Link href={`/?page=${page + 1}`}>Next →</Link>
+            )}
           </HStack>
         </Container>
       </main>
@@ -49,6 +55,6 @@ export async function getStaticProps(): Promise<{ props: Props }> {
   return {
     props: {
       posts,
-    }
-  }
+    },
+  };
 }

@@ -1,9 +1,10 @@
 ---
 title: "【論文紹介】Concurrent Spatial and Channel Squeeze & Excitation in Fully Convolutional Networks"
 date: 2019-01-04T14:51:07+09:00
-tags: ["Python","DeepLearning","Keras","TensorFlow","論文読み"]
+tags: ["Python", "DeepLearning", "Keras", "TensorFlow", "論文読み"]
 url: https://qiita.com/agatan/items/61546d71e7ea7ad14b11
 ---
+
 Fully Convolutional Network (FCN) の性能を enhance する Concurrent Spatial and Channel Squeeze & Excitation (scSE) というモジュールを提案した論文です。
 既存の良いとされてきたモデルたちに計算量をそこまで増やさずに & 簡単に組み込むことができ、 Image Segmentation などのタスクで性能を向上させることができます。
 
@@ -18,9 +19,8 @@ Fully Convolutional Network (FCN) の性能を enhance する Concurrent Spatial
 
 文中の図表は論文から引用しています。
 
-この記事は、Wantedlyの勉強会で取り上げられた論文・技術をまとめたものです。
-[2018年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
-
+この記事は、Wantedly の勉強会で取り上げられた論文・技術をまとめたものです。
+[2018 年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
 
 ## Squeeze and Excitation を Image Segmentation に応用する
 
@@ -35,7 +35,7 @@ def spatial_squeeze_and_channel_excitation(x, ch, ratio=16):
     squeeze = GlobalAveragePooling2D()(x)
     z = Dense(ch // ratio, activation='relu')(squeeze)
     excitation = Dense(ch, activation='sigmoid')(x)
-    return multiply([x, excitation]) 
+    return multiply([x, excitation])
 ```
 
 本論文では Image Classification の性能を大きく向上した SE モジュールを、 Image Segmentation に応用することを考えます。
@@ -87,7 +87,7 @@ def _concurrent_spartial_and_channel_se(input_feature, ch, ratio=16):
 
 この論文で実験に使われている U-Net の場合、 scSE を使った場合でも計算量は 1.5% 程度の増加で済んでいます。
 
-## Experiments 
+## Experiments
 
 いくつかのネットワークについて、「素の状態」「cSE」「sSE」「scSE」の 4 パターンで実験しています。
 ここでは DenseNet のケースについてまとめた図を論文中の Fig.2 から引用します。

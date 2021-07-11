@@ -3,6 +3,7 @@ title: "&quot;Applying Deep Learning To Airbnb Search&quot;  を読んだ"
 date: 2018-11-21T12:52:58.000Z
 tags: []
 ---
+
 <p><a href="https://arxiv.org/abs/1810.09591">[1810.09591] Applying Deep Learning To Airbnb Search</a> を読んだときのメモをそのまま出してみます。面白かった。
 本当にメモなので、詳細は原文を読んでください。</p>
 
@@ -64,11 +65,11 @@ tags: []
 </li>
 </ul>
 
-
 <p>あとは NN は特徴量を normalize したほうがいいよねとか、特徴量の distribution を観察しましょうとか、<a class="keyword" href="http://d.hatena.ne.jp/keyword/Java">Java</a> 上で TensorFlow のモデル動かすの大変でしたとか、いろいろ現実っぽい話が並ぶ。
 もっといろいろ言ってるけど、詳細は本文を読んだほうが良い。</p>
 
 <p>画像とかじゃない領域で DNN を production にいれるにはこういうステップを経るんだなというのが伝わってくるし、この話から得るべき学びがかなりある。光景が目に浮かぶ良い文章だなと思いました。</p>
 
------
---------
+---
+
+---

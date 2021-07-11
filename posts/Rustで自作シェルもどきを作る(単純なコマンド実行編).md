@@ -8,26 +8,29 @@ url: https://qiita.com/agatan/items/ed2780628d20a0e343b8
 コード全文はこちら
 [agatan/rsh](https://github.com/agatan/rsh)
 
-[Rustで自作シェルもどきを作る(字句解析編) - Qiita](http://qiita.com/agatan/items/8a097ead46df1c1659ff)
+[Rust で自作シェルもどきを作る(字句解析編) - Qiita](http://qiita.com/agatan/items/8a097ead46df1c1659ff)
 
 前回はユーザからの入力を受け付けてパースするところまで実装したので、今回は実際に入力されたコマンドを実行させてみます。  
 ただし、いきなりいろいろやるのはきついので、まずは単純なコマンド(パイプやリダイレクトは一旦無視します)の実行をやってみました。
 
 ## Command
-Rustには`std::io::process::Command`という構造体があります。これを使えば簡単にコマンド実行は出来そうです。
+
+Rust には`std::io::process::Command`という構造体があります。これを使えば簡単にコマンド実行は出来そうです。
 
 > http://doc.rust-lang.org/std/io/process/struct.Command.htmlより引用
 >
->```rust
->use std::io::Command;
+> ```rust
+> use std::io::Command;
+> ```
 
->let mut process = match Command::new("sh").arg("-c").arg("echo hello").spawn() {
-  Ok(p) => p,
-  Err(e) => panic!("failed to execute process: {}", e),
-};
+> let mut process = match Command::new("sh").arg("-c").arg("echo hello").spawn() {
+> Ok(p) => p,
+> Err(e) => panic!("failed to execute process: {}", e),
+> };
 
->let output = process.stdout.as_mut().unwrap().read_to_end();
-```
+> let output = process.stdout.as_mut().unwrap().read_to_end();
+
+````
 
 いろいろと便利そうな関数が定義されているのですが、今回は最も単純にコマンドを実行させるために、`output`という関数を使用してみました。
 
@@ -64,7 +67,7 @@ pub fn exec(tokens: Vec<Token>) {
     print!("{}", String::from_utf8_lossy(output.output.as_slice()));
 
 }
-```
+````
 
 `exec`は`Vec<Token>`を受け取る関数です。
 今回はパイプなどは未実装ですから、`Str(_)`以外の`Token`が含まれていたら`panic!`(例外送出)をしています。
@@ -82,7 +85,9 @@ pub fn exec(tokens: Vec<Token>) {
 ただし`output`はバイト列を返すみたいなので、`String::from_utf8_lossy`を使って、文字に直してあげます。
 
 #### 追記(2014/12/21)
-----
+
+---
+
 このままだと標準入力や標準出力、標準エラー出力が子プロセスと結びついておらず、仮想のパイプとつながったような状態になるようです。
 そのため、標準入力から読み取るような関数を実行しようとするとそのプロセスは失敗します。
 
@@ -103,13 +108,15 @@ pub fn exec(tokens: Vec<Token>) {
         Err(e) => println!("Error: {}", e)
     }
 ```
+
 このように、`stdout`を標準出力と関連付けることで、前のコードでの`output`から読み取って文字列に変換して出力、という手順は不要になりました。
-C言語では`fork`したら`wait`しろと言われて育ってきたので、とりあえず`wait`を入れてみていますが、どうも`wait`を入れなくてもゾンビプロセスが残っているようには見えないので謎です。
+C 言語では`fork`したら`wait`しろと言われて育ってきたので、とりあえず`wait`を入れてみていますが、どうも`wait`を入れなくてもゾンビプロセスが残っているようには見えないので謎です。
 調査中です。
 
 ### 追記ここまで
 
 ## main
+
 先ほどの`exec`関数を`main`で使える形にしてみます。
 
 ```rust:main.rs
@@ -127,6 +134,7 @@ fn main() {
     }
 }
 ```
+
 プロンプトを表示してからユーザーの入力を受付け、パースして`Vec<Token>`になおしてから`exec`に渡しています。
 
 ## 実行結果
@@ -164,6 +172,7 @@ Str(world")
 `echo`がうまくやってくれているみたいですね。すごい。
 
 ## 今後
+
 次はリダイレクト関連ですかね。パイプや&よりも簡単そうだし。
 毎度のことですが、ご指摘大歓迎です！色々な意見を伺いたくてこれを書いているので、何かありましたらぜひよろしくお願いします！
 
