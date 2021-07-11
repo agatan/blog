@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "lint": "next lint",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "next": "^10.0.0",
-    "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "next": "^11.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@chakra-ui/react": "^1.6.5",
@@ -18,8 +19,12 @@
     "@emotion/styled": "^11",
     "@types/node": "^16.0.0",
     "@types/react": "^17.0.13",
+    "eslint": "^7.30.0",
+    "eslint-config-next": "^11.0.1",
+    "eslint-config-prettier": "^8.3.0",
     "framer-motion": "^4",
     "gray-matter": "^4.0.3",
+    "prettier": "^2.3.2",
     "prismjs": "^1.24.1",
     "remark": "^13.0.0",
     "remark-gfm": "^1.0.0",
