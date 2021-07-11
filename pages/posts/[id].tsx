@@ -1,4 +1,6 @@
 import React from "react";
+import { Heading } from "@chakra-ui/react";
+
 import { getPostById, getPostsOrderByDate, Post } from "../../lib/posts";
 
 type Props = {
@@ -9,7 +11,7 @@ const PostPage: React.VFC<Props> = (props: Props) => {
   const { post } = props;
   return (
     <div>
-      <h1>{post.meta.title}</h1>
+      <Heading>{post.meta.title}</Heading>
       <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
     </div>
   );
