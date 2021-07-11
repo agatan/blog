@@ -11,9 +11,8 @@ FAIR(Facebook AI Research) が書いた論文で ICCV 2017 に採択されてい
 
 <img src="https://qiita-image-store.s3.amazonaws.com/0/39030/38ab1ef6-c4c5-fd78-d903-0954479143a6.png" width="60%">
 
-
-この記事は、Wantedlyの勉強会で取り上げられた論文・技術をまとめたものです。
-[2018年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
+この記事は、Wantedly の勉強会で取り上げられた論文・技術をまとめたものです。
+[2018 年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
 
 #### Reference
 

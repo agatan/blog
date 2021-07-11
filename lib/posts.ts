@@ -25,7 +25,7 @@ export type PostMeta = {
 function ensurePostMeta(filename: string, meta: unknown): PostMeta {
   if (typeof meta !== "object") {
     throw new Error(
-      `frontmatter of ${filename} has invalid type. expected object, but got ${typeof meta}.`,
+      `frontmatter of ${filename} has invalid type. expected object, but got ${typeof meta}.`
     );
   }
   if (meta == null) {
@@ -42,12 +42,12 @@ function ensurePostMeta(filename: string, meta: unknown): PostMeta {
   const date = object.date;
   if (date == null) {
     throw new Error(
-      `frontmatter of ${filename} does not contain "date" field.`,
+      `frontmatter of ${filename} does not contain "date" field.`
     );
   }
   if (!(date instanceof Date)) {
     throw new Error(
-      `date of ${filename} has invalid type. expected Date, but got ${date}`,
+      `date of ${filename} has invalid type. expected Date, but got ${date}`
     );
   }
   const tags = object.tags;
@@ -82,9 +82,11 @@ export async function getPost(filename: string): Promise<Post> {
   const rawMarkdown = await fs.readFile(filepath, { encoding: "utf-8" });
   const matterResult = matter(rawMarkdown);
   const meta = ensurePostMeta(filename, matterResult.data);
-  const content = await remark().use(gfm).use(prism).use(html).process(
-    matterResult.content,
-  );
+  const content = await remark()
+    .use(gfm)
+    .use(prism)
+    .use(html)
+    .process(matterResult.content);
   return {
     id: extractIdFromPath(filename),
     content: content.toString(),

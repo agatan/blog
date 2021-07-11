@@ -10,6 +10,6 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       <Component {...pageProps} />
     </ChakraProvider>
   );
-}
+};
 
 export default App;

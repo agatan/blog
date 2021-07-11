@@ -4,8 +4,8 @@ import { Heading } from "@chakra-ui/react";
 import { getPostById, getPostsOrderByDate, Post } from "../../lib/posts";
 
 type Props = {
-  post: Post,
-}
+  post: Post;
+};
 
 const PostPage: React.VFC<Props> = (props: Props) => {
   const { post } = props;
@@ -24,14 +24,18 @@ export async function getStaticPaths() {
   return {
     paths,
     fallback: false,
-  }
+  };
 }
 
-export async function getStaticProps({ params }: { params: { id: string } }): Promise<{ props: Props }> {
+export async function getStaticProps({
+  params,
+}: {
+  params: { id: string };
+}): Promise<{ props: Props }> {
   const post = await getPostById(params.id);
   return {
     props: {
-      post
-    }
-  }
+      post,
+    },
+  };
 }

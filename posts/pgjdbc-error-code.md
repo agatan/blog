@@ -17,9 +17,9 @@ https://github.com/pgjdbc/pgjdbc を使っていると、 `java.sql.SQLException
 
 ## 問題
 
-UNIQUE制約をはったテーブルに対して「レコードがすでにあればそれを SELECT する。なければ新規に作る。」という操作をしたいことがあります。
+UNIQUE 制約をはったテーブルに対して「レコードがすでにあればそれを SELECT する。なければ新規に作る。」という操作をしたいことがあります。
 そういったときに、文字通り「1. まず SELECT し、 2. なかったら INSERT」というふうに実装してしまうと、同時に二つ以上のリクエストが処理されると想定通りの挙動になりません。（1. と 2. の間に別のリクエストによって 2. が実行されるかもしれない。）
-そこで、こういったケースでは「1. まず INSERT を試み、 2. UNIQUE制約に引っ掛かったら SELECT」というふうに実装するのが正しいです。（Rails 的にいうと `find_or_create_by` ではなく、 `create_or_find_by` しよう、という話です。）
+そこで、こういったケースでは「1. まず INSERT を試み、 2. UNIQUE 制約に引っ掛かったら SELECT」というふうに実装するのが正しいです。（Rails 的にいうと `find_or_create_by` ではなく、 `create_or_find_by` しよう、という話です。）
 
 ```kotlin
 val record = try {
