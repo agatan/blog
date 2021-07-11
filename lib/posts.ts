@@ -10,19 +10,28 @@ import matter from "gray-matter";
 const POSTDIR = "posts";
 
 export type Post = {
-  id: string;
   content: string;
-  rawMarkdown: string;
   meta: PostMeta;
 };
 
 export type PostMeta = {
+  slug: string;
   title: string;
   timestamp: number;
   tags: ReadonlyArray<string>;
+  rawMarkdown: string;
+  contentMarkdown: string;
 };
 
-function ensurePostMeta(filename: string, meta: unknown): PostMeta {
+function ensurePostMeta(
+  filename: string,
+  meta: unknown
+): {
+  slug: string;
+  title: string;
+  timestamp: number;
+  tags: ReadonlyArray<string>;
+} {
   if (typeof meta !== "object") {
     throw new Error(
       `frontmatter of ${filename} has invalid type. expected object, but got ${typeof meta}.`
@@ -62,6 +71,7 @@ function ensurePostMeta(filename: string, meta: unknown): PostMeta {
     }
   }
   return {
+    slug: extractIdFromPath(filename),
     title: title,
     timestamp: date.getTime(),
     tags: tags as ReadonlyArray<string>,
@@ -73,31 +83,34 @@ function extractIdFromPath(filename: string): string {
   return path.basename(filename, ".md");
 }
 
-export function getPostById(id: string): Promise<Post> {
-  return getPost(id + ".md");
-}
-
-export async function getPost(filename: string): Promise<Post> {
+export async function getPostMeta(filename: string): Promise<PostMeta> {
   const filepath = path.join(POSTDIR, filename);
   const rawMarkdown = await fs.readFile(filepath, { encoding: "utf-8" });
   const matterResult = matter(rawMarkdown);
   const meta = ensurePostMeta(filename, matterResult.data);
+  return {
+    rawMarkdown,
+    contentMarkdown: matterResult.content,
+    ...meta,
+  };
+}
+
+export async function getPostBySlug(slug: string): Promise<Post> {
+  const meta = await getPostMeta(slug + ".md");
   const content = await remark()
     .use(gfm)
     .use(prism)
     .use(html)
-    .process(matterResult.content);
+    .process(meta.contentMarkdown);
   return {
-    id: extractIdFromPath(filename),
     content: content.toString(),
-    rawMarkdown,
     meta,
   };
 }
 
-export async function getPostsOrderByDate(): Promise<Post[]> {
+export async function getPostMetasOrderByDate(): Promise<PostMeta[]> {
   const postFiles = await fs.readdir(POSTDIR);
-  const posts = await Promise.all(postFiles.map(getPost));
-  posts.sort((a, b) => b.meta.timestamp - a.meta.timestamp);
-  return posts;
+  const postMetas = await Promise.all(postFiles.map(getPostMeta));
+  postMetas.sort((a, b) => b.timestamp - a.timestamp);
+  return postMetas;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Heading } from "@chakra-ui/react";
 
-import { getPostById, getPostsOrderByDate, Post } from "../../lib/posts";
+import { getPostBySlug, getPostMetasOrderByDate, Post } from "../../lib/posts";
 
 type Props = {
   post: Post;
@@ -19,8 +19,8 @@ const PostPage: React.VFC<Props> = (props: Props) => {
 export default PostPage;
 
 export async function getStaticPaths() {
-  const posts = await getPostsOrderByDate();
-  const paths = posts.map((v) => `/posts/${v.id}`);
+  const postMetas = await getPostMetasOrderByDate();
+  const paths = postMetas.map((v) => `/posts/${v.slug}`);
   return {
     paths,
     fallback: false,
@@ -32,7 +32,7 @@ export async function getStaticProps({
 }: {
   params: { id: string };
 }): Promise<{ props: Props }> {
-  const post = await getPostById(params.id);
+  const post = await getPostBySlug(params.id);
   return {
     props: {
       post,

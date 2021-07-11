@@ -2,22 +2,26 @@ import React from "react";
 import { Container, Heading, HStack, Tag } from "@chakra-ui/react";
 
 import { Link } from "./Link";
-import { Post } from "../lib/posts";
+import { PostMeta } from "../lib/posts";
 
 type Props = {
-  post: Post;
+  postMeta: PostMeta;
 };
 
 export const PostItem: React.VFC<Props> = (props) => {
-  const { post } = props;
+  const { postMeta } = props;
   return (
     <Container maxW="container.lg">
       <Heading size="lg">
-        <Link href={`/posts/${post.id}`}>{post.meta.title}</Link>
+        <Link href={`/posts/${postMeta.slug}`}>{postMeta.title}</Link>
       </Heading>
       <HStack marginTop="4" marginBottom="4">
-        {post.meta.tags.map((tag) => (
-          <Tag key={`${post.id}-${tag}`} colorScheme="blue" variant="outline">
+        {postMeta.tags.map((tag) => (
+          <Tag
+            key={`${postMeta.slug}-${tag}`}
+            colorScheme="blue"
+            variant="outline"
+          >
             {tag}
           </Tag>
         ))}
