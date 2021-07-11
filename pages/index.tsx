@@ -1,4 +1,10 @@
 import Head from 'next/head'
+import { Post } from '../lib/posts'
+
+type Props = {
+  posts: ReadonlyArray<Post>;
+  page?: number;
+};
 
 export default function Home() {
   return (
