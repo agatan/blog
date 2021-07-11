@@ -1,17 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import {
-  Container,
-  Flex,
-  Spacer,
-  StackDivider,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
 
 import { getPostMetasOrderByDate, PostMeta } from "../lib/posts";
-import { Link } from "../components/Link";
-import { PostItem } from "../components/PostItem";
 import { PostList } from "../components/PostList";
 
 type Props = {
