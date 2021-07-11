@@ -6,7 +6,7 @@
     "dev": "next dev",
     "lint": "next lint",
     "fmt": "prettier --write .",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start"
   },
   "dependencies": {
