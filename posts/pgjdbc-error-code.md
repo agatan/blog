@@ -1,4 +1,5 @@
 ---
+title: pgjdbc の SQLException.getErrorCode() は常に 0 を返す
 date: 2021-06-23
 tags:
   - Java
