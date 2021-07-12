@@ -19,7 +19,7 @@ export const PostItem: React.VFC<Props> = (props) => {
       <Text color="gray.800">
         {new Date(postMeta.timestamp).toDateString()}
       </Text>
-      <HStack paddingTop="4" paddingBottom="4">
+      <HStack paddingTop="4" paddingBottom="4" spacing="0">
         {postMeta.tags.map((tag) => (
           <TagLink key={`${postMeta.slug}-${tag}`} tag={tag} />
         ))}

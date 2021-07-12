@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Wrap } from "@chakra-ui/react";
 import React from "react";
 import { MainLayout } from "../../components/MainLayout";
 import { SEO } from "../../components/SEO";
@@ -14,13 +14,14 @@ const TagsPage: React.FC<Props> = (props) => {
     <>
       <SEO title="tags" />
       <MainLayout>
-        <Flex wrap="wrap">
-          {props.tagWithCounts.map(({ tag, count }) => (
-            <Box key={tag} padding="2">
-              <TagLink tag={tag} count={count} />
-            </Box>
-          ))}
-        </Flex>
+        <Container maxWidth="container.md">
+          <Heading paddingBottom="4" fontSize="3xl">#tags</Heading>
+          <Wrap spacing="0">
+            {props.tagWithCounts.map(({ tag, count }) => (
+              <TagLink key={tag} tag={tag} count={count} />
+            ))}
+          </Wrap>
+        </Container>
       </MainLayout>
     </>
   );

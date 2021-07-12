@@ -86,7 +86,7 @@ const PostPage: React.VFC<Props> = (props: Props) => {
       <SEO title={post.meta.title} />
       <MainLayout>
         <Container maxWidth="container.md">
-          <Heading paddingBottom="2" fontSize="3xl">{post.meta.title}</Heading>
+          <Heading paddingBottom="4" fontSize="3xl">{post.meta.title}</Heading>
           {post.meta.tags.map((tag) => <TagLink key={tag} tag={tag} />)}
           <Divider padding="2" />
           <Box paddingTop="4">
