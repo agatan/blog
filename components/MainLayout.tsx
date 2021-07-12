@@ -53,7 +53,7 @@ export const MainLayout: React.VFC<Props> = (props) => {
               <Link href="https://twitter.com/@agatan_">
                 <Box position="relative" width="20" height="20">
                   <Image
-                    src="/agatan.png"
+                    src="/i/agatan.png"
                     layout="fill"
                     objectFit="cover"
                     alt="agatan"
