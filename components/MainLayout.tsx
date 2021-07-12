@@ -1,5 +1,15 @@
 import React from "react";
-import { Box, Container, Heading, Flex, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Heading,
+  Flex,
+  Image,
+  Text,
+  Icon,
+  HStack,
+} from "@chakra-ui/react";
+import { FaGithub, FaTwitter } from "react-icons/fa";
 
 import { Link } from "./Link";
 
@@ -28,17 +38,27 @@ export const MainLayout: React.VFC<Props> = (props) => {
           </Container>
           <Container maxWidth="44">
             <Flex direction="column" align="center" padding="4">
-              <Box position="relative" width="16" height="16">
-                <Image
-                  src="/agatan.png"
-                  layout="fill"
-                  objectFit="cover"
-                  alt="agatan"
-                />
-              </Box>
               <Link href="https://twitter.com/@agatan_">
-                <Text>@agatan</Text>
+                <Box position="relative" width="20" height="20">
+                  <Image
+                    src="/agatan.png"
+                    layout="fill"
+                    objectFit="cover"
+                    alt="agatan"
+                  />
+                </Box>
+                <Text fontSize="large" align="center">
+                  @agatan
+                </Text>
               </Link>
+              <HStack>
+                <Link href="https://twitter.com/@agatan_" padding="1">
+                  <Icon as={FaTwitter} focusable boxSize="1.2em" />
+                </Link>
+                <Link href="https://github.com/agatan" padding="1">
+                  <Icon as={FaGithub} focusable boxSize="1.2em" />
+                </Link>
+              </HStack>
             </Flex>
           </Container>
         </Flex>
