@@ -11,8 +11,6 @@ type Props = {
 
 export default function Home(props: Props) {
   const { postMetas } = props;
-  const router = useRouter();
-  const page = parseInt((router.query.page as string) || "0");
   return (
     <>
       <SEO
@@ -20,7 +18,7 @@ export default function Home(props: Props) {
         description="agatan のブログです。主にエンジニアリングに関する内容を書きます。"
       />
       <MainLayout>
-        <PostList postMetas={postMetas} page={page} />
+        <PostList postMetas={postMetas} />
       </MainLayout>
     </>
   );
