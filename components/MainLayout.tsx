@@ -8,8 +8,9 @@ import {
   Text,
   Icon,
   HStack,
+  Spacer,
 } from "@chakra-ui/react";
-import { FaGithub, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaTwitter, FaTags, FaRss } from "react-icons/fa";
 
 import { Link } from "./Link";
 
@@ -21,11 +22,18 @@ export const MainLayout: React.VFC<Props> = (props) => {
   return (
     <Box backgroundColor="green.50" minHeight="100vh">
       <Container maxWidth="container.lg" backgroundColor="green.600">
-        <Heading padding="8" color="white">
-          <Link href="/" color="white">
-            agatan blog
-          </Link>
-        </Heading>
+        <Flex align="flex-end" padding="8">
+          <Heading >
+            <Link href="/" color="white">
+              <Text as="u">↗ agatan blog ↗</Text>
+            </Link>
+          </Heading>
+          <Spacer />
+          <Box>
+            <Link href="/feed" padding="2"><Icon as={FaRss} color="white" boxSize="6" /></Link>
+            <Link href="/tags" padding="2"><Icon as={FaTags} color="white" boxSize="6" /></Link>
+          </Box>
+        </Flex>
       </Container>
       <Container
         maxWidth="container.lg"
