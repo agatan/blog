@@ -1,4 +1,4 @@
-name: Lint
+name: CI
 on: [push, pull_request]
 
 jobs:
@@ -14,3 +14,10 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Run linters
         run: yarn lint
+      - name: Build
+        run: yarn build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: out
