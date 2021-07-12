@@ -15,19 +15,17 @@ type Props = {
 
 const TagPage: React.FC<Props> = (props) => {
   const { tag, postMetas } = props;
-  const router = useRouter();
-  const page = parseInt((router.query.page as string) || "0");
   return (
     <>
       <SEO title={`#${tag}`} description={`#${tag}に関する投稿`} />
       <MainLayout>
         <Container maxW="container.md">
-          <Heading as="h1">
-            <Text as="span">#{tag}</Text>
+          <Heading paddingBottom="4" fontSize="3xl" color="blue.500">
+            #{tag}
           </Heading>
           <Divider />
         </Container>
-        <PostList postMetas={postMetas} page={page} />
+        <PostList postMetas={postMetas} />
       </MainLayout>
     </>
   );
