@@ -2,18 +2,18 @@ import fs from "fs";
 import { PostMeta } from "./posts";
 
 const generateRssItem = (postMeta: PostMeta): string => {
-  return (`
+  return `
         <item>
             <guid>https://blog.kasorin.work/posts/${postMeta.slug}</guid>
             <title>${postMeta.title}</title>
             <link>https://agatan.github.io/posts/${postMeta.slug}</link>
             <pubDate>${new Date(postMeta.timestamp).toUTCString()}</pubDate>
         </item>
-    `);
+    `;
 };
 
 const generateRss = (postMetas: PostMeta[]): string => {
-  return (`
+  return `
         <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
             <channel>
                 <title>↗ agatan blog ↗</title>
@@ -23,7 +23,7 @@ const generateRss = (postMetas: PostMeta[]): string => {
                 ${postMetas.map(generateRssItem).join("")}
             </channel>
         </rss>
-    `);
+    `;
 };
 
 export const publishRss = async (postMetas: PostMeta[]) => {
