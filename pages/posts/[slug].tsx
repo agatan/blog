@@ -1,7 +1,8 @@
 import React from "react";
-import { Heading } from "@chakra-ui/react";
+import { Container, Heading } from "@chakra-ui/react";
 
 import { getPostBySlug, getPostMetasOrderByDate, Post } from "../../lib/posts";
+import { SEO } from "../../components/SEO";
 
 type Props = {
   post: Post;
@@ -10,10 +11,11 @@ type Props = {
 const PostPage: React.VFC<Props> = (props: Props) => {
   const { post } = props;
   return (
-    <div>
+    <Container maxWidth="container.md">
+      <SEO title={post.meta.title} />
       <Heading>{post.meta.title}</Heading>
       <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
-    </div>
+    </Container>
   );
 };
 export default PostPage;
