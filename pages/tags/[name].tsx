@@ -4,6 +4,7 @@ import { Container, Divider, Heading, Text } from "@chakra-ui/react";
 
 import { PostList } from "../../components/PostList";
 import { getPostMetasOrderByDate, PostMeta } from "../../lib/posts";
+import { getTagWithCounts } from "../../lib/tags";
 
 type Props = {
   tag: string;
@@ -16,9 +17,11 @@ const TagPage: React.FC<Props> = (props) => {
   const page = parseInt((router.query.page as string) || "0");
   return (
     <Container maxW="container.xl">
-      <Heading>
-        <Text>{tag}</Text>に関する記事
-      </Heading>
+      <Container maxW="container.lg">
+        <Heading as="h1">
+          <Text as="span">#{tag}</Text>
+        </Heading>
+      </Container>
       <Divider />
       <PostList postMetas={postMetas} page={page} />
     </Container>
@@ -27,17 +30,9 @@ const TagPage: React.FC<Props> = (props) => {
 export default TagPage;
 
 export async function getStaticPaths() {
-  const postMetas = await getPostMetasOrderByDate();
-  const counter: Record<string, number> = {};
-  for (const meta of postMetas) {
-    for (const tag of meta.tags) {
-      counter[tag] = counter[tag] ? counter[tag] + 1 : 1;
-    }
-  }
-  const tags = Object.keys(counter);
-  tags.sort((a, b) => counter[b] - counter[a]);
+  const tags = await getTagWithCounts();
   return {
-    paths: tags.map((tag) => `/tags/${tag}`),
+    paths: tags.map((tag) => `/tags/${tag.tag}`),
     fallback: false,
   };
 }

@@ -13,16 +13,7 @@ export default function Home(props: Props) {
   const router = useRouter();
   const page = parseInt((router.query.page as string) || "0");
   return (
-    <div>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <PostList postMetas={postMetas} page={page} />
-      </main>
-    </div>
+    <PostList postMetas={postMetas} page={page} />
   );
 }
 

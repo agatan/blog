@@ -27,10 +27,12 @@ export const PostList: React.FC<Props> = (props) => {
     POSTS_PER_PAGE * (page + 1)
   );
   return (
-    <Container maxW="container.xl">
+    <Container maxW="container.md">
       <VStack
-        divider={<StackDivider borderColor="gray.200" />}
+        divider={<StackDivider />}
         spacing={4}
+        paddingTop="4"
+        paddingBottom="4"
         align="stretch"
       >
         {slice.map((postMeta) => (
