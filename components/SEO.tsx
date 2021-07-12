@@ -1,9 +1,11 @@
 import Head from "next/head";
 import React from "react";
 
-const SITE_TITLE = "右上↗"
+const SITE_TITLE = "右上↗";
 
-export const SEO: React.VFC<{ title: string; description?: string }> = (props) => {
+export const SEO: React.VFC<{ title: string; description?: string }> = (
+  props
+) => {
   const { title, description } = props;
   return (
     <Head>
@@ -16,7 +18,9 @@ export const SEO: React.VFC<{ title: string; description?: string }> = (props) =
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:creator" content="@agatan_" />
       <meta property="twitter:title" content={title} />
-      {description && <meta property="twitter:description" content={description} />}
+      {description && (
+        <meta property="twitter:description" content={description} />
+      )}
     </Head>
-  )
+  );
 };

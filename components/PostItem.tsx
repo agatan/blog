@@ -16,7 +16,9 @@ export const PostItem: React.VFC<Props> = (props) => {
       <Heading size="md">
         <Link href={`/posts/${postMeta.slug}`}>{postMeta.title}</Link>
       </Heading>
-      <Text color="gray.800">{(new Date(postMeta.timestamp)).toDateString()}</Text>
+      <Text color="gray.800">
+        {new Date(postMeta.timestamp).toDateString()}
+      </Text>
       <HStack paddingTop="4" paddingBottom="4">
         {postMeta.tags.map((tag) => (
           <TagLink key={`${postMeta.slug}-${tag}`} tag={tag} />

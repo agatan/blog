@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Heading } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 
 import { getPostBySlug, getPostMetasOrderByDate, Post } from "../../lib/posts";
 import { SEO } from "../../components/SEO";
