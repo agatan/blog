@@ -1,22 +1,98 @@
 import React from "react";
-import { Heading } from "@chakra-ui/react";
+import { Box, Container, Divider, Flex, Heading, Icon, Link as ChakraLink, ListItem, OrderedList, Text, UnorderedList } from "@chakra-ui/react";
+import unified from 'unified';
+import rehypeParse from "rehype-parse";
+import rehypeReact from "rehype-react";
+import rehypeSlug from "rehype-slug";
+import { FaLink } from "react-icons/fa";
 
 import { getPostBySlug, getPostMetasOrderByDate, Post } from "../../lib/posts";
 import { SEO } from "../../components/SEO";
 import { MainLayout } from "../../components/MainLayout";
+import { Link } from "../../components/Link";
+import { TagLink } from "../../components/TagLink";
 
 type Props = {
   post: Post;
 };
 
+const ContentH2 = (props: any) => (
+  <Heading fontSize="x-large" paddingTop="2" paddingBottom="2" {...props}>
+    <Flex align="center">
+      <ChakraLink href={`#${props.id}`} padding="2"><Icon as={FaLink} color="gray.500" boxSize="4" /></ChakraLink>
+      {props.children}
+    </Flex>
+  </Heading>
+);
+
+const ContentH3 = (props: any) => (
+  <Heading fontSize="large" paddingTop="2" paddingBottom="2" {...props}>
+    <Flex align="center">
+      <ChakraLink href={`#${props.id}`} padding="2"><Icon as={FaLink} color="gray.500" boxSize="4" /></ChakraLink>
+      {props.children}
+    </Flex>
+  </Heading>
+)
+
+const ContentH4 = (props: any) => (
+  <Heading fontSize="large" paddingTop="2" paddingBottom="2" {...props}>
+    <Flex align="center">
+      <ChakraLink href={`#${props.id}`} padding="2"><Icon as={FaLink} color="gray.500" boxSize="4" /></ChakraLink>
+      {props.children}
+    </Flex>
+  </Heading>
+)
+
+const ContentUl = (props: any) => (
+  <UnorderedList paddingLeft="4">{props.children as React.ReactNode}</UnorderedList>
+);
+
+const ContentOl = (props: any) => (
+  <OrderedList paddingLeft="4">{props.children as React.ReactNode}</OrderedList>
+)
+
+const ContentLi = (props: any) => (
+  <ListItem>{props.children as React.ReactNode}</ListItem>
+)
+
+const ContentParagraph = (props: any) => (
+  <Text as="p" fontSize="medium" lineHeight="7" padding="1">{props.children as React.ReactNode}</Text>
+)
+
+const ContentAnchor = (props: any) => (
+  <Link href={props.href as string}><Text as="span" color="green.600">{props.children as React.ReactNode}</Text></Link>
+)
+
 const PostPage: React.VFC<Props> = (props: Props) => {
   const { post } = props;
+  const content = unified()
+    .use(rehypeParse, { fragment: true })
+    .use(rehypeSlug)
+    .use(rehypeReact, {
+      createElement: React.createElement,
+      components: {
+        h2: ContentH2,
+        h3: ContentH3,
+        h4: ContentH4,
+        ul: ContentUl,
+        ol: ContentOl,
+        li: ContentLi,
+        p: ContentParagraph,
+        a: ContentAnchor
+      }
+    }).processSync(post.content);
   return (
     <>
       <SEO title={post.meta.title} />
       <MainLayout>
-        <Heading>{post.meta.title}</Heading>
-        <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
+        <Container maxWidth="container.md">
+          <Heading paddingBottom="2" fontSize="3xl">{post.meta.title}</Heading>
+          {post.meta.tags.map((tag) => <TagLink key={tag} tag={tag} />)}
+          <Divider padding="2" />
+          <Box paddingTop="4">
+            {content.result as React.ReactNode}
+          </Box>
+        </Container>
       </MainLayout>
     </>
   );
