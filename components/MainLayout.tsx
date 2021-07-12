@@ -30,7 +30,7 @@ export const MainLayout: React.VFC<Props> = (props) => {
           </Heading>
           <Spacer />
           <Box>
-            <Link href="/feed" padding="2">
+            <Link href="/feed.xml" padding="2">
               <Icon as={FaRss} color="white" boxSize="6" />
             </Link>
             <Link href="/tags" padding="2">

@@ -4,6 +4,7 @@ import { getPostMetasOrderByDate, PostMeta } from "../lib/posts";
 import { PostList } from "../components/PostList";
 import { SEO } from "../components/SEO";
 import { MainLayout } from "../components/MainLayout";
+import { publishRss } from "../lib/rss";
 
 type Props = {
   postMetas: ReadonlyArray<PostMeta>;
@@ -26,6 +27,7 @@ export default function Home(props: Props) {
 
 export async function getStaticProps(): Promise<{ props: Props }> {
   const postMetas = await getPostMetasOrderByDate();
+  await publishRss(postMetas);
   return {
     props: {
       postMetas,
