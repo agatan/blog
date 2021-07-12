@@ -23,15 +23,19 @@ export const MainLayout: React.VFC<Props> = (props) => {
     <Box backgroundColor="green.50" minHeight="100vh">
       <Container maxWidth="container.lg" backgroundColor="green.600">
         <Flex align="flex-end" padding="8">
-          <Heading >
+          <Heading>
             <Link href="/" color="white">
               <Text as="u">↗ agatan blog ↗</Text>
             </Link>
           </Heading>
           <Spacer />
           <Box>
-            <Link href="/feed" padding="2"><Icon as={FaRss} color="white" boxSize="6" /></Link>
-            <Link href="/tags" padding="2"><Icon as={FaTags} color="white" boxSize="6" /></Link>
+            <Link href="/feed" padding="2">
+              <Icon as={FaRss} color="white" boxSize="6" />
+            </Link>
+            <Link href="/tags" padding="2">
+              <Icon as={FaTags} color="white" boxSize="6" />
+            </Link>
           </Box>
         </Flex>
       </Container>
