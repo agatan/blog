@@ -1,8 +1,10 @@
-name: CI
-on: [push, pull_request]
+name: Release
+on:
+  push:
+    branches: [ main ]
 
 jobs:
-  lint:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,3 +18,8 @@ jobs:
         run: yarn lint
       - name: Build
         run: yarn build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: out
