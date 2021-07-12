@@ -9,6 +9,7 @@ import {
   Link as ChakraLink,
   ListItem,
   OrderedList,
+  Spacer,
   Text,
   UnorderedList,
 } from "@chakra-ui/react";
@@ -16,7 +17,7 @@ import unified from "unified";
 import rehypeParse from "rehype-parse";
 import rehypeReact from "rehype-react";
 import rehypeSlug from "rehype-slug";
-import { FaLink } from "react-icons/fa";
+import { FaLink, FaGithub } from "react-icons/fa";
 
 import { getPostBySlug, getPostMetasOrderByDate, Post } from "../../lib/posts";
 import { SEO } from "../../components/SEO";
@@ -121,6 +122,19 @@ const PostPage: React.VFC<Props> = (props: Props) => {
           ))}
           <Divider padding="2" />
           <Box paddingTop="4">{content.result as React.ReactNode}</Box>
+          <Divider padding="2" />
+          <Flex justify="center" align="center" paddingTop="2">
+            <Spacer></Spacer>
+            <Link
+              href={`https://github.com/agatan/agatan.github.io/blob/main/posts/${post.meta.slug}.md`}
+              color="green.500"
+            >
+              <Icon as={FaGithub} boxSize="6" />
+              <Text as="span" padding="2">
+                GitHub で編集リクエスト
+              </Text>
+            </Link>
+          </Flex>
         </Container>
       </MainLayout>
     </>
