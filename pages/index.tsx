@@ -5,6 +5,7 @@ import { getPostMetasOrderByDate, PostMeta } from "../lib/posts";
 import { PostList } from "../components/PostList";
 import { Container } from "@chakra-ui/react";
 import { SEO } from "../components/SEO";
+import { MainLayout } from "../components/MainLayout";
 
 type Props = {
   postMetas: ReadonlyArray<PostMeta>;
@@ -15,10 +16,12 @@ export default function Home(props: Props) {
   const router = useRouter();
   const page = parseInt((router.query.page as string) || "0");
   return (
-    <Container maxWidth="container.lg">
-      <SEO title="Home" description="agatan のブログです。主にエンジニアリングに関する内容を書きます。"/>
-      <PostList postMetas={postMetas} page={page} />
-    </Container>
+    <>
+      <SEO title="Home" description="agatan のブログです。主にエンジニアリングに関する内容を書きます。" />
+      <MainLayout>
+        <PostList postMetas={postMetas} page={page} />
+      </MainLayout>
+    </>
   );
 }
 

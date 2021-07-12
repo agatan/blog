@@ -6,6 +6,7 @@ import { PostList } from "../../components/PostList";
 import { getPostMetasOrderByDate, PostMeta } from "../../lib/posts";
 import { getTagWithCounts } from "../../lib/tags";
 import { SEO } from "../../components/SEO";
+import { MainLayout } from "../../components/MainLayout";
 
 type Props = {
   tag: string;
@@ -17,16 +18,18 @@ const TagPage: React.FC<Props> = (props) => {
   const router = useRouter();
   const page = parseInt((router.query.page as string) || "0");
   return (
-    <Container maxW="container.lg">
+    <>
       <SEO title={`#${tag}`} description={`#${tag}に関する投稿`} />
-      <Container maxW="container.md">
-        <Heading as="h1">
-          <Text as="span">#{tag}</Text>
-        </Heading>
-        <Divider />
-      </Container>
-      <PostList postMetas={postMetas} page={page} />
-    </Container>
+      <MainLayout>
+        <Container maxW="container.md">
+          <Heading as="h1">
+            <Text as="span">#{tag}</Text>
+          </Heading>
+          <Divider />
+        </Container>
+        <PostList postMetas={postMetas} page={page} />
+      </MainLayout>
+    </>
   );
 };
 export default TagPage;
