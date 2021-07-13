@@ -163,7 +163,7 @@ const PostPage: React.VFC<Props> = (props: Props) => {
             ))}
           </HStack>
           <Divider padding="2" />
-          <Box paddingTop="4">{content.result as React.ReactNode}</Box>
+          <Box paddingTop="4" fontSize={{ base: "xs", lg: "md"}}>{content.result as React.ReactNode}</Box>
           <Divider padding="2" />
           <Flex justify="flex-end" align="center" paddingTop="2">
             <Link
