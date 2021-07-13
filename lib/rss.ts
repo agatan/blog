@@ -16,7 +16,7 @@ function generateRssFeedXml(postMetas: ReadonlyArray<PostMeta>): string {
   for (const postMeta of postMetas) {
     feed.item({
       title: postMeta.title,
-      description: postMeta.contentMarkdown.slice(0, 300) + "...",
+      description: postMeta.contentMarkdown,
       date: new Date(postMeta.timestamp),
       url: encodeURI(`https://blog.agatan.dev/posts/${postMeta.slug}`),
     });
