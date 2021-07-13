@@ -21,17 +21,16 @@ const POSTS_PER_PAGE = 10;
 export const PostList: React.FC<Props> = (props) => {
   const { postMetas } = props;
   return (
-    <Container>
-      <VStack
-        divider={<StackDivider />}
-        spacing={4}
-        paddingTop="4"
-        paddingBottom="4"
-      >
-        {postMetas.map((postMeta) => (
-          <PostItem key={postMeta.slug} postMeta={postMeta} />
-        ))}
-      </VStack>
-    </Container>
+    <VStack
+      divider={<StackDivider />}
+      spacing={4}
+      paddingX="0"
+      paddingTop="4"
+      paddingBottom="4"
+    >
+      {postMetas.map((postMeta) => (
+        <PostItem key={postMeta.slug} postMeta={postMeta} />
+      ))}
+    </VStack>
   );
 };

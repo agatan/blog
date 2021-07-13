@@ -5,6 +5,7 @@ import { PostList } from "../components/PostList";
 import { SEO } from "../components/SEO";
 import { MainLayout } from "../components/MainLayout";
 import { publishRss } from "../lib/rss";
+import { Container } from "@chakra-ui/react";
 
 type Props = {
   postMetas: ReadonlyArray<PostMeta>;
@@ -19,7 +20,9 @@ export default function Home(props: Props) {
         description="agatan のブログです。主にエンジニアリングに関する内容を書きます。"
       />
       <MainLayout>
-        <PostList postMetas={postMetas} />
+        <Container maxWidth="container.md">
+          <PostList postMetas={postMetas} />
+        </Container>
       </MainLayout>
     </>
   );

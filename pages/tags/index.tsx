@@ -15,10 +15,10 @@ const TagsPage: React.FC<Props> = (props) => {
       <SEO title="tags" />
       <MainLayout>
         <Container maxWidth="container.md">
-          <Heading paddingBottom="4" fontSize="3xl">
+          <Heading paddingBottom="4" fontSize={{ base: "xl", lg: "3xl" }}>
             #tags
           </Heading>
-          <Wrap spacing="0">
+          <Wrap spacing="1">
             {props.tagWithCounts.map(({ tag, count }) => (
               <TagLink key={tag} tag={tag} count={count} />
             ))}

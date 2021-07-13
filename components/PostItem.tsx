@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Heading, HStack, Text } from "@chakra-ui/react";
+import { Box, Heading, HStack, Text } from "@chakra-ui/react";
 
 import { Link } from "./Link";
 import { PostMeta } from "../lib/posts";
@@ -12,18 +12,18 @@ type Props = {
 export const PostItem: React.VFC<Props> = (props) => {
   const { postMeta } = props;
   return (
-    <Container>
-      <Heading size="md">
+    <Box width="100%" padding="2">
+      <Heading fontSize={{ base: "14", lg: "20" }}>
         <Link href={`/posts/${postMeta.slug}`}>{postMeta.title}</Link>
       </Heading>
-      <Text color="gray.800">
-        {new Date(postMeta.timestamp).toDateString()}
+      <Text color="gray.500" fontSize={{ base: "10", lg: "14"}} paddingY="1">
+        {new Date(postMeta.timestamp).toLocaleDateString()} 公開
       </Text>
-      <HStack paddingTop="4" paddingBottom="4" spacing="0" wrap="wrap">
+      <HStack spacing="1" wrap="wrap">
         {postMeta.tags.map((tag) => (
           <TagLink key={`${postMeta.slug}-${tag}`} tag={tag} />
         ))}
       </HStack>
-    </Container>
+    </Box>
   );
 };

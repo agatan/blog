@@ -10,12 +10,12 @@ type Props = {
 export const TagLink: React.VFC<Props> = (props) => {
   const { tag, count } = props;
   return (
-    <Link href={`/tags/${tag}`} padding="1">
-      <Tag colorScheme="blue" variant="outline" padding="1">
+    <Link href={`/tags/${tag}`} padding="0">
+      <Tag colorScheme="blue" variant="outline" padding="1" size="sm">
         <Flex align="center" paddingLeft="1" paddingRight="1">
-          <TagLabel fontSize="small">{tag}</TagLabel>
+          <TagLabel fontSize={{ base: "x-small", lg: "small"}}>{tag}</TagLabel>
           {count != null && (
-            <Text fontSize="x-small" color="blue.500" paddingLeft="1">
+            <Text fontSize="xs" color="blue.500" paddingLeft="1">
               {count}
             </Text>
           )}
