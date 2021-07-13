@@ -1,34 +1,31 @@
-// Ref: https://blog.kasorin.work/posts/rss_for_nextjs_ssg
 import fs from "fs";
+import RSS from "rss";
+
 import { PostMeta } from "./posts";
 
-const generateRssItem = (postMeta: PostMeta): string => {
-  return `
-        <item>
-            <guid>https://agatan.github.io/posts/${encodeURIComponent(postMeta.slug)}</guid>
-            <title>${postMeta.title}</title>
-            <link>https://agatan.github.io/posts/${encodeURIComponent(postMeta.slug)}</link>
-            <pubDate>${new Date(postMeta.timestamp).toUTCString()}</pubDate>
-        </item>
-    `;
-};
+function generateRssFeedXml(postMetas: ReadonlyArray<PostMeta>): string {
+  const feed = new RSS({
+    title: "↗ agatan blog ↗",
+    description:
+      "agatan のブログです。主にエンジニアリングに関する内容を書きます。",
+    site_url: "https://agatan.github.io",
+    feed_url: "https://agatan.github.io/feed.xml",
+    language: "ja",
+  });
 
-const generateRss = (postMetas: PostMeta[]): string => {
-  return `
-        <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-            <channel>
-                <title>↗ agatan blog ↗</title>
-                <link>https://agatan.github.io</link>
-                <description>agatan のブログです。主にエンジニアリングに関する内容を書きます。</description>
-                <atom:link href="https://agatan.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-                ${postMetas.map(generateRssItem).join("")}
-            </channel>
-        </rss>
-    `;
-};
+  for (const postMeta of postMetas) {
+    feed.item({
+      title: postMeta.title,
+      description: postMeta.contentMarkdown.slice(0, 300) + "...",
+      date: new Date(postMeta.timestamp),
+      url: encodeURI(`https://agatan.github.io/posts/${postMeta.slug}`),
+    });
+  }
+  return feed.xml();
+}
 
 export const publishRss = async (postMetas: PostMeta[]) => {
   const PATH = "./public/feed.xml";
-  const rss = generateRss(postMetas);
+  const rss = generateRssFeedXml(postMetas);
   fs.writeFileSync(PATH, rss);
 };
