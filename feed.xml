@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[↗ agatan blog ↗]]></title><description><![CDATA[agatan のブログです。主にエンジニアリングに関する内容を書きます。]]></description><link>https://agatan.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 13 Jul 2021 04:37:46 GMT</lastBuildDate><atom:link href="https://agatan.github.io/feed.xml" rel="self" type="application/rss+xml"/><language><![CDATA[ja]]></language><item><title><![CDATA[pgjdbc の SQLException.getErrorCode() は常に 0 を返す]]></title><description><![CDATA[
+最近になって仕事で初めて JVM 上で動く言語を書いています。
+そこでちょっとハマったことがあり、色々調べて解決したのでメモがてら共有しようと思い、記事にすることにしました。
+もっと遭遇している人多そうなんですが、パッとググった限り日本語でこの問題について言及している記事が見当たらなかったので、有用だと信じています。（経験ある JDBC ユーザにとっては当たり前なんですかね？）
+
+## TL;DR
+
+https://github.com/pgjdbc/pgjdbc を使っていると、 `java.sql.SQLException.getErrorCode()` が常に 0 になる。
+代わりに ...]]></description><link>https://agatan.github.io/posts/pgjdbc-error-code</link><guid isPermaLink="true">https://agatan.github.io/posts/pgjdbc-error-code</guid><pubDate>Wed, 23 Jun 2021 00:00:00 GMT</pubDate></item><item><title><![CDATA[atmaCup #5 に参加してきて Private 29 位（Public 27 位）でした！]]></title><description><![CDATA[
+<p>atmaCup #5 に参加してきました！
+<iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fatma.connpass.com%2Fevent%2F175139%2F" title="【おうちで】atmaCup オンサイトデータコンペ#5 (2020/05/29 18:00〜)" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px...]]></description><link>https://agatan.github.io/posts/atmacup5th</link><guid isPermaLink="true">https://agatan.github.io/posts/atmacup5th</guid><pubDate>Sun, 07 Jun 2020 11:00:00 GMT</pubDate></item><item><title><![CDATA[【論文読み】 Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation]]></title><description><![CDATA[
+画像中の文字領域検出における 2 つの主流な手法のいいとこ取りを目指した論文、 Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation を読んでみました。
+
+この記事は、Wantedly の勉強会で取り上げられた論文・技術をまとめたものです。
+[2018 年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
+
+#...]]></description><link>https://agatan.github.io/posts/%E3%80%90%E8%AB%96%E6%96%87%E8%AA%AD%E3%81%BF%E3%80%91_Multi-Oriented_Scene_Text_Detection_via_Corner_Localization_and_Region_Segmentation</link><guid isPermaLink="true">https://agatan.github.io/posts/%E3%80%90%E8%AB%96%E6%96%87%E8%AA%AD%E3%81%BF%E3%80%91_Multi-Oriented_Scene_Text_Detection_via_Corner_Localization_and_Region_Segmentation</guid><pubDate>Tue, 12 Feb 2019 15:12:22 GMT</pubDate></item><item><title><![CDATA[【論文読み】Semi-convolutional Operators for Instance Segmentation]]></title><description><![CDATA[
+Instance Segmentation のタスクに対する手法を整理・分解し、精度をより向上する `Semi-convolutional operators` を提案した論文です。
+
+![image.png](https://qiita-image-store.s3.amazonaws.com/0/39030/8164ed4c-3f5d-c772-e21d-7d02d5146461.png)
+
+この記事は、Wantedly の勉強会で取り上げられた論文・技術をまとめたものです。
+[2018 年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 201...]]></description><link>https://agatan.github.io/posts/%E3%80%90%E8%AB%96%E6%96%87%E8%AA%AD%E3%81%BF%E3%80%91Semi-convolutional_Operators_for_Instance_Segmentation</link><guid isPermaLink="true">https://agatan.github.io/posts/%E3%80%90%E8%AB%96%E6%96%87%E8%AA%AD%E3%81%BF%E3%80%91Semi-convolutional_Operators_for_Instance_Segmentation</guid><pubDate>Mon, 11 Feb 2019 07:59:46 GMT</pubDate></item><item><title><![CDATA[【論文紹介】Concurrent Spatial and Channel Squeeze & Excitation in Fully Convolutional Networks]]></title><description><![CDATA[
+Fully Convolutional Network (FCN) の性能を enhance する Concurrent Spatial and Channel Squeeze & Excitation (scSE) というモジュールを提案した論文です。
+既存の良いとされてきたモデルたちに計算量をそこまで増やさずに & 簡単に組み込むことができ、 Image Segmentation などのタスクで性能を向上させることができます。
+
+[ILSVRC 2017 画像分類 Top の手法 Squeeze-and-Excitation Networks - Qiita](https://qiita...]]></description><link>https://agatan.github.io/posts/%E3%80%90%E8%AB%96%E6%96%87%E7%B4%B9%E4%BB%8B%E3%80%91Concurrent_Spatial_and_Channel_Squeeze_&amp;_Excitation_in_Fully_Convolutional_Networks</link><guid isPermaLink="true">https://agatan.github.io/posts/%E3%80%90%E8%AB%96%E6%96%87%E7%B4%B9%E4%BB%8B%E3%80%91Concurrent_Spatial_and_Channel_Squeeze_&amp;_Excitation_in_Fully_Convolutional_Networks</guid><pubDate>Fri, 04 Jan 2019 05:51:07 GMT</pubDate></item><item><title><![CDATA[DKN: Deep Knowledge-Aware Network for News Recommendation]]></title><description><![CDATA[
+ニュースの推薦に "Knowledge Graph" を活用する論文です。
+Microsoft Research Asia のチームが WWW 2018 に投稿しています。
+
+この記事は、Wantedly の勉強会で取り上げられた論文・技術をまとめたものです。
+[2018 年に読んだ機械学習系論文・技術まとめ at Wantedly Advent Calendar 2018 - Qiita](https://qiita.com/advent-calendar/2018/wantedly_ml)
+
+## Reference
+
+- DKN: Deep Knowledge-Aware Networ...]]></description><link>https://agatan.github.io/posts/DKN:_Deep_Knowledge-Aware_Network_for_News_Recommendation</link><guid isPermaLink="true">https://agatan.github.io/posts/DKN:_Deep_Knowledge-Aware_Network_for_News_Recommendation</guid><pubDate>Wed, 19 Dec 2018 12:02:20 GMT</pubDate></item><item><title><![CDATA[ILSVRC 2017 画像分類 Top の手法 Squeeze-and-Excitation Networks]]></title><description><![CDATA[
+ILSVRC 2017 の画像分類タスクでは Squeeze-and-Excitation という手法が 1 位を記録しました。
+シンプルなアイディア・実装で、既存モデルの拡張にも利用できるうえ、精度も 2016 年の top 1 と比べてエラー率を約 25% 減らすという大きな成果をあげています。
+
+![image.png](https://qiita-image-store.s3.amazonaws.com/0/39030/20b939b8-c65b-ce06-4525-37ccfe19c7a2.png)
+
+### Reference
+
+- Jie Hu, et al., https:/...]]></description><link>https://agatan.github.io/posts/ILSVRC_2017_%E7%94%BB%E5%83%8F%E5%88%86%E9%A1%9E_Top_%E3%81%AE%E6%89%8B%E6%B3%95_Squeeze-and-Excitation_Networks</link><guid isPermaLink="true">https://agatan.github.io/posts/ILSVRC_2017_%E7%94%BB%E5%83%8F%E5%88%86%E9%A1%9E_Top_%E3%81%AE%E6%89%8B%E6%B3%95_Squeeze-and-Excitation_Networks</guid><pubDate>Thu, 13 Dec 2018 13:25:45 GMT</pubDate></item><item><title><![CDATA[Object 間の関係を使って後処理 0 の物体検出を実現する: Relation Networks for Object Detection]]></title><description><![CDATA[
+Object Detection は、一枚の画像中の「どこに」「なにが」うつっているかを当てるタスクです。
+典型的な手法では、オブジェクトごとの bounding box を予測し、それぞれがどのクラスに分類されるかを**個別で**予測します。
+また、ひとつのオブジェクトに対してすこしずつ座標のずれた box を複数予測してしまう可能性があるという問題があり、1 object 1 box になるように重複を削除しなければなりません。
+これには nox maximum supression という方法を使うことが多いですが、これはヒューリスティックに基づく後処理になってしまっています。
+
+この...]]></description><link>https://agatan.github.io/posts/Object_%E9%96%93%E3%81%AE%E9%96%A2%E4%BF%82%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E5%BE%8C%E5%87%A6%E7%90%86_0_%E3%81%AE%E7%89%A9%E4%BD%93%E6%A4%9C%E5%87%BA%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B:_Relation_Networks_for_Object_Detection</link><guid isPermaLink="true">https://agatan.github.io/posts/Object_%E9%96%93%E3%81%AE%E9%96%A2%E4%BF%82%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E5%BE%8C%E5%87%A6%E7%90%86_0_%E3%81%AE%E7%89%A9%E4%BD%93%E6%A4%9C%E5%87%BA%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B:_Relation_Networks_for_Object_Detection</guid><pubDate>Mon, 10 Dec 2018 14:35:40 GMT</pubDate></item><item><title><![CDATA[簡単な問題は省エネで解き、難しい問題には全力を出すネットワーク: Multi-Scale Dense Networks]]></title><description><![CDATA[
+CNN による画像分類を現実のアプリケーションで使う際には、限られた計算資源で推論をする必要があります。
+推論を待って処理するような場合は latency が重要になり、バッチ処理でも throughput を最大化したいという要求があります。
+
+各タスクで SoTA を達成しているようなモデルはとても Deep であり、毎回走らせるには大きすぎます。
+とはいえ浅いネットワークでは精度に限界もあるので、速度と精度のトレードオフを常に考える必要があります。
+計算量を抑えつつ精度を向上するネットワークを設計する、という方向で MobileNet や SqueezeNet などが提案されています。...]]></description><link>https://agatan.github.io/posts/%E7%B0%A1%E5%8D%98%E3%81%AA%E5%95%8F%E9%A1%8C%E3%81%AF%E7%9C%81%E3%82%A8%E3%83%8D%E3%81%A7%E8%A7%A3%E3%81%8D%E3%80%81%E9%9B%A3%E3%81%97%E3%81%84%E5%95%8F%E9%A1%8C%E3%81%AB%E3%81%AF%E5%85%A8%E5%8A%9B%E3%82%92%E5%87%BA%E3%81%99%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF:_Multi-Scale_Dense_Networks</link><guid isPermaLink="true">https://agatan.github.io/posts/%E7%B0%A1%E5%8D%98%E3%81%AA%E5%95%8F%E9%A1%8C%E3%81%AF%E7%9C%81%E3%82%A8%E3%83%8D%E3%81%A7%E8%A7%A3%E3%81%8D%E3%80%81%E9%9B%A3%E3%81%97%E3%81%84%E5%95%8F%E9%A1%8C%E3%81%AB%E3%81%AF%E5%85%A8%E5%8A%9B%E3%82%92%E5%87%BA%E3%81%99%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF:_Multi-Scale_Dense_Networks</guid><pubDate>Fri, 07 Dec 2018 13:34:37 GMT</pubDate></item><item><title><![CDATA[[論文紹介] Focal Loss for Dense Object Detection]]></title><description><![CDATA[
+高速かつ高精度に物体検出を行う RetinaNet に使われている **Focal Loss** という損失関数を提案した論文を読んだので紹介します。
+FAIR(Facebook AI Research) が書いた論文で ICCV 2017 に採択されています。
+
+<img src="https://qiita-image-store.s3.amazonaws.com/0/39030/38ab1ef6-c4c5-fd78-d903-0954479143a6.png" width="60%">
+
+この記事は、Wantedly の勉強会で取り上げられた論文・技術をまとめたものです。
+[2018 ...]]></description><link>https://agatan.github.io/posts/focal-loss</link><guid isPermaLink="true">https://agatan.github.io/posts/focal-loss</guid><pubDate>Mon, 03 Dec 2018 00:00:00 GMT</pubDate></item><item><title><![CDATA[[論文紹介] Focal Loss for Dense Object Detection]]></title><description><![CDATA[
+高速かつ高精度に物体検出を行う RetinaNet に使われている **Focal Loss** という損失関数を提案した論文を読んだので紹介します。
+FAIR(Facebook AI Research) が書いた論文で ICCV 2017 に採択されています。
+
+<img src="https://qiita-image-store.s3.amazonaws.com/0/39030/38ab1ef6-c4c5-fd78-d903-0954479143a6.png" width="60%">
+
+この記事は、Wantedly の勉強会で取り上げられた論文・技術をまとめたものです。
+[2018 ...]]></description><link>https://agatan.github.io/posts/%5B%E8%AB%96%E6%96%87%E7%B4%B9%E4%BB%8B%5D_Focal_Loss_for_Dense_Object_Detection</link><guid isPermaLink="true">https://agatan.github.io/posts/%5B%E8%AB%96%E6%96%87%E7%B4%B9%E4%BB%8B%5D_Focal_Loss_for_Dense_Object_Detection</guid><pubDate>Sun, 02 Dec 2018 09:41:00 GMT</pubDate></item><item><title><![CDATA[&quot;Applying Deep Learning To Airbnb Search&quot;  を読んだ]]></title><description><![CDATA[
+<p><a href="https://arxiv.org/abs/1810.09591">[1810.09591] Applying Deep Learning To Airbnb Search</a> を読んだときのメモをそのまま出してみます。面白かった。
+本当にメモなので、詳細は原文を読んでください。</p>
+
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/airbnb">airbnb</a> の search ranking に <a class="keyword" href="http://d.hatena.ne...]]></description><link>https://agatan.github.io/posts/applying-deeplearning-to-airbnb-search-papser</link><guid isPermaLink="true">https://agatan.github.io/posts/applying-deeplearning-to-airbnb-search-papser</guid><pubDate>Wed, 21 Nov 2018 12:52:58 GMT</pubDate></item><item><title><![CDATA[個人のメモ・ノートを保存するサービス選び]]></title><description><![CDATA[
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/Dropbox">Dropbox</a> Paper と <a class="keyword" href="http://d.hatena.ne.jp/keyword/Google">Google</a> Keep を併用してメモとかを取っていた．
+長期的な記録とか人に見せうるもの，長めの文章は <a class="keyword" href="http://d.hatena.ne.jp/keyword/Dropbox">Dropbox</a> Paper に，
+一時的なメモと...]]></description><link>https://agatan.github.io/posts/%E5%80%8B%E4%BA%BA%E3%81%AE%E3%83%A1%E3%83%A2%E3%83%BB%E3%83%8E%E3%83%BC%E3%83%88%E3%82%92%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E9%81%B8%E3%81%B3</link><guid isPermaLink="true">https://agatan.github.io/posts/%E5%80%8B%E4%BA%BA%E3%81%AE%E3%83%A1%E3%83%A2%E3%83%BB%E3%83%8E%E3%83%BC%E3%83%88%E3%82%92%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E9%81%B8%E3%81%B3</guid><pubDate>Fri, 19 Jan 2018 09:13:16 GMT</pubDate></item><item><title><![CDATA[golang でテストのために時間を操作するライブラリ timejump]]></title><description><![CDATA[
+<p>現在時刻に依存するコードをテストするとき，<a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> で <code>time.Now</code> を普通に使っているとモックできずうまくテストが書けないという問題があります．
+時間の操作は time パッケージをそのまま使えば良いのですが，time.Now だけはモックできるようにしたいところです．</p>
+
+<p>解決方法としては，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5...]]></description><link>https://agatan.github.io/posts/golang_%E3%81%A7%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AB%E6%99%82%E9%96%93%E3%82%92%E6%93%8D%E4%BD%9C%E3%81%99%E3%82%8B%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA_timejump</link><guid isPermaLink="true">https://agatan.github.io/posts/golang_%E3%81%A7%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AB%E6%99%82%E9%96%93%E3%82%92%E6%93%8D%E4%BD%9C%E3%81%99%E3%82%8B%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA_timejump</guid><pubDate>Thu, 14 Dec 2017 14:21:24 GMT</pubDate></item><item><title><![CDATA[ISUCON 7 本戦出場してきました 「都営三田線東急目黒線直通急行日吉行」]]></title><description><![CDATA[
+<p>ISUCON 7 お疲れ様でした！</p>
+
+<p>僕らのチーム，「<a class="keyword" href="http://d.hatena.ne.jp/keyword/%C5%D4%B1%C4%BB%B0%C5%C4%C0%FE">都営三田線</a><a class="keyword" href="http://d.hatena.ne.jp/keyword/%C5%EC%B5%DE%CC%DC%B9%F5%C0%FE">東急目黒線</a>直通急行日吉行」は学生枠 2 位，全体で 10 位という結果でした．</p>
+
+<p>予選の結果が異常によかったので完全に調子に乗っていたん...]]></description><link>https://agatan.github.io/posts/ISUCON_7_%E6%9C%AC%E6%88%A6%E5%87%BA%E5%A0%B4%E3%81%97%E3%81%A6%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F_%E3%80%8C%E9%83%BD%E5%96%B6%E4%B8%89%E7%94%B0%E7%B7%9A%E6%9D%B1%E6%80%A5%E7%9B%AE%E9%BB%92%E7%B7%9A%E7%9B%B4%E9%80%9A%E6%80%A5%E8%A1%8C%E6%97%A5%E5%90%89%E8%A1%8C%E3%80%8D</link><guid isPermaLink="true">https://agatan.github.io/posts/ISUCON_7_%E6%9C%AC%E6%88%A6%E5%87%BA%E5%A0%B4%E3%81%97%E3%81%A6%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F_%E3%80%8C%E9%83%BD%E5%96%B6%E4%B8%89%E7%94%B0%E7%B7%9A%E6%9D%B1%E6%80%A5%E7%9B%AE%E9%BB%92%E7%B7%9A%E7%9B%B4%E9%80%9A%E6%80%A5%E8%A1%8C%E6%97%A5%E5%90%89%E8%A1%8C%E3%80%8D</guid><pubDate>Sun, 26 Nov 2017 05:18:59 GMT</pubDate></item><item><title><![CDATA[ISUCON7予選1日目に「都営三田線」で参加して通過できた話]]></title><description><![CDATA[
+<p>ISUCON7 予選お疲れ様でした！
+タイトルどおりですが，「<a class="keyword" href="http://d.hatena.ne.jp/keyword/%C5%D4%B1%C4%BB%B0%C5%C4%C0%FE">都営三田線</a><a class="keyword" href="http://d.hatena.ne.jp/keyword/%C5%EC%B5%DE%CC%DC%B9%F5%C0%FE">東急目黒線</a>直通急行日吉行」という学生チームで参加し，1日目3位枠で通過することができました．
+チーム編成は，去年2人チームで参加したときの相方である <a ...]]></description><link>https://agatan.github.io/posts/ISUCON7%E4%BA%88%E9%81%B81%E6%97%A5%E7%9B%AE%E3%81%AB%E3%80%8C%E9%83%BD%E5%96%B6%E4%B8%89%E7%94%B0%E7%B7%9A%E3%80%8D%E3%81%A7%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E9%80%9A%E9%81%8E%E3%81%A7%E3%81%8D%E3%81%9F%E8%A9%B1</link><guid isPermaLink="true">https://agatan.github.io/posts/ISUCON7%E4%BA%88%E9%81%B81%E6%97%A5%E7%9B%AE%E3%81%AB%E3%80%8C%E9%83%BD%E5%96%B6%E4%B8%89%E7%94%B0%E7%B7%9A%E3%80%8D%E3%81%A7%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E9%80%9A%E9%81%8E%E3%81%A7%E3%81%8D%E3%81%9F%E8%A9%B1</guid><pubDate>Mon, 23 Oct 2017 11:33:42 GMT</pubDate></item><item><title><![CDATA[go generate する時のバイナリのバージョンを固定したい]]></title><description><![CDATA[
+<p><a href="https://github.com/golang/mock">https://github.com/golang/mock</a> は <code>mockgen</code> というコマンドを提供しています．
+これは，interface から mock を自動生成するコマンドで <code>go generate</code> と合わせて使うと interface に追従する mock がとても簡単に作れます．</p>
+
+<p>他にも <a class="keyword" href="http://d.hatena.ne.jp/keyword/yacc">yacc...]]></description><link>https://agatan.github.io/posts/go_generate_%E3%81%99%E3%82%8B%E6%99%82%E3%81%AE%E3%83%90%E3%82%A4%E3%83%8A%E3%83%AA%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%92%E5%9B%BA%E5%AE%9A%E3%81%97%E3%81%9F%E3%81%84</link><guid isPermaLink="true">https://agatan.github.io/posts/go_generate_%E3%81%99%E3%82%8B%E6%99%82%E3%81%AE%E3%83%90%E3%82%A4%E3%83%8A%E3%83%AA%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%92%E5%9B%BA%E5%AE%9A%E3%81%97%E3%81%9F%E3%81%84</guid><pubDate>Sat, 05 Aug 2017 16:58:13 GMT</pubDate></item><item><title><![CDATA[Rust で Unix のシグナルを channel 経由でキャッチする]]></title><description><![CDATA[
+<p>Rust でシグナルハンドリングをする必要があったのですが，あまり自分の用途にあるライブラリがなかったので作りました．
+僕が <a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows">Windows</a> のことをほとんどわからないので，<a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows">Windows</a> 未対応です．</p>
+
+<p><iframe src="https://hatenablog-parts.com/embed?ur...]]></description><link>https://agatan.github.io/posts/Rust_%E3%81%A7_Unix_%E3%81%AE%E3%82%B7%E3%82%B0%E3%83%8A%E3%83%AB%E3%82%92_channel_%E7%B5%8C%E7%94%B1%E3%81%A7%E3%82%AD%E3%83%A3%E3%83%83%E3%83%81%E3%81%99%E3%82%8B</link><guid isPermaLink="true">https://agatan.github.io/posts/Rust_%E3%81%A7_Unix_%E3%81%AE%E3%82%B7%E3%82%B0%E3%83%8A%E3%83%AB%E3%82%92_channel_%E7%B5%8C%E7%94%B1%E3%81%A7%E3%82%AD%E3%83%A3%E3%83%83%E3%83%81%E3%81%99%E3%82%8B</guid><pubDate>Mon, 10 Jul 2017 11:59:04 GMT</pubDate></item><item><title><![CDATA[BK-tree を golang で実装した]]></title><description><![CDATA[
+<p>先日はてぶに  <a href="http://postd.cc/bk-tree/">&#x8208;&#x5473;&#x6DF1;&#x3044;&#x30C7;&#x30FC;&#x30BF;&#x69CB;&#x9020;&#xFF1A;BK&#x6728; | &#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0; | POSTD</a> という翻訳記事 ( 元記事 <a href="http://signal-to-noise.xyz/post/bk-tree/">http://signal-to-noise.xyz...]]></description><link>https://agatan.github.io/posts/BK-tree_%E3%82%92_golang_%E3%81%A7%E5%AE%9F%E8%A3%85%E3%81%97%E3%81%9F</link><guid isPermaLink="true">https://agatan.github.io/posts/BK-tree_%E3%82%92_golang_%E3%81%A7%E5%AE%9F%E8%A3%85%E3%81%97%E3%81%9F</guid><pubDate>Sat, 13 May 2017 09:33:10 GMT</pubDate></item><item><title><![CDATA[Rust でグラフ構造や木構造を作る]]></title><description><![CDATA[
+<p>プログラムを書いていると何かしら<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a>っぽいものやグラフっぽいものを作りたい場面が多々あると思います．
+Rust は所有権や <code>Size</code> の都合で，これらを作ろうと思うと地味にハマるのでまとめておきます．</p>
+
+<h3>Rust で<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a></h3>...]]></description><link>https://agatan.github.io/posts/Rust_%E3%81%A7%E3%82%B0%E3%83%A9%E3%83%95%E6%A7%8B%E9%80%A0%E3%82%84%E6%9C%A8%E6%A7%8B%E9%80%A0%E3%82%92%E4%BD%9C%E3%82%8B</link><guid isPermaLink="true">https://agatan.github.io/posts/Rust_%E3%81%A7%E3%82%B0%E3%83%A9%E3%83%95%E6%A7%8B%E9%80%A0%E3%82%84%E6%9C%A8%E6%A7%8B%E9%80%A0%E3%82%92%E4%BD%9C%E3%82%8B</guid><pubDate>Mon, 16 Jan 2017 06:17:45 GMT</pubDate></item><item><title><![CDATA[mio で echo サーバメモ]]></title><description><![CDATA[
+<p>Rust の非同期 IO ライブラリのなかでももっとも低レベルなレイヤーを担っている <a href="https://github.com/carllerche/mio">mio</a> を使ってecho サーバを書いた。
+echo サーバばっかり書いているような気がするけど，echo サーバやっておくと簡単な割にライブラリの使い方とかがちゃんと分かる気がするので好きです。</p>
+
+<h3>コード</h3>
+
+<pre class="code lang-rust" data-lang="rust" data-unlink><span class="synStatement">ext...]]></description><link>https://agatan.github.io/posts/mio_%E3%81%A7_echo_%E3%82%B5%E3%83%BC%E3%83%90%E3%83%A1%E3%83%A2</link><guid isPermaLink="true">https://agatan.github.io/posts/mio_%E3%81%A7_echo_%E3%82%B5%E3%83%BC%E3%83%90%E3%83%A1%E3%83%A2</guid><pubDate>Sat, 07 Jan 2017 06:14:55 GMT</pubDate></item><item><title><![CDATA[NCurses の Crystal binding を作った]]></title><description><![CDATA[
+<p>この記事は、 Crystal Advent Calendar 2016 の８日目の記事です。
+<iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fqiita.com%2Fadvent-calendar%2F2016%2Fcrystal" title="Crystal Advent Calendar 2016 - Qiita" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%;...]]></description><link>https://agatan.github.io/posts/NCurses_%E3%81%AE_Crystal_binding_%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%9F</link><guid isPermaLink="true">https://agatan.github.io/posts/NCurses_%E3%81%AE_Crystal_binding_%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%9F</guid><pubDate>Thu, 08 Dec 2016 13:33:17 GMT</pubDate></item><item><title><![CDATA[Rust で Box に包まれた構造体の所有権分解]]></title><description><![CDATA[
+<p>ちょっとはまったのでメモ</p>
+
+<pre class="code lang-rust" data-lang="rust" data-unlink><span class="synStatement">struct</span> <span class="synIdentifier">A</span> {
+    foo: <span class="synType">Vec</span><span class="synStatement">&lt;</span><span class="synType">i32</span><span class="synStatement">&gt...]]></description><link>https://agatan.github.io/posts/Rust_%E3%81%A7_Box_%E3%81%AB%E5%8C%85%E3%81%BE%E3%82%8C%E3%81%9F%E6%A7%8B%E9%80%A0%E4%BD%93%E3%81%AE%E6%89%80%E6%9C%89%E6%A8%A9%E5%88%86%E8%A7%A3</link><guid isPermaLink="true">https://agatan.github.io/posts/Rust_%E3%81%A7_Box_%E3%81%AB%E5%8C%85%E3%81%BE%E3%82%8C%E3%81%9F%E6%A7%8B%E9%80%A0%E4%BD%93%E3%81%AE%E6%89%80%E6%9C%89%E6%A8%A9%E5%88%86%E8%A7%A3</guid><pubDate>Sun, 04 Dec 2016 07:45:12 GMT</pubDate></item><item><title><![CDATA[日本語の改行を適当にいい感じにするツールを作りました]]></title><description><![CDATA[
+<p>必要に迫られて、HTML ページ内の改行位置をいい感じにするツールを作ってみました。</p>
+
+<p><iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fagatan%2Fjapawrap" title="agatan/japawrap" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500...]]></description><link>https://agatan.github.io/posts/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%94%B9%E8%A1%8C%E3%82%92%E9%81%A9%E5%BD%93%E3%81%AB%E3%81%84%E3%81%84%E6%84%9F%E3%81%98%E3%81%AB%E3%81%99%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%BE%E3%81%97%E3%81%9F</link><guid isPermaLink="true">https://agatan.github.io/posts/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E6%94%B9%E8%A1%8C%E3%82%92%E9%81%A9%E5%BD%93%E3%81%AB%E3%81%84%E3%81%84%E6%84%9F%E3%81%98%E3%81%AB%E3%81%99%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%BE%E3%81%97%E3%81%9F</guid><pubDate>Sat, 29 Oct 2016 04:24:49 GMT</pubDate></item><item><title><![CDATA[Rust の Result と Iterator]]></title><description><![CDATA[
+<p>Rust には失敗するかもしれない値を表す <code>Result&lt;T, E&gt;</code> という型があります。
+<a href="https://doc.rust-lang.org/std/result/enum.Result.html">std::result::Result</a></p>
+
+<p>そして iterate できることを表す <code>Iterator</code> という trait があります。
+<a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html">std::iter:...]]></description><link>https://agatan.github.io/posts/Rust_%E3%81%AE_Result_%E3%81%A8_Iterator</link><guid isPermaLink="true">https://agatan.github.io/posts/Rust_%E3%81%AE_Result_%E3%81%A8_Iterator</guid><pubDate>Mon, 05 Sep 2016 14:47:25 GMT</pubDate></item><item><title><![CDATA[値と参照について]]></title><description><![CDATA[
+<p>「値」と「参照」という言葉があります。
+このへんの言葉について、今の理解をまとめておこうと思います。
+言葉の定義や理解が誤っている部分があればご指摘ください。</p>
+
+<p>まず、前提として以下では、「値」ベースの言語として C, <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a>, Rust などを、「参照」ベースの言語として <a class="keyword" href="http://d.hatena.ne.jp/keyword/Java">Java</a>, <a class="ke...]]></description><link>https://agatan.github.io/posts/%E5%80%A4%E3%81%A8%E5%8F%82%E7%85%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6</link><guid isPermaLink="true">https://agatan.github.io/posts/%E5%80%A4%E3%81%A8%E5%8F%82%E7%85%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6</guid><pubDate>Sun, 14 Aug 2016 04:56:32 GMT</pubDate></item><item><title><![CDATA[再帰的 grep ツール crepe を作っています]]></title><description><![CDATA[
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%BA%C6%B5%A2">再帰</a>的にパスをたどりながらパターンにマッチする行を検索する <a class="keyword" href="http://d.hatena.ne.jp/keyword/grep">grep</a> 系のツールを作っています。</p>
+
+<p><a href="https://github.com/agatan/crepe">agatan/crepe</a></p>
+
+<p>有名どころとしては、<a href="http://beyondgr...]]></description><link>https://agatan.github.io/posts/%E5%86%8D%E5%B8%B0%E7%9A%84_grep_%E3%83%84%E3%83%BC%E3%83%AB_crepe_%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99</link><guid isPermaLink="true">https://agatan.github.io/posts/%E5%86%8D%E5%B8%B0%E7%9A%84_grep_%E3%83%84%E3%83%BC%E3%83%AB_crepe_%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99</guid><pubDate>Fri, 08 Jul 2016 15:36:15 GMT</pubDate></item><item><title><![CDATA[C++ で result 型を作る]]></title><description><![CDATA[
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a> や Rust など多くの強力な型システムを持つ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%B0%A5%E9%A5%DF%A5%F3%A5%B0%B8%C0%B8%EC">プログラミング言語</a>は、<code>Either</code> とか <code>Result</code> といった「失敗するかもしれない」計算の値を示す型を持って...]]></description><link>https://agatan.github.io/posts/C++_%E3%81%A7_result_%E5%9E%8B%E3%82%92%E4%BD%9C%E3%82%8B</link><guid isPermaLink="true">https://agatan.github.io/posts/C++_%E3%81%A7_result_%E5%9E%8B%E3%82%92%E4%BD%9C%E3%82%8B</guid><pubDate>Fri, 01 Jul 2016 14:30:09 GMT</pubDate></item><item><title><![CDATA[C++テンプレートイディオム CRTP]]></title><description><![CDATA[
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a>テンプレートの有名なイディオムとして、CRTPというものがあります。
+今回はそれについて。
+複雑な部分特殊化みたいな話もないですし、メリットもわかりやすい良いイディオムだと思うので、ちょっとまとめておきます。
+(Control キーのことをよく CTRL と書くので、CTRP とタイポしがち）</p>
+
+<p>詳細はこちらを参照してください。
+<a href="https://ja.wikibooks.org/wiki/More_C%2B%2B_...]]></description><link>https://agatan.github.io/posts/C++%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%A4%E3%83%87%E3%82%A3%E3%82%AA%E3%83%A0_CRTP</link><guid isPermaLink="true">https://agatan.github.io/posts/C++%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%A4%E3%83%87%E3%82%A3%E3%82%AA%E3%83%A0_CRTP</guid><pubDate>Thu, 16 Jun 2016 10:27:08 GMT</pubDate></item><item><title><![CDATA[C++ のテンプレートの実装]]></title><description><![CDATA[
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> のテンプレートがなぜ必要で，どんな構文・種類のものがあるかについては前回までにまとめました。<br/>
+というわけで次は <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> ではテンプレートという機能を使用するとどんな<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D0%A5%A4">...]]></description><link>https://agatan.github.io/posts/C++_%E3%81%AE%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%81%AE%E5%AE%9F%E8%A3%85</link><guid isPermaLink="true">https://agatan.github.io/posts/C++_%E3%81%AE%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%81%AE%E5%AE%9F%E8%A3%85</guid><pubDate>Mon, 13 Jun 2016 07:59:27 GMT</pubDate></item><item><title><![CDATA[C++ のテンプレートについてまとめるのまとめ]]></title><description><![CDATA[
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> のテンプレートについてまとめているのでそれらをまとめておきます。<br/>
+今後の予定も合わせて目次にしておきます。</p>
+
+<ol>
+<li>なぜテンプレートが必要なのか
+ <iframe src="http://agtn.hatenablog.com/embed/2016/05/30/234647" title="C++ のテンプレートについてまとめる（１）なぜテンプレートが必要なのか - refer to 右上➚" class="emb...]]></description><link>https://agatan.github.io/posts/C++_%E3%81%AE%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%BE%E3%81%A8%E3%82%81%E3%82%8B%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81</link><guid isPermaLink="true">https://agatan.github.io/posts/C++_%E3%81%AE%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%BE%E3%81%A8%E3%82%81%E3%82%8B%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81</guid><pubDate>Fri, 03 Jun 2016 03:54:57 GMT</pubDate></item><item><title><![CDATA[C++ テンプレートの種類と構文]]></title><description><![CDATA[
+<p>前回テンプレートがなぜ必要なのかについて簡単にまとめたので、今回はその構文や種類についてまとめたいと思います。</p>
+
+<p><iframe src="http://agtn.hatenablog.com/embed/2016/05/30/234647" title="C++ のテンプレートについてまとめる（１）なぜテンプレートが必要なのか - refer to 右上➚" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height...]]></description><link>https://agatan.github.io/posts/C++_%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%81%AE%E7%A8%AE%E9%A1%9E%E3%81%A8%E6%A7%8B%E6%96%87</link><guid isPermaLink="true">https://agatan.github.io/posts/C++_%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%81%AE%E7%A8%AE%E9%A1%9E%E3%81%A8%E6%A7%8B%E6%96%87</guid><pubDate>Tue, 31 May 2016 08:57:56 GMT</pubDate></item><item><title><![CDATA[C++ : なぜテンプレートが必要なのか]]></title><description><![CDATA[
+<p>こんにちは。<br/>
+ちょっと <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> への熱を冷まさないために、<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> のテンプレートについてまとめてみたいと思います。</p>
+
+<h2>対象</h2>
+
+<ul>
+<li><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a...]]></description><link>https://agatan.github.io/posts/C++_:_%E3%81%AA%E3%81%9C%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%AA%E3%81%AE%E3%81%8B</link><guid isPermaLink="true">https://agatan.github.io/posts/C++_:_%E3%81%AA%E3%81%9C%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%AA%E3%81%AE%E3%81%8B</guid><pubDate>Mon, 30 May 2016 14:46:47 GMT</pubDate></item><item><title><![CDATA[Rust のパーサコンビネータライブラリ combine を使う時の tips]]></title><description><![CDATA[
+<p>Rust のパーサ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D3%A5%CD%A1%BC%A5%BF">コンビネータ</a>ライブラリの一つである <a href="https://github.com/Marwes/combine">Marwes/combine: A parser combinator library for Rust</a> を使ってみています．<br/>
+詳しい使い方はきちんとしたドキュメントがあるのでそちらを参照してください．<br/>
+ざっくりいうと <a c...]]></description><link>https://agatan.github.io/posts/Rust_%E3%81%AE%E3%83%91%E3%83%BC%E3%82%B5%E3%82%B3%E3%83%B3%E3%83%93%E3%83%8D%E3%83%BC%E3%82%BF%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA_combine_%E3%82%92%E4%BD%BF%E3%81%86%E6%99%82%E3%81%AE_tips</link><guid isPermaLink="true">https://agatan.github.io/posts/Rust_%E3%81%AE%E3%83%91%E3%83%BC%E3%82%B5%E3%82%B3%E3%83%B3%E3%83%93%E3%83%8D%E3%83%BC%E3%82%BF%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA_combine_%E3%82%92%E4%BD%BF%E3%81%86%E6%99%82%E3%81%AE_tips</guid><pubDate>Sat, 14 May 2016 16:03:19 GMT</pubDate></item><item><title><![CDATA[C++ でパーサコンビネータを書きました]]></title><description><![CDATA[
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> で<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B9%BD%CA%B8%B2%F2%C0%CF">構文解析</a>といえば，Boost.Spirit や <a class="keyword" href="http://d.hatena.ne.jp/keyword/yacc">yacc</a>系などが有名ですが，どうにも使うの辛かったので作りました．</p>
+
+<h3>2016/0...]]></description><link>https://agatan.github.io/posts/C++_%E3%81%A7%E3%83%91%E3%83%BC%E3%82%B5%E3%82%B3%E3%83%B3%E3%83%93%E3%83%8D%E3%83%BC%E3%82%BF%E3%82%92%E6%9B%B8%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F</link><guid isPermaLink="true">https://agatan.github.io/posts/C++_%E3%81%A7%E3%83%91%E3%83%BC%E3%82%B5%E3%82%B3%E3%83%B3%E3%83%93%E3%83%8D%E3%83%BC%E3%82%BF%E3%82%92%E6%9B%B8%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F</guid><pubDate>Fri, 29 Apr 2016 15:30:09 GMT</pubDate></item><item><title><![CDATA[Rust における return文の LLVM IR 表現について]]></title><description><![CDATA[
+<ul>
+<li><code>if</code> 文が値を返す</li>
+<li><code>return</code> 文を持つ</li>
+</ul>
+
+<p>以上のような特徴を持つ言語はどういう感じで<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a>されるのか知りたくて，Rust について調べてみました．</p>
+
+<p>Rust では以下の様なことが出来ます．</p>
+
+<pre class="code lang-rust" data-lang=...]]></description><link>https://agatan.github.io/posts/Rust_%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B_return%E6%96%87%E3%81%AE_LLVM_IR_%E8%A1%A8%E7%8F%BE%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6</link><guid isPermaLink="true">https://agatan.github.io/posts/Rust_%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B_return%E6%96%87%E3%81%AE_LLVM_IR_%E8%A1%A8%E7%8F%BE%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6</guid><pubDate>Wed, 13 Apr 2016 09:34:03 GMT</pubDate></item><item><title><![CDATA[C++ の複雑な型を整形するプログラムを作りました]]></title><description><![CDATA[
+<p>テンプレートをバリバリ使っている <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> プログラムの<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a>エラーが，死ぬほど辛かったので作りました．
+型を綺麗に出力するだけです．
+<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++<...]]></description><link>https://agatan.github.io/posts/C++_%E3%81%AE%E8%A4%87%E9%9B%91%E3%81%AA%E5%9E%8B%E3%82%92%E6%95%B4%E5%BD%A2%E3%81%99%E3%82%8B%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%BE%E3%81%97%E3%81%9F</link><guid isPermaLink="true">https://agatan.github.io/posts/C++_%E3%81%AE%E8%A4%87%E9%9B%91%E3%81%AA%E5%9E%8B%E3%82%92%E6%95%B4%E5%BD%A2%E3%81%99%E3%82%8B%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E3%82%92%E4%BD%9C%E3%82%8A%E3%81%BE%E3%81%97%E3%81%9F</guid><pubDate>Tue, 08 Mar 2016 11:55:10 GMT</pubDate></item><item><title><![CDATA[Type Erasure による Visitor パターンの実装]]></title><description><![CDATA[
+<p>プログラミングしていて，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a>をうまく扱いたいという状況は結構良くあると思います．<br/>
+代数的データ型とパターンマッチを持つ言語であればとても美しく完結に表現できる<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a>ですが，<a class="keyword" href="http://d.hatena.ne.jp...]]></description><link>https://agatan.github.io/posts/Type_Erasure_%E3%81%AB%E3%82%88%E3%82%8B_Visitor_%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%81%AE%E5%AE%9F%E8%A3%85</link><guid isPermaLink="true">https://agatan.github.io/posts/Type_Erasure_%E3%81%AB%E3%82%88%E3%82%8B_Visitor_%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%81%AE%E5%AE%9F%E8%A3%85</guid><pubDate>Mon, 25 Jan 2016 11:07:38 GMT</pubDate></item><item><title><![CDATA[#include をソートするVimプラグインを作りました]]></title><description><![CDATA[
+<p><a href="http://itchyny.hatenablog.com/entry/2016/01/23/190000">Haskellでimport文をソートするプラグイン vim-haskell-sort-import を作りました - プログラムモグモグ</a>という記事を拝見して，コードを見たらすごくわかりやすくて，これの <a class="keyword" href="http://d.hatena.ne.jp/keyword/C/C%2B%2B">C/C++</a> 版がほしいと思い，書いてみました．</p>
+
+<p><a class="keyword" href=...]]></description><link>https://agatan.github.io/posts/include-cpp-vim-plugin</link><guid isPermaLink="true">https://agatan.github.io/posts/include-cpp-vim-plugin</guid><pubDate>Sun, 24 Jan 2016 10:11:25 GMT</pubDate></item><item><title><![CDATA[コンパイラ内部の AST 表現について]]></title><description><![CDATA[
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%E9">コンパイラ</a>は大体，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%BD%A1%BC%A5%B9%A5%B3%A1%BC%A5%C9">ソースコード</a>を<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B9%BD%CA%B8%B2%F2%C0%CF">構文解析</a>し，A...]]></description><link>https://agatan.github.io/posts/%E3%82%B3%E3%83%B3%E3%83%91%E3%82%A4%E3%83%A9%E5%86%85%E9%83%A8%E3%81%AE_AST_%E8%A1%A8%E7%8F%BE%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6</link><guid isPermaLink="true">https://agatan.github.io/posts/%E3%82%B3%E3%83%B3%E3%83%91%E3%82%A4%E3%83%A9%E5%86%85%E9%83%A8%E3%81%AE_AST_%E8%A1%A8%E7%8F%BE%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6</guid><pubDate>Tue, 29 Dec 2015 14:25:44 GMT</pubDate></item><item><title><![CDATA[Boost.Spirit.X3 で簡易電卓を実装 1]]></title><description><![CDATA[
+<p><iframe src="http://agtn.hatenablog.com/embed/2015/12/17/190505" title="Boost.Spirit.X3 の練習1 - プログラミングのメモ帳➚" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citat...]]></description><link>https://agatan.github.io/posts/Boost.Spirit.X3_%E3%81%A7%E7%B0%A1%E6%98%93%E9%9B%BB%E5%8D%93%E3%82%92%E5%AE%9F%E8%A3%85_1</link><guid isPermaLink="true">https://agatan.github.io/posts/Boost.Spirit.X3_%E3%81%A7%E7%B0%A1%E6%98%93%E9%9B%BB%E5%8D%93%E3%82%92%E5%AE%9F%E8%A3%85_1</guid><pubDate>Fri, 18 Dec 2015 14:27:05 GMT</pubDate></item><item><title><![CDATA[Boost.Spirit.X3 の練習 2]]></title><description><![CDATA[
+<p><a href="http://agtn.hatenablog.com/entry/2015/12/17/190505">Boost.Spirit.X3 の練習1 - プログラミングのメモ帳➚</a>に引き続き，<code>Boost.Spirit.X3</code> のお勉強メモです．</p>
+
+<h2>セマンティックアクション</h2>
+
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%B9%BD%CA%B8%B2%F2%C0%CF">構文解析</a>にはセマンティックアクションというのがつきものです．<br/>...]]></description><link>https://agatan.github.io/posts/Boost.Spirit.X3_%E3%81%AE%E7%B7%B4%E7%BF%92_2</link><guid isPermaLink="true">https://agatan.github.io/posts/Boost.Spirit.X3_%E3%81%AE%E7%B7%B4%E7%BF%92_2</guid><pubDate>Thu, 17 Dec 2015 14:20:03 GMT</pubDate></item><item><title><![CDATA[Boost.Spirit.X3 の練習1]]></title><description><![CDATA[
+<h1>Boost.Spirit.X3 の練習1</h1>
+
+<p><a href="http://ciere.com/cppnow15/x3_docs/">Boost.Spirit.X3</a> という <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> のための パーサ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D3%A5%CD%A1%BC%A5%BF">コンビネータ</a>ライブラリを使ってみていま...]]></description><link>https://agatan.github.io/posts/Boost.Spirit.X3_%E3%81%AE%E7%B7%B4%E7%BF%921</link><guid isPermaLink="true">https://agatan.github.io/posts/Boost.Spirit.X3_%E3%81%AE%E7%B7%B4%E7%BF%921</guid><pubDate>Thu, 17 Dec 2015 10:05:05 GMT</pubDate></item><item><title><![CDATA[Sokoban.nim を書いてみた]]></title><description><![CDATA[
+<h1>Sokoban.nim を書いてみた</h1>
+
+<p><a href="http://www.nim-lang.org">Nim</a> という言語を使って<a class="keyword" href="http://d.hatena.ne.jp/keyword/%C1%D2%B8%CB%C8%D6">倉庫番</a>を書いてみました.</p>
+
+<p><a href="https://github.com/agatan/sokoban-nim">sokoban-nim</a></p>
+
+<p><a href="https://github.com/swatteau/sokoban...]]></description><link>https://agatan.github.io/posts/Sokoban.nim_%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%BF%E3%81%9F</link><guid isPermaLink="true">https://agatan.github.io/posts/Sokoban.nim_%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%BF%E3%81%9F</guid><pubDate>Thu, 29 Oct 2015 13:10:42 GMT</pubDate></item><item><title><![CDATA[Golang での文字列連結に関するベンチマーク]]></title><description><![CDATA[
+<h1>まず結論</h1>
+
+<p><code>append</code> しよう. <code>bytes.Buffer</code> はそんなに速くない.</p>
+
+<h1>きっかけ</h1>
+
+<p>こんな記事を見かけました.<br/>
+<a href="http://qiita.com/ruiu/items/2bb83b29baeae2433a79">Goでは文字列連結はコストの高い操作 - Qiita</a></p>
+
+<p><code>buf += "abc"</code> はコストが高いよーっていうお話ですね. これは <a class="keyword" href="http...]]></description><link>https://agatan.github.io/posts/Golang_%E3%81%A7%E3%81%AE%E6%96%87%E5%AD%97%E5%88%97%E9%80%A3%E7%B5%90%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%83%99%E3%83%B3%E3%83%81%E3%83%9E%E3%83%BC%E3%82%AF</link><guid isPermaLink="true">https://agatan.github.io/posts/Golang_%E3%81%A7%E3%81%AE%E6%96%87%E5%AD%97%E5%88%97%E9%80%A3%E7%B5%90%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E3%83%99%E3%83%B3%E3%83%81%E3%83%9E%E3%83%BC%E3%82%AF</guid><pubDate>Tue, 08 Sep 2015 08:09:45 GMT</pubDate></item><item><title><![CDATA[Golangでechoサーバ]]></title><description><![CDATA[
+<p>最近 <a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> が気になります<br/>
+<a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> の特徴はもはやわざわざここに書くまでも無いことだと思うので書きませんが, 気になっている理由を書いてみます.</p>
+
+<ul>
+<li>バイナリ(しかもポータビリティが非常に高いバイナリ)に<a class="keyword" href="http://d.ha...]]></description><link>https://agatan.github.io/posts/Golang%E3%81%A7echo%E3%82%B5%E3%83%BC%E3%83%90</link><guid isPermaLink="true">https://agatan.github.io/posts/Golang%E3%81%A7echo%E3%82%B5%E3%83%BC%E3%83%90</guid><pubDate>Tue, 08 Sep 2015 07:14:10 GMT</pubDate></item><item><title><![CDATA[Haskellでechoサーバ]]></title><description><![CDATA[
+<p>はいどうもー<br/>
+引き続き<a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>の話題です. ちょっと<a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>で<a class="keyword" href="http://d.hatena.ne.jp/keyword/TCP">TCP</a>ソケットを使ってみたくなったので, まず簡単なものから実装してみます.</p>
+
+<p><a clas...]]></description><link>https://agatan.github.io/posts/Haskell%E3%81%A7echo%E3%82%B5%E3%83%BC%E3%83%90</link><guid isPermaLink="true">https://agatan.github.io/posts/Haskell%E3%81%A7echo%E3%82%B5%E3%83%BC%E3%83%90</guid><pubDate>Thu, 23 Jul 2015 12:43:44 GMT</pubDate></item><item><title><![CDATA[HaskellのConcurrentについて調べてまとめる (MVar編)]]></title><description><![CDATA[
+<p>どうもこんにちは.</p>
+
+<p>前回(<a href="http://agtn.hatenablog.com/entry/2015/07/21/234658">HaskellのConcurrentについて調べてまとめる (IORef編) - プログラミングのメモ帳➚</a>)の続きです.</p>
+
+<p>今回はスレッド間協調のために<code>MVar</code>を使う方法について調べたので, まとめたいと思います.</p>
+
+<h2>MVar</h2>
+
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/Hask...]]></description><link>https://agatan.github.io/posts/Haskell%E3%81%AEConcurrent%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E8%AA%BF%E3%81%B9%E3%81%A6%E3%81%BE%E3%81%A8%E3%82%81%E3%82%8B_(MVar%E7%B7%A8)</link><guid isPermaLink="true">https://agatan.github.io/posts/Haskell%E3%81%AEConcurrent%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E8%AA%BF%E3%81%B9%E3%81%A6%E3%81%BE%E3%81%A8%E3%82%81%E3%82%8B_(MVar%E7%B7%A8)</guid><pubDate>Wed, 22 Jul 2015 01:21:48 GMT</pubDate></item><item><title><![CDATA[HaskellのConcurrentについて調べてまとめる (IORef編)]]></title><description><![CDATA[
+<p>こんばんは. <a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>(<a class="keyword" href="http://d.hatena.ne.jp/keyword/GHC">GHC</a>)で並行処理を必要とするアプリケーションを書いてみようと思ったのですが, 並列処理に関するいろいろについてよくわかっていない部分が多かったので, 調べたついでにまとめておこうと思います.</p>
+
+<p>もし間違い等ありましたらコメントいただけるとありがたいです</p>
+
+<h2>Concu...]]></description><link>https://agatan.github.io/posts/Haskell%E3%81%AEConcurrent%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E8%AA%BF%E3%81%B9%E3%81%A6%E3%81%BE%E3%81%A8%E3%82%81%E3%82%8B_(IORef%E7%B7%A8)</link><guid isPermaLink="true">https://agatan.github.io/posts/Haskell%E3%81%AEConcurrent%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E8%AA%BF%E3%81%B9%E3%81%A6%E3%81%BE%E3%81%A8%E3%82%81%E3%82%8B_(IORef%E7%B7%A8)</guid><pubDate>Tue, 21 Jul 2015 14:46:58 GMT</pubDate></item><item><title><![CDATA[yukicoder 2015/05/08]]></title><description><![CDATA[
+<p>yukicoderさんのコンテストに出てきましたー</p>
+
+<p>★から★★★までの四問ということでもしかしたら完答いけるんじゃないかとか甘いことを考えていたのですが...ｗｗ</p>
+
+<h1>結果</h1>
+
+<p>3完で19位でしたー4問目はTLEの連発で...解法全く思いつけませんでしたねー<br/>
+ただ前よりはちょっとは力ついてきたのかななんて思ってますｗｗ（甘いかな</p>
+
+<h1>復習</h1>
+
+<h2><a href="http://yukicoder.me/problems/526">No.203 ゴールデン・ウィーク(1) - yukicoder</a></...]]></description><link>https://agatan.github.io/posts/yukicoder_2015_05_08</link><guid isPermaLink="true">https://agatan.github.io/posts/yukicoder_2015_05_08</guid><pubDate>Fri, 08 May 2015 15:02:19 GMT</pubDate></item><item><title><![CDATA[yukicoder 2015/05/03]]></title><description><![CDATA[
+<p>今週は土日共に予定があって<a class="keyword" href="http://d.hatena.ne.jp/keyword/AtCoder">AtCoder</a>さんもyukicoderさんも出場したかったのですが出来ず...</p>
+
+<h1><a class="keyword" href="http://d.hatena.ne.jp/keyword/AtCoder">AtCoder</a> - ARC</h1>
+
+<p>今週の<a class="keyword" href="http://d.hatena.ne.jp/keyword/AtCoder">AtCoder<...]]></description><link>https://agatan.github.io/posts/yukicoder_2015_05_03</link><guid isPermaLink="true">https://agatan.github.io/posts/yukicoder_2015_05_03</guid><pubDate>Mon, 04 May 2015 09:38:47 GMT</pubDate></item><item><title><![CDATA[【yukicoder】yukicoder open 2015 small - 3完]]></title><description><![CDATA[
+<h1>yukicoder open 2015 small に挑戦してきました！</h1>
+
+<p><a href="http://yukicoder.me/">yukicoder</a>さん主催のコンテストに初挑戦してきました！<br/>
+人生二回目のコンテストということで昨日よりは緊張もなく楽しめたかな？<br/>
+言い訳になりますがちょっと同時並行でやらなきゃいけないことがあったので最初の方が変に時間食ってます...</p>
+
+<h1>結果</h1>
+
+<p>3完で<s>44位でしたー</s><br/>
+<strong>追記</strong>
+yukicoderさんのチャレンジなる仕様...]]></description><link>https://agatan.github.io/posts/%E3%80%90yukicoder%E3%80%91yukicoder_open_2015_small_-_3%E5%AE%8C</link><guid isPermaLink="true">https://agatan.github.io/posts/%E3%80%90yukicoder%E3%80%91yukicoder_open_2015_small_-_3%E5%AE%8C</guid><pubDate>Sun, 26 Apr 2015 15:47:58 GMT</pubDate></item><item><title><![CDATA[【AtCoder】ABC022 - 競技プログラミング初挑戦！]]></title><description><![CDATA[
+<h1><a class="keyword" href="http://d.hatena.ne.jp/keyword/AtCoder">AtCoder</a> ABC022に挑戦！</h1>
+
+<p>人生で初めて競技プログラミングのコンテスト(オンライン)に出場してみました！<br/>
+使用言語は<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a>にしようかと思ったのですが、どっちかというと<a class="keyword" href="http://d.hatena.ne.jp/keyword/D%...]]></description><link>https://agatan.github.io/posts/%E3%80%90AtCoder%E3%80%91ABC022_-_%E7%AB%B6%E6%8A%80%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E5%88%9D%E6%8C%91%E6%88%A6%EF%BC%81</link><guid isPermaLink="true">https://agatan.github.io/posts/%E3%80%90AtCoder%E3%80%91ABC022_-_%E7%AB%B6%E6%8A%80%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E5%88%9D%E6%8C%91%E6%88%A6%EF%BC%81</guid><pubDate>Sat, 25 Apr 2015 15:05:47 GMT</pubDate></item><item><title><![CDATA[Rustで自作シェルもどきを作る(単純なコマンド実行編)]]></title><description><![CDATA[
+コード全文はこちら
+[agatan/rsh](https://github.com/agatan/rsh)
+
+[Rust で自作シェルもどきを作る(字句解析編) - Qiita](http://qiita.com/agatan/items/8a097ead46df1c1659ff)
+
+前回はユーザからの入力を受け付けてパースするところまで実装したので、今回は実際に入力されたコマンドを実行させてみます。  
+ただし、いきなりいろいろやるのはきついので、まずは単純なコマンド(パイプやリダイレクトは一旦無視します)の実行をやってみました。
+
+## Command
+
+Rust には`std::io:...]]></description><link>https://agatan.github.io/posts/Rust%E3%81%A7%E8%87%AA%E4%BD%9C%E3%82%B7%E3%82%A7%E3%83%AB%E3%82%82%E3%81%A9%E3%81%8D%E3%82%92%E4%BD%9C%E3%82%8B(%E5%8D%98%E7%B4%94%E3%81%AA%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E5%AE%9F%E8%A1%8C%E7%B7%A8)</link><guid isPermaLink="true">https://agatan.github.io/posts/Rust%E3%81%A7%E8%87%AA%E4%BD%9C%E3%82%B7%E3%82%A7%E3%83%AB%E3%82%82%E3%81%A9%E3%81%8D%E3%82%92%E4%BD%9C%E3%82%8B(%E5%8D%98%E7%B4%94%E3%81%AA%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E5%AE%9F%E8%A1%8C%E7%B7%A8)</guid><pubDate>Sun, 21 Dec 2014 05:55:51 GMT</pubDate></item><item><title><![CDATA[Rustで自作シェルもどきを作る(字句解析編)]]></title><description><![CDATA[
+Rust が最近とてもおもしろいので、勉強がてら自作シェルみたいなものを作ってみたいと思います。  
+とはいえ、C 言語でさえろくにシステムプログラムを書いたことがないので、道は険しくなりそうです。
+
+## バージョン
+
+0.13.0-nightly を使用しました。
+
+コード全文はこちら
+[agatan/rsh](https://github.com/agatan/rsh)
+
+## 字句解析
+
+さて、シェルといったらまずはユーザの入力を受け付けてパースし、コマンドを実行しなくてはなりません。  
+というわけでまず初めにパース部分についてやってみます。  
+さくっと終わらせたかったのですが、...]]></description><link>https://agatan.github.io/posts/Rust%E3%81%A7%E8%87%AA%E4%BD%9C%E3%82%B7%E3%82%A7%E3%83%AB%E3%82%82%E3%81%A9%E3%81%8D%E3%82%92%E4%BD%9C%E3%82%8B(%E5%AD%97%E5%8F%A5%E8%A7%A3%E6%9E%90%E7%B7%A8)</link><guid isPermaLink="true">https://agatan.github.io/posts/Rust%E3%81%A7%E8%87%AA%E4%BD%9C%E3%82%B7%E3%82%A7%E3%83%AB%E3%82%82%E3%81%A9%E3%81%8D%E3%82%92%E4%BD%9C%E3%82%8B(%E5%AD%97%E5%8F%A5%E8%A7%A3%E6%9E%90%E7%B7%A8)</guid><pubDate>Sat, 20 Dec 2014 16:15:19 GMT</pubDate></item><item><title><![CDATA[RubyでLinuxコマンドの再実装(tree編)]]></title><description><![CDATA[
+Ruby の勉強に Ruby で有名ドコロの Linux コマンドたちを再実装してみたいとおもいます。
+
+少しずつ追記する形にできればと思っています。よりよい実装方法などありましたらぜひご教授いただけると幸いです。
+
+[Ruby で Linux コマンドの再実装(ls 編) - Qiita](http://qiita.com/agatan/items/af0c3bbc881f60667c85)
+[Ruby で Linux コマンドの再実装(tree 編) - Qiita](http://qiita.com/agatan/items/4c50554ae22aa4181cc1)
+
+## tree...]]></description><link>https://agatan.github.io/posts/Ruby%E3%81%A7Linux%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE%E5%86%8D%E5%AE%9F%E8%A3%85(tree%E7%B7%A8)</link><guid isPermaLink="true">https://agatan.github.io/posts/Ruby%E3%81%A7Linux%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE%E5%86%8D%E5%AE%9F%E8%A3%85(tree%E7%B7%A8)</guid><pubDate>Thu, 16 Oct 2014 07:20:33 GMT</pubDate></item><item><title><![CDATA[RubyでLinuxコマンドの再実装(ls編)]]></title><description><![CDATA[
+Ruby の勉強に Ruby で有名ドコロの Linux コマンドたちを再実装してみたいとおもいます。
+
+少しずつ追記する形にできればと思っています。よりよい実装方法などありましたらぜひご教授いただけると幸いです。
+
+[Ruby で Linux コマンドの再実装(ls 編) - Qiita](http://qiita.com/agatan/items/af0c3bbc881f60667c85)
+[Ruby で Linux コマンドの再実装(tree 編) - Qiita](http://qiita.com/agatan/items/4c50554ae22aa4181cc1)
+
+## ls
+
+...]]></description><link>https://agatan.github.io/posts/Ruby%E3%81%A7Linux%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE%E5%86%8D%E5%AE%9F%E8%A3%85(ls%E7%B7%A8)</link><guid isPermaLink="true">https://agatan.github.io/posts/Ruby%E3%81%A7Linux%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE%E5%86%8D%E5%AE%9F%E8%A3%85(ls%E7%B7%A8)</guid><pubDate>Mon, 13 Oct 2014 14:10:08 GMT</pubDate></item><item><title><![CDATA[QiitaAPIを通じて複数のタグを持つ記事を検索する]]></title><description><![CDATA[
+Ruby 初心者なのでなにかお気づきの点がありましたらご教授いただけると幸いです。
+
+## QiitaApiAccessor
+
+QiitaAPI との通信, 受信情報のハッシュ化を担当している。
+`@result_json`をローカル変数にしたいのだけど, `open`ブロック内のローカル変数になってしまうので出来ない...
+`get_with_tag`内のローカル変数にならできるけど結局`result_json = {}`として`open`内で更新みたいな書き方になってしまって綺麗じゃない...
+
+```ruby
+require 'open-uri'
+require 'json'
+
+cla...]]></description><link>https://agatan.github.io/posts/QiitaAPI%E3%82%92%E9%80%9A%E3%81%98%E3%81%A6%E8%A4%87%E6%95%B0%E3%81%AE%E3%82%BF%E3%82%B0%E3%82%92%E6%8C%81%E3%81%A4%E8%A8%98%E4%BA%8B%E3%82%92%E6%A4%9C%E7%B4%A2%E3%81%99%E3%82%8B</link><guid isPermaLink="true">https://agatan.github.io/posts/QiitaAPI%E3%82%92%E9%80%9A%E3%81%98%E3%81%A6%E8%A4%87%E6%95%B0%E3%81%AE%E3%82%BF%E3%82%B0%E3%82%92%E6%8C%81%E3%81%A4%E8%A8%98%E4%BA%8B%E3%82%92%E6%A4%9C%E7%B4%A2%E3%81%99%E3%82%8B</guid><pubDate>Mon, 13 Oct 2014 09:11:43 GMT</pubDate></item></channel></rss>
