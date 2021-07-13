@@ -1,12 +1,13 @@
+// Ref: https://blog.kasorin.work/posts/rss_for_nextjs_ssg
 import fs from "fs";
 import { PostMeta } from "./posts";
 
 const generateRssItem = (postMeta: PostMeta): string => {
   return `
         <item>
-            <guid>https://blog.kasorin.work/posts/${postMeta.slug}</guid>
+            <guid>https://agatan.github.io/posts/${encodeURIComponent(postMeta.slug)}</guid>
             <title>${postMeta.title}</title>
-            <link>https://agatan.github.io/posts/${postMeta.slug}</link>
+            <link>https://agatan.github.io/posts/${encodeURIComponent(postMeta.slug)}</link>
             <pubDate>${new Date(postMeta.timestamp).toUTCString()}</pubDate>
         </item>
     `;
