@@ -115,7 +115,7 @@ const ContentAnchor = (props: any) => (
   </Link>
 );
 
-const ContentImage = (props: any) => <Image src={props.src} />;
+const ContentImage = (props: any) => <Image src={props.src} alt={props.alt} />;
 
 const ContentCode = (props: any) => (
   <Code fontSize={{ base: "xs", lg: "md" }} {...props} />
