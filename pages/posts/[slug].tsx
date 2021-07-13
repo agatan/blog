@@ -126,7 +126,7 @@ const PostPage: React.VFC<Props> = (props: Props) => {
           <Flex justify="center" align="center" paddingTop="2">
             <Spacer></Spacer>
             <Link
-              href={`https://github.com/agatan/agatan.github.io/blob/main/posts/${post.meta.slug}.md`}
+              href={`https://github.com/agatan/blog/blob/main/posts/${post.meta.slug}.md`}
               color="green.500"
             >
               <Icon as={FaGithub} boxSize="6" />

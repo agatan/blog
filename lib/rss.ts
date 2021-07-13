@@ -8,8 +8,8 @@ function generateRssFeedXml(postMetas: ReadonlyArray<PostMeta>): string {
     title: "↗ agatan blog ↗",
     description:
       "agatan のブログです。主にエンジニアリングに関する内容を書きます。",
-    site_url: "https://agatan.github.io",
-    feed_url: "https://agatan.github.io/feed.xml",
+    site_url: "https://blog.agatan.dev",
+    feed_url: "https://blog.agatan.dev/feed.xml",
     language: "ja",
   });
 
@@ -18,7 +18,7 @@ function generateRssFeedXml(postMetas: ReadonlyArray<PostMeta>): string {
       title: postMeta.title,
       description: postMeta.contentMarkdown.slice(0, 300) + "...",
       date: new Date(postMeta.timestamp),
-      url: encodeURI(`https://agatan.github.io/posts/${postMeta.slug}`),
+      url: encodeURI(`https://blog.agatan.dev/posts/${postMeta.slug}`),
     });
   }
   return feed.xml();
