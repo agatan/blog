@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 
-import "prismjs/themes/prism-tomorrow.css";
+import "prismjs/themes/prism-okaidia.css";
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (

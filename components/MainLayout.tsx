@@ -9,6 +9,10 @@ import {
   Icon,
   HStack,
   Spacer,
+  Stack,
+  VStack,
+  Center,
+  Divider,
 } from "@chakra-ui/react";
 import { FaGithub, FaTwitter, FaTags, FaRss } from "react-icons/fa";
 
@@ -20,15 +24,14 @@ type Props = {
 
 export const MainLayout: React.VFC<Props> = (props) => {
   return (
-    <Box backgroundColor="green.50" minHeight="100vh">
-      <Container maxWidth="container.lg" backgroundColor="green.600">
-        <Flex align="flex-end" padding="8">
+    <Center backgroundColor="green.50" minHeight="100vh" minWidth="100vh">
+      <VStack minHeight="100vh" width="100%" maxWidth="container.xl" spacing="0" backgroundColor="white" shadow="md" >
+        <Flex align="flex-end" padding="8" backgroundColor="green.600" justify="space-between" width="100%">
           <Heading>
             <Link href="/" color="white">
               <Text as="u">↗ agatan blog ↗</Text>
             </Link>
           </Heading>
-          <Spacer />
           <Box>
             <Link href="/feed.xml" padding="2">
               <Icon as={FaRss} color="white" boxSize="6" />
@@ -38,18 +41,12 @@ export const MainLayout: React.VFC<Props> = (props) => {
             </Link>
           </Box>
         </Flex>
-      </Container>
-      <Container
-        maxWidth="container.lg"
-        backgroundColor="white"
-        minHeight="100vh"
-      >
-        <Flex paddingTop="4" paddingBottom="4">
-          <Container maxWidth="container.lg" padding="0" margin="0">
+        <Flex paddingTop="4" paddingBottom="4" width="100%" wrap="wrap">
+          <Box width={{ base: "100%", lg: "85%" }}>
             {props.children}
-          </Container>
-          <Container maxWidth="44">
-            <Flex direction="column" align="center" padding="4">
+          </Box>
+          <Container width="auto" paddingLeft="0">
+            <Flex direction="column" align="center" padding="4" paddingLeft="0">
               <Link href="https://twitter.com/@agatan_">
                 <Box position="relative" width="20" height="20">
                   <Image
@@ -74,7 +71,7 @@ export const MainLayout: React.VFC<Props> = (props) => {
             </Flex>
           </Container>
         </Flex>
-      </Container>
-    </Box>
+      </VStack>
+    </Center>
   );
 };

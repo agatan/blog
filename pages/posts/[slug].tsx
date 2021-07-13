@@ -1,11 +1,15 @@
 import React from "react";
 import {
   Box,
+  chakra,
+  Code,
   Container,
   Divider,
   Flex,
   Heading,
+  HStack,
   Icon,
+  Image,
   Link as ChakraLink,
   ListItem,
   OrderedList,
@@ -37,6 +41,7 @@ const ContentH2 = (props: any) => (
       </ChakraLink>
       {props.children}
     </Flex>
+    <Divider />
   </Heading>
 );
 
@@ -77,7 +82,7 @@ const ContentLi = (props: any) => (
 );
 
 const ContentParagraph = (props: any) => (
-  <Text as="p" fontSize="medium" lineHeight="7" padding="1">
+  <Text as="p" fontSize={{ base: "x-large", lg: "medium"}} lineHeight={{ base: "2", lg: "8" }} padding="1">
     {props.children as React.ReactNode}
   </Text>
 );
@@ -89,6 +94,14 @@ const ContentAnchor = (props: any) => (
     </Text>
   </Link>
 );
+
+const ContentImage = (props: any) => (
+  <Image src={props.src} />
+)
+
+const ContentCode = (props: any) => (
+  <Code fontSize="small" {...props} />
+)
 
 const PostPage: React.VFC<Props> = (props: Props) => {
   const { post } = props;
@@ -106,6 +119,8 @@ const PostPage: React.VFC<Props> = (props: Props) => {
         li: ContentLi,
         p: ContentParagraph,
         a: ContentAnchor,
+        img: ContentImage,
+        code: ContentCode,
       },
     })
     .processSync(post.content);
@@ -114,17 +129,18 @@ const PostPage: React.VFC<Props> = (props: Props) => {
       <SEO title={post.meta.title} />
       <MainLayout>
         <Container maxWidth="container.md">
-          <Heading paddingBottom="4" fontSize="3xl">
+          <Heading paddingBottom="4" fontSize="3xl" width="100%" textAlign="center">
             {post.meta.title}
           </Heading>
-          {post.meta.tags.map((tag) => (
-            <TagLink key={tag} tag={tag} />
-          ))}
+          <HStack spacing="0" wrap="wrap">
+            {post.meta.tags.map((tag) => (
+              <TagLink key={tag} tag={tag} />
+            ))}
+          </HStack>
           <Divider padding="2" />
           <Box paddingTop="4">{content.result as React.ReactNode}</Box>
           <Divider padding="2" />
-          <Flex justify="center" align="center" paddingTop="2">
-            <Spacer></Spacer>
+          <Flex justify="flex-end" align="center" paddingTop="2">
             <Link
               href={`https://github.com/agatan/blog/blob/main/posts/${post.meta.slug}.md`}
               color="green.500"

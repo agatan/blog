@@ -21,13 +21,12 @@ const POSTS_PER_PAGE = 10;
 export const PostList: React.FC<Props> = (props) => {
   const { postMetas } = props;
   return (
-    <Container maxW="container.md">
+    <Container>
       <VStack
         divider={<StackDivider />}
         spacing={4}
         paddingTop="4"
         paddingBottom="4"
-        align="stretch"
       >
         {postMetas.map((postMeta) => (
           <PostItem key={postMeta.slug} postMeta={postMeta} />
