@@ -34,7 +34,12 @@ type Props = {
 };
 
 const ContentH2 = (props: any) => (
-  <Heading fontSize={{ base: "large", lg: "x-large" }} paddingTop="2" paddingBottom="2" {...props}>
+  <Heading
+    fontSize={{ base: "large", lg: "x-large" }}
+    paddingTop="2"
+    paddingBottom="2"
+    {...props}
+  >
     <Flex align="center">
       <ChakraLink href={`#${props.id}`} padding="2">
         <Icon as={FaLink} color="gray.500" boxSize="4" />
@@ -46,7 +51,12 @@ const ContentH2 = (props: any) => (
 );
 
 const ContentH3 = (props: any) => (
-  <Heading fontSize={{ base: "medium", lg: "large" }} paddingTop="2" paddingBottom="2" {...props}>
+  <Heading
+    fontSize={{ base: "medium", lg: "large" }}
+    paddingTop="2"
+    paddingBottom="2"
+    {...props}
+  >
     <Flex align="center">
       <ChakraLink href={`#${props.id}`} padding="2">
         <Icon as={FaLink} color="gray.500" boxSize="4" />
@@ -57,7 +67,12 @@ const ContentH3 = (props: any) => (
 );
 
 const ContentH4 = (props: any) => (
-  <Heading fontSize={{ base: "medium", lg: "large" }} paddingTop="2" paddingBottom="2" {...props}>
+  <Heading
+    fontSize={{ base: "medium", lg: "large" }}
+    paddingTop="2"
+    paddingBottom="2"
+    {...props}
+  >
     <Flex align="center">
       <ChakraLink href={`#${props.id}`} padding="2">
         <Icon as={FaLink} color="gray.500" boxSize="4" />
@@ -82,7 +97,12 @@ const ContentLi = (props: any) => (
 );
 
 const ContentParagraph = (props: any) => (
-  <Text as="p" fontSize={{ base: "sm", lg: "medium" }} lineHeight={{ base: "2", lg: "8" }} padding="1">
+  <Text
+    as="p"
+    fontSize={{ base: "sm", lg: "medium" }}
+    lineHeight={{ base: "2", lg: "8" }}
+    padding="1"
+  >
     {props.children as React.ReactNode}
   </Text>
 );
@@ -95,13 +115,11 @@ const ContentAnchor = (props: any) => (
   </Link>
 );
 
-const ContentImage = (props: any) => (
-  <Image src={props.src} />
-)
+const ContentImage = (props: any) => <Image src={props.src} />;
 
 const ContentCode = (props: any) => (
   <Code fontSize={{ base: "xs", lg: "md" }} {...props} />
-)
+);
 
 const PostPage: React.VFC<Props> = (props: Props) => {
   const { post } = props;
@@ -132,7 +150,11 @@ const PostPage: React.VFC<Props> = (props: Props) => {
           <Heading fontSize={{ base: "16", lg: "24" }}>
             {post.meta.title}
           </Heading>
-          <Text color="gray.500" fontSize={{ base: "10", lg: "14" }} paddingY="1">
+          <Text
+            color="gray.500"
+            fontSize={{ base: "10", lg: "14" }}
+            paddingY="1"
+          >
             {new Date(post.meta.timestamp).toLocaleDateString()} 公開
           </Text>
           <HStack spacing="1" wrap="wrap">

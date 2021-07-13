@@ -16,7 +16,7 @@ export const PostItem: React.VFC<Props> = (props) => {
       <Heading fontSize={{ base: "14", lg: "20" }}>
         <Link href={`/posts/${postMeta.slug}`}>{postMeta.title}</Link>
       </Heading>
-      <Text color="gray.500" fontSize={{ base: "10", lg: "14"}} paddingY="1">
+      <Text color="gray.500" fontSize={{ base: "10", lg: "14" }} paddingY="1">
         {new Date(postMeta.timestamp).toLocaleDateString()} 公開
       </Text>
       <HStack spacing="1" wrap="wrap">

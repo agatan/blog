@@ -20,7 +20,11 @@ const TagPage: React.FC<Props> = (props) => {
       <SEO title={`#${tag}`} description={`#${tag}に関する投稿`} />
       <MainLayout>
         <Container maxW="container.md">
-          <Heading paddingBottom="4" fontSize={{base: "large", lg: "3xl"}} color="blue.500">
+          <Heading
+            paddingBottom="4"
+            fontSize={{ base: "large", lg: "3xl" }}
+            color="blue.500"
+          >
             #{tag}
           </Heading>
           <Divider />
