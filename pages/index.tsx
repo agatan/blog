@@ -15,10 +15,7 @@ export default function Home(props: Props) {
   const { postMetas } = props;
   return (
     <>
-      <SEO
-        title="Home"
-        description="agatan のブログです。主にエンジニアリングに関する内容を書きます。"
-      />
+      <SEO description="agatan のブログです。主にエンジニアリングに関する内容を書きます。" />
       <MainLayout>
         <Container maxWidth="container.md">
           <PostList postMetas={postMetas} />
