@@ -4,126 +4,138 @@ date: 2017-01-16T06:17:45.000Z
 tags: ["Rust"]
 ---
 
-<p>プログラムを書いていると何かしら<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a>っぽいものやグラフっぽいものを作りたい場面が多々あると思います．
-Rust は所有権や <code>Size</code> の都合で，これらを作ろうと思うと地味にハマるのでまとめておきます．</p>
+プログラムを書いていると何かしら木構造っぽいものやグラフっぽいものを作りたい場面が多々あると思います．
+Rust は所有権や `Size` の都合で，これらを作ろうと思うと地味にハマるのでまとめておきます．
 
-<h3>Rust で<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a></h3>
+### Rust で木構造
 
-<p>最も単純な<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a>は Rust だと</p>
+最も単純な木構造は Rust だと
 
-<pre class="code lang-rust" data-lang="rust" data-unlink><span class="synStatement">enum</span> <span class="synIdentifier">Tree</span><span class="synStatement">&lt;</span>T<span class="synStatement">&gt;</span> {
-    <span class="synIdentifier">Leaf</span>(T),
-    <span class="synIdentifier">Node</span>(<span class="synType">Box</span><span class="synStatement">&lt;</span>Tree<span class="synStatement">&lt;</span>T<span class="synStatement">&gt;&gt;</span>, <span class="synType">Box</span><span class="synStatement">&lt;</span>Tree<span class="synStatement">&lt;</span>T<span class="synStatement">&gt;&gt;</span>),
+```
+enum Tree<T> {
+    Leaf(T),
+    Node(Box<Tree<T>>, Box<Tree<T>>),
 }
-</pre>
 
-<p>といった形で表せます．
-Rust では明示的に <a class="keyword" href="http://d.hatena.ne.jp/keyword/boxing">boxing</a> してあげないと<a class="keyword" href="http://d.hatena.ne.jp/keyword/%BA%C6%B5%A2">再帰</a>的なデータ構造は作れないのでちょっと複雑に見えるかもしれませんが，まぁ単純です．</p>
+```
 
-<p>この<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a>を書き換えたい場合は，ownership をとって書き換えた値を返すこともできますし，<code>&amp;mut Tree&lt;T&gt;</code> をとって in-place に書き換えることもできます．</p>
+といった形で表せます．
+Rust では明示的に boxing してあげないと再帰的なデータ構造は作れないのでちょっと複雑に見えるかもしれませんが，まぁ単純です．
 
-<pre class="code lang-rust" data-lang="rust" data-unlink><span class="synStatement">fn</span> <span class="synIdentifier">inc</span>(<span class="synType">&amp;mut</span> <span class="synConstant">self</span>) {
-    <span class="synStatement">match</span> <span class="synType">*</span><span class="synConstant">self</span> {
-        <span class="synPreProc">Tree</span><span class="synSpecial">::</span><span class="synIdentifier">Leaf</span>(<span class="synType">ref</span> <span class="synType">mut</span> i) <span class="synStatement">=&gt;</span> <span class="synType">*</span>i <span class="synStatement">=</span> <span class="synType">*</span>i <span class="synStatement">+</span> <span class="synConstant">1</span>,
-        <span class="synPreProc">Tree</span><span class="synSpecial">::</span><span class="synIdentifier">Node</span>(<span class="synType">ref</span> <span class="synType">mut</span> left, <span class="synType">ref</span> <span class="synType">mut</span> right) <span class="synStatement">=&gt;</span> {
-            left.<span class="synIdentifier">inc</span>();
-            right.<span class="synIdentifier">inc</span>();
+この木構造を書き換えたい場合は，ownership をとって書き換えた値を返すこともできますし，`&mut Tree<T>` をとって in-place に書き換えることもできます．
+
+```
+fn inc(&mut self) {
+    match *self {
+        Tree::Leaf(ref mut i) => *i = *i + 1,
+        Tree::Node(ref mut left, ref mut right) => {
+            left.inc();
+            right.inc();
         }
     }
 }
 
-<span class="synStatement">fn</span> <span class="synIdentifier">inc2</span>(<span class="synConstant">self</span>) <span class="synStatement">-&gt;</span> Tree<span class="synStatement">&lt;</span><span class="synType">i32</span><span class="synStatement">&gt;</span> {
-    <span class="synStatement">match</span> <span class="synConstant">self</span> {
-        <span class="synPreProc">Tree</span><span class="synSpecial">::</span><span class="synIdentifier">Leaf</span>(i) <span class="synStatement">=&gt;</span> <span class="synPreProc">Tree</span><span class="synSpecial">::</span><span class="synIdentifier">Leaf</span>(i <span class="synStatement">+</span> <span class="synConstant">1</span>),
-        <span class="synPreProc">Tree</span><span class="synSpecial">::</span><span class="synIdentifier">Node</span>(left, right) <span class="synStatement">=&gt;</span> <span class="synPreProc">Tree</span><span class="synSpecial">::</span><span class="synIdentifier">Node</span>(<span class="synType">Box</span><span class="synSpecial">::</span><span class="synIdentifier">new</span>(left.<span class="synIdentifier">inc2</span>()), <span class="synType">Box</span><span class="synSpecial">::</span><span class="synIdentifier">new</span>(right.<span class="synIdentifier">inc2</span>())),
+fn inc2(self) -> Tree<i32> {
+    match self {
+        Tree::Leaf(i) => Tree::Leaf(i + 1),
+        Tree::Node(left, right) => Tree::Node(Box::new(left.inc2()), Box::new(right.inc2())),
     }
 }
-</pre>
 
-<h3>Rust で有向非巡回グラフ</h3>
+```
 
-<p>有向非巡回グラフ構造は，グラフのエッジに向きがあり，かつ循環がない構造で，これは割りと単純に表現できます．</p>
+### Rust で有向非巡回グラフ
 
-<pre class="code lang-rust" data-lang="rust" data-unlink><span class="synStatement">struct</span> <span class="synIdentifier">Node</span><span class="synStatement">&lt;</span>T<span class="synStatement">&gt;</span>(T, <span class="synType">Vec</span><span class="synStatement">&lt;</span>Rc<span class="synStatement">&lt;</span>Node<span class="synStatement">&lt;</span>T<span class="synStatement">&gt;&gt;&gt;</span>);
-</pre>
+有向非巡回グラフ構造は，グラフのエッジに向きがあり，かつ循環がない構造で，これは割りと単純に表現できます．
 
-<p><code>Node</code> は自身の値 <code>T</code> と，つながっているノードの <code>Vec</code> を持ちます．(対象問題によっては <code>Vec</code> ではなくて <code>HashMap</code> とか <code>HashSet</code> とか)</p>
+```
+struct Node<T>(T, Vec<Rc<Node<T>>>);
 
-<p><code>Rc</code> は参照カウント方式のスマートポインタです．
-グラフでは，<code>Node</code> は複数の <code>Node</code> から参照される可能性があるので， <code>Box</code> は使えません．</p>
+```
 
-<p>これを変更可能にしたい場合はちょっと面倒ですが <code>RefCell</code> を使う必要があります．</p>
+`Node` は自身の値 `T` と，つながっているノードの `Vec` を持ちます．(対象問題によっては `Vec` ではなくて `HashMap` とか `HashSet` とか)
 
-<p>Rust では基本的に mutable borrow は常にひとつしか存在できず，mutable borrow が生きている間は immutable borrow もつくることができません．
-<code>Rc</code> から mutable な参照を取り出すこともできません．</p>
+`Rc` は参照カウント方式のスマートポインタです．
+グラフでは，`Node` は複数の `Node` から参照される可能性があるので， `Box` は使えません．
 
-<p>そこで <code>RefCell</code> を使うことで borrow check をランタイムに行うようにします．
-<code>RefCell</code> は immutable な参照から mutable な参照を取り出せるようにする働きをしますが，
-mutable な参照を取っている間に，さらに mutable な参照を作ろうとしたり immutable な参照を作ろうとすると，ランタイムに <code>panic</code> します．
-<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a>時検査ではなくランタイム検査になるので，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%B0%A5%E9%A5%DE">プログラマ</a>の責任できちんと管理しないと死にます．</p>
+これを変更可能にしたい場合はちょっと面倒ですが `RefCell` を使う必要があります．
 
-<p><code>RefCell</code> 版がこちら</p>
+Rust では基本的に mutable borrow は常にひとつしか存在できず，mutable borrow が生きている間は immutable borrow もつくることができません．
+`Rc` から mutable な参照を取り出すこともできません．
 
-<pre class="code lang-rust" data-lang="rust" data-unlink><span class="synStatement">struct</span> <span class="synIdentifier">Node</span><span class="synStatement">&lt;</span>T<span class="synStatement">&gt;</span>(T, <span class="synType">Vec</span><span class="synStatement">&lt;</span>Rc<span class="synStatement">&lt;</span>RefCell<span class="synStatement">&lt;</span>Node<span class="synStatement">&lt;</span>T<span class="synStatement">&gt;&gt;&gt;&gt;</span>);
+そこで `RefCell` を使うことで borrow check をランタイムに行うようにします．
+`RefCell` は immutable な参照から mutable な参照を取り出せるようにする働きをしますが，
+mutable な参照を取っている間に，さらに mutable な参照を作ろうとしたり immutable な参照を作ろうとすると，ランタイムに `panic` します．
+コンパイル時検査ではなくランタイム検査になるので，プログラマの責任できちんと管理しないと死にます．
 
-<span class="synStatement">impl</span> Node<span class="synStatement">&lt;</span><span class="synType">i32</span><span class="synStatement">&gt;</span> {
-    <span class="synStatement">fn</span> <span class="synIdentifier">inc</span>(<span class="synType">&amp;mut</span> <span class="synConstant">self</span>) {
-        <span class="synConstant">self</span>.<span class="synConstant">0</span> <span class="synStatement">+=</span> <span class="synConstant">1</span>;
-        <span class="synStatement">for</span> n <span class="synStatement">in</span> <span class="synType">&amp;</span><span class="synConstant">self</span>.<span class="synConstant">1</span> {
-            n.<span class="synIdentifier">borrow_mut</span>().<span class="synIdentifier">inc</span>();
+`RefCell` 版がこちら
+
+```
+struct Node<T>(T, Vec<Rc<RefCell<Node<T>>>>);
+
+impl Node<i32> {
+    fn inc(&mut self) {
+        self.0 += 1;
+        for n in &self.1 {
+            n.borrow\_mut().inc();
         }
     }
 }
-</pre>
 
-<h3>Rust で巡回有向グラフ</h3>
+```
 
-<p>循環がある場合は厄介です．
-Rust で参照を共有するための <code>Rc</code> は参照カウントなので，循環参照があるとリークします．
-したがって循環のある構造を表すために <code>Rc</code> は使えません．</p>
+### Rust で巡回有向グラフ
 
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a>で親を参照するポインタを子に持たせておきたいといったケースでは，親は子を <code>Rc</code> で持ち，子は親を <code>Weak</code> で持つという形で対応できますが，
-グラフだとそういうわけにもいきません．</p>
+循環がある場合は厄介です．
+Rust で参照を共有するための `Rc` は参照カウントなので，循環参照があるとリークします．
+したがって循環のある構造を表すために `Rc` は使えません．
 
-<p>そこで出て来るのが <code>Arena</code> という方法です．</p>
+木構造で親を参照するポインタを子に持たせておきたいといったケースでは，親は子を `Rc` で持ち，子は親を `Weak` で持つという形で対応できますが，
+グラフだとそういうわけにもいきません．
 
-<p>オブジェクトの実体は <code>Arena</code> の中に作り，グラフにはその ID を持たせて管理します．</p>
+そこで出て来るのが `Arena` という方法です．
 
-<pre class="code lang-rust" data-lang="rust" data-unlink><span class="synStatement">type</span> <span class="synIdentifier">NodeId</span> <span class="synStatement">=</span> <span class="synType">usize</span>;
+オブジェクトの実体は `Arena` の中に作り，グラフにはその ID を持たせて管理します．
 
-<span class="synStatement">struct</span> <span class="synIdentifier">NodeArena</span><span class="synStatement">&lt;</span>T<span class="synStatement">&gt;</span> {
-    arena: <span class="synType">Vec</span><span class="synStatement">&lt;</span>Node<span class="synStatement">&lt;</span>T<span class="synStatement">&gt;&gt;</span>,
+```
+type NodeId = usize;
+
+struct NodeArena<T> {
+    arena: Vec<Node<T>>,
 }
 
-<span class="synStatement">impl&lt;</span>T<span class="synStatement">&gt;</span> NodeArena {
-    <span class="synStatement">fn</span> <span class="synIdentifier">alloc</span>(<span class="synType">&amp;mut</span> <span class="synConstant">self</span>, value: T) <span class="synStatement">-&gt;</span> NodeId {
-        <span class="synStatement">let</span> id <span class="synStatement">=</span> <span class="synConstant">self</span>.arena.<span class="synIdentifier">len</span>();
-        <span class="synStatement">let</span> node <span class="synStatement">=</span> <span class="synIdentifier">Node</span>(id, value, <span class="synType">Vec</span><span class="synSpecial">::</span><span class="synIdentifier">new</span>());
-        <span class="synConstant">self</span>.arena.<span class="synIdentifier">push</span>(node);
+impl<T> NodeArena {
+    fn alloc(&mut self, value: T) -> NodeId {
+        let id = self.arena.len();
+        let node = Node(id, value, Vec::new());
+        self.arena.push(node);
         id
     }
-    <span class="synStatement">fn</span> <span class="synIdentifier">get</span>(<span class="synType">&amp;</span><span class="synConstant">self</span>, id: NodeId) <span class="synStatement">-&gt;</span> <span class="synType">&amp;</span>Node<span class="synStatement">&lt;</span>T<span class="synStatement">&gt;</span> {
-        <span class="synType">&amp;</span><span class="synConstant">self</span>.arena[id]
+    fn get(&self, id: NodeId) -> &Node<T> {
+        &self.arena[id]
     }
-    <span class="synStatement">fn</span> <span class="synIdentifier">get_mut</span>(<span class="synType">&amp;mut</span> <span class="synConstant">self</span>, id: NodeId) <span class="synStatement">-&gt;</span> <span class="synType">&amp;mut</span> Node<span class="synStatement">&lt;</span>T<span class="synStatement">&gt;</span> {
-        <span class="synType">&amp;mut</span> <span class="synConstant">self</span>.arena[id]
+    fn get\_mut(&mut self, id: NodeId) -> &mut Node<T> {
+        &mut self.arena[id]
     }
 }
 
-<span class="synStatement">struct</span> <span class="synIdentifier">Node</span><span class="synStatement">&lt;</span>T<span class="synStatement">&gt;</span>(NodeId, T, <span class="synType">Vec</span><span class="synStatement">&lt;</span>NodeId<span class="synStatement">&gt;</span>);
-</pre>
+struct Node<T>(NodeId, T, Vec<NodeId>);
 
-<p>こんな感じです．</p>
+```
 
-<p>こうすることで<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a>時の borrow check を諦めることなくグラフ構造を作ることができます．<br/>
-(<code>i</code> と <code>i+1</code> 番目のノードを同時に mutable に参照したいとかは苦しいですが)</p>
+こんな感じです．
 
-<p>欠点としては単純に間接的な表現でめんどくさいというのもありますが，<a class="keyword" href="http://d.hatena.ne.jp/keyword/GC">GC</a> がないので参照されなくなったオブジェクトも <code>Arena</code> 上で生き続けてしまうことです．
-そのため，動的に要素が生きたり死んだりするケースには使いにくいです．</p>
+こうすることでコンパイル時の borrow check を諦めることなくグラフ構造を作ることができます．
 
-<p>ノードグラフの構築が終わったら <code>Arena</code> をリフレッシュするみたいなことをすると良いのかもしれません．
-(構築中は <code>Vec</code> で <code>Arena</code> を表現して，構造が固まったら <code>HashMap</code> を使った <code>Arena</code> に切り替えて参照されているidだけを残すみたいな)<br/>
-それでも構築中はオブジェクトがあまりまくるので辛いですね...</p>
+(`i` と `i+1` 番目のノードを同時に mutable に参照したいとかは苦しいですが)
+
+欠点としては単純に間接的な表現でめんどくさいというのもありますが，GC がないので参照されなくなったオブジェクトも `Arena` 上で生き続けてしまうことです．
+そのため，動的に要素が生きたり死んだりするケースには使いにくいです．
+
+ノードグラフの構築が終わったら `Arena` をリフレッシュするみたいなことをすると良いのかもしれません．
+(構築中は `Vec` で `Arena` を表現して，構造が固まったら `HashMap` を使った `Arena` に切り替えて参照されている id だけを残すみたいな)
+
+それでも構築中はオブジェクトがあまりまくるので辛いですね...
 
 ---
 

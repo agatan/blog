@@ -4,90 +4,96 @@ date: 2017-05-13T09:33:10.000Z
 tags: ["Go"]
 ---
 
-<p>先日はてぶに  <a href="http://postd.cc/bk-tree/">&#x8208;&#x5473;&#x6DF1;&#x3044;&#x30C7;&#x30FC;&#x30BF;&#x69CB;&#x9020;&#xFF1A;BK&#x6728; | &#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0; | POSTD</a> という翻訳記事 ( 元記事 <a href="http://signal-to-noise.xyz/post/bk-tree/">http://signal-to-noise.xyz/post/bk-tree/</a>) があがっているのをみて初めて BK-tree というものを知ったので，<a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> で実装してみました．</p>
+先日はてぶに [興味深いデータ構造：BK 木 | プログラミング | POSTD](http://postd.cc/bk-tree/) という翻訳記事 ( 元記事 [http://signal-to-noise.xyz/post/bk-tree/](http://signal-to-noise.xyz/post/bk-tree/)) があがっているのをみて初めて BK-tree というものを知ったので，golang で実装してみました．
 
-<p><iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fagatan%2Fbktree" title="agatan/bktree" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://github.com/agatan/bktree">github.com</a></cite></p>
+[github.com](https://github.com/agatan/bktree)
 
-<h2>BK-tree とは</h2>
+## BK-tree とは
 
-<p>先程の記事に全部書いてあるのですが&hellip;
-BK-tree は，ある<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B5%F7%CE%A5%B6%F5%B4%D6">距離空間</a>内で近傍点探索を効率的に行えるデータ構造です．利用例としてはスペルチェックや類似画像検索などがあります．</p>
+先程の記事に全部書いてあるのですが…
+BK-tree は，ある距離空間内で近傍点探索を効率的に行えるデータ構造です．利用例としてはスペルチェックや類似画像検索などがあります．
 
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%B5%F7%CE%A5%B6%F5%B4%D6">距離空間</a>とは，なにかしらの距離を計算することができる空間のことで，距離としてハミング距離やマンハッタン距離，レーベンシュタイン距離，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%E6%A1%BC%A5%AF%A5%EA%A5%C3%A5%C9">ユークリッド</a>距離などなどが挙げられます．
-例えば，いわゆる普通の 3 次元の空間は，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%E6%A1%BC%A5%AF%A5%EA%A5%C3%A5%C9">ユークリッド</a>距離を距離関数に持つ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B5%F7%CE%A5%B6%F5%B4%D6">距離空間</a>と考えられます．</p>
+距離空間とは，なにかしらの距離を計算することができる空間のことで，距離としてハミング距離やマンハッタン距離，レーベンシュタイン距離，ユークリッド距離などなどが挙げられます．
+例えば，いわゆる普通の 3 次元の空間は，ユークリッド距離を距離関数に持つ距離空間と考えられます．
 
-<p>近傍点探索は，要するにある点に対して，近くにある点を探すことです．</p>
+近傍点探索は，要するにある点に対して，近くにある点を探すことです．
 
-<p><span itemscope itemtype="http://schema.org/Photograph"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/a/agtn/20170513/20170513183241.png" alt="f:id:agtn:20170513183241p:plain" title="f:id:agtn:20170513183241p:plain" class="hatena-fotolife" itemprop="image"></span></p>
+![f:id:agtn:20170513183241p:plain](/i/20170513183241.png "f:id:agtn:20170513183241p:plain")
 
-<p>ものすごく単純に近傍点探索をやろうと思うと，全要素を線形に探索して距離を計算していく必要があります．
-そこで BK-tree を使うともっと計算量が減らせるというわけなのです．(ちなみに僕は BK-tree を使った場合の計算量がよくわかっていません．実験的に速いことを確認しただけです．正確な計算量は考えてもよくわかりませんでした&hellip;)</p>
+ものすごく単純に近傍点探索をやろうと思うと，全要素を線形に探索して距離を計算していく必要があります．
+そこで BK-tree を使うともっと計算量が減らせるというわけなのです．(ちなみに僕は BK-tree を使った場合の計算量がよくわかっていません．実験的に速いことを確認しただけです．正確な計算量は考えてもよくわかりませんでした…)
 
-<p>構造や仕組みは元記事などをご参照ください．</p>
+構造や仕組みは元記事などをご参照ください．
 
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> での bk-tree 実装は実はいくつかあったのですが，単純に<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A2%A5%EB%A5%B4%A5%EA%A5%BA%A5%E0">アルゴリズム</a>を理解するために実装したかったのと，レーベンシュタイン距離を距離関数として使うことを前提にしていたりとちょっと自分の用途に合っていない気がしたので，別で作ってみました．</p>
+golang での bk-tree 実装は実はいくつかあったのですが，単純にアルゴリズムを理解するために実装したかったのと，レーベンシュタイン距離を距離関数として使うことを前提にしていたりとちょっと自分の用途に合っていない気がしたので，別で作ってみました．
 
-<p>このパッケージでは，スペルチェックそのものや距離関数を提供していません．BK-tree というデータ構造だけを提供しています．</p>
+このパッケージでは，スペルチェックそのものや距離関数を提供していません．BK-tree というデータ構造だけを提供しています．
 
-<h2>使用例</h2>
+## 使用例
 
-<p>16 bit 整数を要素，ハミング距離を距離関数とした例です．</p>
+16 bit 整数を要素，ハミング距離を距離関数とした例です．
 
-<p>要素となる型は <code>bktree.Entry</code> interface を満たす必要があります．これは <code>Distance(Entry) int</code> を要求する interface です．<br/>
-本当は <code>distance&lt;T: Entry&gt;(x: T) -&gt; int</code> みたいな形にしたいのですが，<a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> だと出来ないので，実装側で <code>e.(hashValue)</code> のように型<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A2%A5%B5%A1%BC%A5%B7%A5%E7%A5%F3">アサーション</a>する必要があります．<br/>
-ここでは <code>uint16</code> に戻してハミング距離を計算しています．</p>
+要素となる型は `bktree.Entry` interface を満たす必要があります．これは `Distance(Entry) int` を要求する interface です．
 
-<p>要素の追加は <code>Add(e Entry)</code> です．<br/>
-ここでは 0 ~ 0xffff までを突っ込んでいます．</p>
+本当は `distance<T: Entry>(x: T) -> int` みたいな形にしたいのですが，golang だと出来ないので，実装側で `e.(hashValue)` のように型アサーションする必要があります．
 
-<p>探索は <code>Search(e Entry, tolerance int) []*Result</code> です．
-第一引数がキー，第二引数が許容する距離の最大値です．</p>
+ここでは `uint16` に戻してハミング距離を計算しています．
 
-<pre class="code lang-go" data-lang="go" data-unlink><span class="synStatement">package</span> main
+要素の追加は `Add(e Entry)` です．
 
-<span class="synStatement">import</span> (
-    <span class="synConstant">&quot;fmt&quot;</span>
+ここでは 0 ~ 0xffff までを突っ込んでいます．
 
-    <span class="synConstant">&quot;github.com/agatan/bktree&quot;</span>
+探索は `Search(e Entry, tolerance int) []*Result` です．
+第一引数がキー，第二引数が許容する距離の最大値です．
+
+```
+package main
+
+import (
+    "fmt"
+
+    "github.com/agatan/bktree"
 )
 
-<span class="synStatement">type</span> hashValue <span class="synType">uint16</span>
+type hashValue uint16
 
-<span class="synComment">// Distance calculates hamming distance.</span>
-<span class="synStatement">func</span> (h hashValue) Distance(e bktree.Entry) <span class="synType">int</span> {
-    a := <span class="synType">uint16</span>(h)
-    b := <span class="synType">uint16</span>(e.(hashValue))
+// Distance calculates hamming distance.
+func (h hashValue) Distance(e bktree.Entry) int {
+    a := uint16(h)
+    b := uint16(e.(hashValue))
 
-    d := <span class="synConstant">0</span>
-    <span class="synStatement">var</span> k <span class="synType">uint16</span> = <span class="synConstant">1</span>
-    <span class="synStatement">for</span> i := <span class="synConstant">0</span>; i &lt; <span class="synConstant">16</span>; i++ {
-        <span class="synStatement">if</span> a&amp;k != b&amp;k {
+    d := 0
+    var k uint16 = 1
+    for i := 0; i < 16; i++ {
+        if a&k != b&k {
             d++
         }
-        k &lt;&lt;= <span class="synConstant">1</span>
+        k <<= 1
     }
-    <span class="synStatement">return</span> d
+    return d
 }
 
-<span class="synStatement">func</span> main() {
-    <span class="synStatement">var</span> tree bktree.BKTree
+func main() {
+    var tree bktree.BKTree
 
-    <span class="synComment">// add 0x0000 to 0xffff to the tree.</span>
-    <span class="synStatement">for</span> i := <span class="synConstant">0</span>; i &lt; <span class="synConstant">0xffff</span>; i++ {
+    // add 0x0000 to 0xffff to the tree.
+    for i := 0; i < 0xffff; i++ {
         tree.Add(hashValue(i))
     }
 
-    <span class="synComment">// search neighbors of 0x0000 whose distances are less than or equal to 1.</span>
-    results := tree.Search(hashValue(<span class="synConstant">0</span>), <span class="synConstant">1</span>)
-    <span class="synStatement">for</span> _, result := <span class="synStatement">range</span> results {
-        fmt.Printf(<span class="synConstant">&quot;%016b (distance: %d)</span><span class="synSpecial">\n</span><span class="synConstant">&quot;</span>, result.Entry.(hashValue), result.Distance)
+    // search neighbors of 0x0000 whose distances are less than or equal to 1.
+    results := tree.Search(hashValue(0), 1)
+    for \_, result := range results {
+        fmt.Printf("%016b (distance: %d)\n", result.Entry.(hashValue), result.Distance)
     }
 }
-</pre>
 
-<p>これを実行すると，</p>
+```
 
-<pre class="code" data-lang="" data-unlink>0000000000000000 (distance: 0)
+これを実行すると，
+
+```
+0000000000000000 (distance: 0)
 0000000000000001 (distance: 1)
 0000000000000010 (distance: 1)
 0000000000000100 (distance: 1)
@@ -103,89 +109,70 @@ BK-tree は，ある<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B5%F
 0001000000000000 (distance: 1)
 0010000000000000 (distance: 1)
 0100000000000000 (distance: 1)
-1000000000000000 (distance: 1)</pre>
+1000000000000000 (distance: 1)
+```
 
-<p>という感じで 0x0000 とのハミング距離が 0 ~ 1 である要素がとれます．</p>
+という感じで 0x0000 とのハミング距離が 0 ~ 1 である要素がとれます．
 
-<h2>パフォーマンス</h2>
+## パフォーマンス
 
-<p>単純な線形探索との比較をする<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D9%A5%F3%A5%C1%A5%DE%A1%BC%A5%AF">ベンチマーク</a>をおいてあります．<br/>
-64 bit 整数，距離関数はハミング距離，データ量 1,000,000 件での結果が以下のようになりました．</p>
+単純な線形探索との比較をするベンチマークをおいてあります．
 
-<table>
-<thead>
-<tr>
-<th style="text-align:left;"> <a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D9%A5%F3%A5%C1%A5%DE%A1%BC%A5%AF">ベンチマーク</a> </th>
-<th style="text-align:left;"> 実行時間 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;"> BK-tree (完全一致) </td>
-<td style="text-align:left;">                          1108 ns/op </td>
-</tr>
-<tr>
-<td style="text-align:left;"> BK-tree (fuzziness 1) </td>
-<td style="text-align:left;">          29468 ns/op </td>
-</tr>
-<tr>
-<td style="text-align:left;"> BK-tree (fuzziness 2) </td>
-<td style="text-align:left;">           328753 ns/op </td>
-</tr>
-<tr>
-<td style="text-align:left;"> BK-tree (fuzziness 4) </td>
-<td style="text-align:left;"> 5490888 ns/op </td>
-</tr>
-<tr>
-<td style="text-align:left;"> BK-tree (fuzziness 8) </td>
-<td style="text-align:left;">     68182122 ns/op </td>
-</tr>
-<tr>
-<td style="text-align:left;"> BK-tree (fuzziness 32) </td>
-<td style="text-align:left;">         353715305 ns/op </td>
-</tr>
-<tr>
-<td style="text-align:left;"> Linear Search </td>
-<td style="text-align:left;">          4132926 ns/op </td>
-</tr>
-</tbody>
-</table>
+64 bit 整数，距離関数はハミング距離，データ量 1,000,000 件での結果が以下のようになりました．
 
-<p>fuzziness が小さければ小さいほど ( = tolerance が小さければ小さいほど ) 高速に探索できることが分かります．</p>
+| ベンチマーク           | 実行時間        |
+| ---------------------- | --------------- |
+| BK-tree (完全一致)     | 1108 ns/op      |
+| BK-tree (fuzziness 1)  | 29468 ns/op     |
+| BK-tree (fuzziness 2)  | 328753 ns/op    |
+| BK-tree (fuzziness 4)  | 5490888 ns/op   |
+| BK-tree (fuzziness 8)  | 68182122 ns/op  |
+| BK-tree (fuzziness 32) | 353715305 ns/op |
+| Linear Search          | 4132926 ns/op   |
 
-<p>また，データ量が増えるほど Linear Search より有利になるので，距離に対してデータが十分に大量にある場合はかなり有効といえそうです．</p>
+fuzziness が小さければ小さいほど ( = tolerance が小さければ小さいほど ) 高速に探索できることが分かります．
 
-<h2>おまけ</h2>
+また，データ量が増えるほど Linear Search より有利になるので，距離に対してデータが十分に大量にある場合はかなり有効といえそうです．
 
-<p>tree の構築にかかるコストがそこそこ大きかったので pprof で見つつチューニングする必要がありました．
-学びとして，「map が重い」「interface が重い」というのがありました．</p>
+## おまけ
 
-<p>各ノードの部分木は，そのノードからの距離 d を key として，<code>map[int]*Node</code> としていました．
-tree を構築する際には，allocate + read + write をかなりの回数行うのですが，これがまぁ遅い．<br/>
-最終的にこの部分はスライスでもっておいて，d を key として部分木をとりたい時は線形探索をするようにしました．<br/>
-<code>next, ok := n.children[d]</code> としていた部分が</p>
+tree の構築にかかるコストがそこそこ大きかったので pprof で見つつチューニングする必要がありました．
+学びとして，「map が重い」「interface が重い」というのがありました．
 
-<pre class="code lang-go" data-lang="go" data-unlink><span class="synStatement">type</span> elem <span class="synStatement">struct</span>
-    distance <span class="synType">int</span>
+各ノードの部分木は，そのノードからの距離 d を key として，`map[int]*Node` としていました．
+tree を構築する際には，allocate + read + write をかなりの回数行うのですが，これがまぁ遅い．
+
+最終的にこの部分はスライスでもっておいて，d を key として部分木をとりたい時は線形探索をするようにしました．
+
+`next, ok := n.children[d]` としていた部分が
+
+```
+type elem struct
+    distance int
     node *node
 }
 
-<span class="synStatement">for</span> _, c := <span class="synStatement">range</span> n.children {
-    <span class="synStatement">if</span> c.distance == d {
-        <span class="synStatement">return</span> c.node
+for \_, c := range n.children {
+    if c.distance == d {
+        return c.node
     }
 }
-<span class="synStatement">return</span> <span class="synStatement">nil</span>
-</pre>
+return nil
 
-<p>という感じになります．あんまりきれいではないんですが，こっちの方がほとんどのケース倍以上速かったので，こちらを採用しました．<br/>
-部分木の数が増えてくると，map のほうが速いと思われるのですが，ハミング距離の場合最大でも bit 数までしか部分木が増えないので．<br/>
+```
+
+という感じになります．あんまりきれいではないんですが，こっちの方がほとんどのケース倍以上速かったので，こちらを採用しました．
+
+部分木の数が増えてくると，map のほうが速いと思われるのですが，ハミング距離の場合最大でも bit 数までしか部分木が増えないので．
+
 レーベンシュタイン距離を用いたスペルチェックの場合でも，単語の最大文字数以上の距離にはなりません．
-2 次元 / 3 次元程度の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B5%F7%CE%A5%B6%F5%B4%D6">距離空間</a>なら kd-tree などもっと他に良い方法があるきがするので，レーベンシュタイン距離やハミング距離を使うケースをメインに考えました．</p>
+2 次元 / 3 次元程度の距離空間なら kd-tree などもっと他に良い方法があるきがするので，レーベンシュタイン距離やハミング距離を使うケースをメインに考えました．
 
-<p>その結果，実行時間のかなりの割合が <code>Entry</code> interface を介した関数呼び出しのオーバヘッドとか，inteface の allocation になってしまいました．<br/>
-データ構造を <a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> で提供する以上このオーバヘッドは避けられないです．( もちろん BK-tree そのものを，自分の利用形態に特化して作れば回避できますが&hellip; )<br/>
-ちょっと Rust や <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> で書きたくなりました．十分速いし書きやすいので良いんですが&hellip;</p>
+その結果，実行時間のかなりの割合が `Entry` interface を介した関数呼び出しのオーバヘッドとか，inteface の allocation になってしまいました．
+
+データ構造を golang で提供する以上このオーバヘッドは避けられないです．( もちろん BK-tree そのものを，自分の利用形態に特化して作れば回避できますが… )
+
+ちょっと Rust や C++ で書きたくなりました．十分速いし書きやすいので良いんですが…
 
 ---
 

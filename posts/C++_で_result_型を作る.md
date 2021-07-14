@@ -4,173 +4,189 @@ date: 2016-07-01T14:30:09.000Z
 tags: ["C++"]
 ---
 
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a> や Rust など多くの強力な型システムを持つ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%B0%A5%E9%A5%DF%A5%F3%A5%B0%B8%C0%B8%EC">プログラミング言語</a>は、<code>Either</code> とか <code>Result</code> といった「失敗するかもしれない」計算の値を示す型を持っています。</p>
+Haskell や Rust など多くの強力な型システムを持つプログラミング言語は、`Either` とか `Result` といった「失敗するかもしれない」計算の値を示す型を持っています。
 
-<p>現在の <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> の標準ライブラリにはこのような型はありませんので、それを自作してみようというわけです。</p>
+現在の C++ の標準ライブラリにはこのような型はありませんので、それを自作してみようというわけです。
 
-<p>ちなみに現在策定中の<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a>17には <code>std::optional</code> が入ることが決定しているようです。これは、<code>result</code> と同様に失敗するかもしれな値を示しますが、失敗した原因がなんなのかを通知する仕組みを持っていません。</p>
+ちなみに現在策定中の C++17 には `std::optional` が入ることが決定しているようです。これは、`result` と同様に失敗するかもしれな値を示しますが、失敗した原因がなんなのかを通知する仕組みを持っていません。
 
-<h2>そもそもどういう型か</h2>
+## そもそもどういう型か
 
-<p>Rust の <code>Result</code> 型を例にみてみます。</p>
+Rust の `Result` 型を例にみてみます。
 
-<pre class="code lang-rust" data-lang="rust" data-unlink><span class="synStatement">enum</span> <span class="synIdentifier">Result</span><span class="synStatement">&lt;</span>V, E<span class="synStatement">&gt;</span> {
-  <span class="synConstant">Ok</span>(V),
-  <span class="synConstant">Err</span>(E),
+```
+enum Result<V, E> {
+  Ok(V),
+  Err(E),
 }
-</pre>
 
-<p>Rust における <code>Result</code> 型はだいたいこんな感じで定義されています。</p>
+```
 
-<p><code>Result</code> は型引数を２つとります。<code>V</code> が成功時の値で、<code>E</code> が失敗時のエラー情報です。
-例えば、<code>fn parse_int(s: &amp;str) -&gt; Result&lt;isize, String&gt;;</code> は、文字列を受け取り、それが整数としてパース出来れば <code>isize</code> に変換し、<code>Ok(isize)</code> として返します。
-もし整数としてパース出来ないなどのエラーがあれば、それを <code>String</code> で表現し、<code>Err(String)</code> で返します。</p>
+Rust における `Result` 型はだいたいこんな感じで定義されています。
 
-<p>本質的にはこれが全てです。ここに、<code>Result</code> から中身を取り出す(<code>Err</code> なら <code>panic</code> する)関数などを定義してあげれば便利にエラー状態を表現できます。<br/>
-(Rust の <code>try</code> マクロはとても便利ですよね)</p>
+`Result` は型引数を２つとります。`V` が成功時の値で、`E` が失敗時のエラー情報です。
+例えば、`fn parse_int(s: &str) -> Result<isize, String>;` は、文字列を受け取り、それが整数としてパース出来れば `isize` に変換し、`Ok(isize)` として返します。
+もし整数としてパース出来ないなどのエラーがあれば、それを `String` で表現し、`Err(String)` で返します。
 
-<h2>まずはベースとなる result を作る</h2>
+本質的にはこれが全てです。ここに、`Result` から中身を取り出す(`Err` なら `panic` する)関数などを定義してあげれば便利にエラー状態を表現できます。
 
-<p>まずはベースとなる <code>result</code> 型を作ってみます。</p>
+(Rust の `try` マクロはとても便利ですよね)
 
-<pre class="code lang-cpp" data-lang="cpp" data-unlink><span class="synType">template</span> &lt;<span class="synType">typename</span> T, <span class="synType">typename</span> E&gt;
-<span class="synType">struct</span> result {
+## まずはベースとなる result を作る
 
-  result(T <span class="synType">const</span>&amp; ok) : t(tag::OK) {
-    ok_ = ok;
+まずはベースとなる `result` 型を作ってみます。
+
+```
+template <typename T, typename E>
+struct result {
+
+  result(T const& ok) : t(tag::OK) {
+    ok\_ = ok;
   }
 
-  result(E <span class="synType">const</span>&amp; e) : t(tag::OK) {
-    err_ = e;
+  result(E const& e) : t(tag::OK) {
+    err\_ = e;
   }
 
   ~result() {
-    <span class="synStatement">switch</span> (t) {
-      <span class="synStatement">case</span> tag::OK:
-        ok_.~T();
-        <span class="synStatement">break</span>;
-      <span class="synStatement">case</span> tag::ERROR:
-        err_.~E();
-        <span class="synStatement">break</span>;
+    switch (t) {
+      case tag::OK:
+        ok\_.~T();
+        break;
+      case tag::ERROR:
+        err\_.~E();
+        break;
     }
   }
 
-  result(result <span class="synType">const</span>&amp; r): t(r.t) {
-    <span class="synStatement">switch</span> (t) {
-      <span class="synStatement">case</span> tag::OK:
-        ok_ = r.ok_;
-        <span class="synStatement">break</span>;
-      <span class="synStatement">case</span> tag::ERROR:
-        err_ = r.err_;
-        <span class="synStatement">break</span>;
+  result(result const& r): t(r.t) {
+    switch (t) {
+      case tag::OK:
+        ok\_ = r.ok\_;
+        break;
+      case tag::ERROR:
+        err\_ = r.err\_;
+        break;
     }
   }
 
-  T <span class="synType">const</span>&amp; get() <span class="synType">const</span> {
-    <span class="synStatement">if</span> (t != tag::OK) {
-      <span class="synStatement">throw</span> <span class="synConstant">&quot;invalid get operation&quot;</span>;
+  T const& get() const {
+    if (t != tag::OK) {
+      throw "invalid get operation";
     }
-    <span class="synStatement">return</span> ok_;
+    return ok\_;
   }
 
-  E <span class="synType">const</span>&amp; get_error() <span class="synType">const</span> {
-    <span class="synStatement">if</span> (t != tag::ERROR) {
-      <span class="synStatement">throw</span> <span class="synConstant">&quot;invalid get operation&quot;</span>;
+  E const& get\_error() const {
+    if (t != tag::ERROR) {
+      throw "invalid get operation";
     }
-    <span class="synStatement">return</span> err_;
+    return err\_;
   }
 
-<span class="synStatement">private</span>:
-  <span class="synType">enum</span> <span class="synType">class</span> tag {
+private:
+  enum class tag {
     OK,
     ERROR,
   };
   tag t;
-  <span class="synType">union</span> {
-    T ok_;
-    E err_;
+  union {
+    T ok\_;
+    E err\_;
   };
 
 };
-</pre>
 
-<p>かなり雑ですが、ざっくりこんな感じになるはずです。
-<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a>11 から拡張されて自由度がかなり高くなった <code>union</code> がとても便利です。</p>
+```
 
-<p>これで <code>result&lt;int, std::string&gt;(1).get()</code> とやれば <code>1</code> が返るし <code>result&lt;int, std::string&gt;(std::string("test")).get_error()</code> で <code>"test"</code> が返るはずです。</p>
+かなり雑ですが、ざっくりこんな感じになるはずです。
+C++11 から拡張されて自由度がかなり高くなった `union` がとても便利です。
 
-<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> でやると何が難しいか</h2>
+これで `result<int, std::string>(1).get()` とやれば `1` が返るし `result<int, std::string>(std::string("test")).get_error()` で `"test"` が返るはずです。
 
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> で難しいのは、Rustより弱い<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B7%BF%BF%E4%CF%C0">型推論</a>が引き起こす問題です。<br/>
-Rust では、<code>Ok(1isize)</code> とか <code>Err("error!".to_owned())</code> とすれば、その値がどういう型であることが期待されているのかまで含めて<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B7%BF%BF%E4%CF%C0">型推論</a>や単一化が行われます。
-すなわち、<code>Ok(1isize)</code> だけを見てもエラーの型がわからないため、<code>Result&lt;isize, E&gt;</code> の <code>E</code> を決定することが出来ないが、Rust は強力な<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B7%BF%BF%E4%CF%C0">型推論</a>機構を持つため、これを決定することが出来ます。</p>
+## C++ でやると何が難しいか
 
-<p>一方、<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> では <code>result&lt;int, std::string&gt; f() { return 1; }</code> は <code>int</code> から <code>result&lt;int, std::string&gt;</code> の暗黙変換がきくので可能ですが、<code>result&lt;int, int&gt;</code> などとした瞬間、暗黙変換に頼ることはできなくなります。
-そこで、出来れば <code>ok(1)</code> とか <code>err("test")</code> という感じにしたいのですが、これは一筋縄では行きません。</p>
+C++ で難しいのは、Rust より弱い型推論が引き起こす問題です。
 
-<pre class="code lang-cpp" data-lang="cpp" data-unlink><span class="synType">template</span> &lt;<span class="synType">typename</span> T, <span class="synType">typename</span> E&gt;
-result&lt;T, E&gt; ok(T);
-</pre>
+Rust では、`Ok(1isize)` とか `Err("error!".to_owned())` とすれば、その値がどういう型であることが期待されているのかまで含めて型推論や単一化が行われます。
+すなわち、`Ok(1isize)` だけを見てもエラーの型がわからないため、`Result<isize, E>` の `E` を決定することが出来ないが、Rust は強力な型推論機構を持つため、これを決定することが出来ます。
 
-<p>これだと <code>T</code> は推論されても <code>E</code> が推論されないので、<code>ok&lt;int, std::string&gt;(1)</code> などとしなければなりません。これは使いづらすぎます。</p>
+一方、C++ では `result<int, std::string> f() { return 1; }` は `int` から `result<int, std::string>` の暗黙変換がきくので可能ですが、`result<int, int>` などとした瞬間、暗黙変換に頼ることはできなくなります。
+そこで、出来れば `ok(1)` とか `err("test")` という感じにしたいのですが、これは一筋縄では行きません。
 
-<h2>じゃあどうするか</h2>
+```
+template <typename T, typename E>
+result<T, E> ok(T);
 
-<p>先ほどとは違う形ですが、やっぱり暗黙の型変換を応用します。</p>
+```
 
-<p>要するに <code>ok</code> を表す型と <code>error</code> を表す型を区別しつつ、<code>result&lt;V, E&gt;</code> とはなるべくシームレスに変換をしたいというわけですから、それぞれ専用の型を作ってしまえば良いのです。</p>
+これだと `T` は推論されても `E` が推論されないので、`ok<int, std::string>(1)` などとしなければなりません。これは使いづらすぎます。
 
-<pre class="code lang-cpp" data-lang="cpp" data-unlink><span class="synType">template</span> &lt;<span class="synType">typename</span> T&gt;
-<span class="synType">struct</span> ok_value {
-  <span class="synType">explicit</span> ok_value(T t): t(t) {}
+## じゃあどうするか
 
-  <span class="synType">template</span> &lt;<span class="synType">typename</span> V, <span class="synType">typename</span> E&gt;
-  <span class="synStatement">operator</span> result&lt;V, E&gt; () <span class="synType">const</span>;
+先ほどとは違う形ですが、やっぱり暗黙の型変換を応用します。
 
-<span class="synStatement">private</span>:
+要するに `ok` を表す型と `error` を表す型を区別しつつ、`result<V, E>` とはなるべくシームレスに変換をしたいというわけですから、それぞれ専用の型を作ってしまえば良いのです。
+
+```
+template <typename T>
+struct ok\_value {
+  explicit ok\_value(T t): t(t) {}
+
+  template <typename V, typename E>
+  operator result<V, E> () const;
+
+private:
   T t;
 };
 
-<span class="synType">template</span> &lt;<span class="synType">typename</span> T&gt;
-<span class="synType">template</span> &lt;<span class="synType">typename</span> V, <span class="synType">typename</span> E&gt;
-ok_value&lt;T&gt;::<span class="synStatement">operator</span> result&lt;V, E&gt; () <span class="synType">const</span> {
-  <span class="synStatement">return</span> result&lt;V, E&gt;(t);
+template <typename T>
+template <typename V, typename E>
+ok\_value<T>::operator result<V, E> () const {
+  return result<V, E>(t);
 }
 
-<span class="synType">template</span> &lt;<span class="synType">typename</span> T&gt;
-ok_value&lt;T&gt; ok(T t) {
-  <span class="synStatement">return</span> ok_value&lt;T&gt;(t);
+template <typename T>
+ok\_value<T> ok(T t) {
+  return ok\_value<T>(t);
 }
-</pre>
 
-<p><code>ok</code> 側だけ示しました。<br/>
-<code>ok</code> 関数はテンプレートになっており、<code>T</code> 型の値をとって <code>ok_value&lt;T&gt;</code> を返します。（本当は値渡し以外にも対応すべきですが、簡単のために値渡しだけ実装しています）</p>
+```
 
-<p><code>ok_value&lt;T&gt;</code> は型変換<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B1%E9%BB%BB%BB%D2">演算子</a> <code>operator result&lt;V, E&gt;() const</code> を持ちます。これによって <code>ok_value</code> から <code>result</code> への暗黙変換が可能になります。</p>
+`ok` 側だけ示しました。
 
-<p><code>ok_value&lt;T&gt;</code> は <code>result&lt;T, E&gt;</code> に変換出来れば良さそうに見えるのですが、それでは不十分です。<br/>
-<code>ok("test")</code> は <code>ok_value&lt;const char*&gt;</code> を返します。<code>ok_value&lt;T&gt; -&gt; result&lt;T, E&gt;</code> の変換しか提供していない場合は、<code>result&lt;std::string, E&gt;</code> への変換ができなくなってしまいます。これは不便ですよね。<br/>
-そこで新たにテンプレート引数を導入することでこれを解決しています。もっときちんとやるなら <code>std::is_constructible</code> などを使ってチェックをするべきだとは思いますが。</p>
+`ok` 関数はテンプレートになっており、`T` 型の値をとって `ok_value<T>` を返します。（本当は値渡し以外にも対応すべきですが、簡単のために値渡しだけ実装しています）
 
-<p><code>error</code> 側もほぼ同様のコードを書いてやれば、</p>
+`ok_value<T>` は型変換演算子 `operator result<V, E>() const` を持ちます。これによって `ok_value` から `result` への暗黙変換が可能になります。
 
-<pre class="code lang-cpp" data-lang="cpp" data-unlink>result&lt;<span class="synType">int</span>, std::string&gt; parse_digit(<span class="synType">char</span> c) {
-  <span class="synStatement">if</span> (c &lt; <span class="synConstant">'0'</span> || <span class="synConstant">'9'</span> &lt; c) {
-    <span class="synStatement">return</span> error(<span class="synConstant">&quot;invalid character&quot;</span>);
+`ok_value<T>` は `result<T, E>` に変換出来れば良さそうに見えるのですが、それでは不十分です。
+
+`ok("test")` は `ok_value<const char*>` を返します。`ok_value<T> -> result<T, E>` の変換しか提供していない場合は、`result<std::string, E>` への変換ができなくなってしまいます。これは不便ですよね。
+
+そこで新たにテンプレート引数を導入することでこれを解決しています。もっときちんとやるなら `std::is_constructible` などを使ってチェックをするべきだとは思いますが。
+
+`error` 側もほぼ同様のコードを書いてやれば、
+
+```
+result<int, std::string> parse\_digit(char c) {
+  if (c < '0' || '9' < c) {
+    return error("invalid character");
   }
-  <span class="synStatement">return</span> ok(c - <span class="synConstant">'0'</span>);
+  return ok(c - '0');
 }
-</pre>
 
-<p>というように書けます。</p>
+```
 
-<h2>まとめ</h2>
+というように書けます。
 
-<p><code>T</code> から <code>result&lt;T, E&gt;</code> への暗黙変換を許すという方針も全然ありだとは思いますが、個人的に Rust などで <code>ok</code> なら <code>ok</code> と明示するスタイルに慣れているので、こっちのほうが気に入っています。<br/>
-明らかに正常に値を返していそうな感じがコードにあらわれて好きです。</p>
+## まとめ
 
-<p>暗黙の型変換って危険だしあまり良いイメージはないと思うのですが、やっぱりあれば便利ですね。
-<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> を使っている時点で気を抜いたら死なので、「取り扱いを把握して全力で注意しながら使えば危険じゃない」という気持ちで便利に使いたいものです。</p>
+`T` から `result<T, E>` への暗黙変換を許すという方針も全然ありだとは思いますが、個人的に Rust などで `ok` なら `ok` と明示するスタイルに慣れているので、こっちのほうが気に入っています。
+
+明らかに正常に値を返していそうな感じがコードにあらわれて好きです。
+
+暗黙の型変換って危険だしあまり良いイメージはないと思うのですが、やっぱりあれば便利ですね。
+C++ を使っている時点で気を抜いたら死なので、「取り扱いを把握して全力で注意しながら使えば危険じゃない」という気持ちで便利に使いたいものです。
 
 ---
 

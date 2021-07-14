@@ -4,164 +4,193 @@ date: 2015-07-21T14:46:58.000Z
 tags: ["Haskell"]
 ---
 
-<p>こんばんは. <a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>(<a class="keyword" href="http://d.hatena.ne.jp/keyword/GHC">GHC</a>)で並行処理を必要とするアプリケーションを書いてみようと思ったのですが, 並列処理に関するいろいろについてよくわかっていない部分が多かったので, 調べたついでにまとめておこうと思います.</p>
+こんばんは. Haskell(GHC)で並行処理を必要とするアプリケーションを書いてみようと思ったのですが, 並列処理に関するいろいろについてよくわかっていない部分が多かったので, 調べたついでにまとめておこうと思います.
 
-<p>もし間違い等ありましたらコメントいただけるとありがたいです</p>
+もし間違い等ありましたらコメントいただけるとありがたいです
 
-<h2>Concurrent v.s. Parallel</h2>
+## Concurrent v.s. Parallel
 
-<p>Concurrentは並行, Parallelは並列と訳されます.<br/>
-Concurrentは論理的に同時に実行されることで, 実際に<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CA%A3%BF%F4">複数</a>のタスクが物理的に同時に実行している必要はありません. 実際どうであれ, 同時に実行しているように見えればOKで, <a class="keyword" href="http://d.hatena.ne.jp/keyword/%CA%A3%BF%F4">複数</a>のタスクでCPUを細かく交代で使用しながら実行していくといった実行モデルもConcurrentであるといえます.<br/>
-Parallelは物理的に同時に実行されることです. 必然的に<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CA%A3%BF%F4">複数</a>のCPUが必要になります. 物理的に同時に実行されているタスクは, 論理的にも同時に実行しているとみなせるので, ParallelであればConcurrentです.</p>
+Concurrent は並行, Parallel は並列と訳されます.
 
-<p>この記事ではConcurrentについて言及しているつもりです.</p>
+Concurrent は論理的に同時に実行されることで, 実際に複数のタスクが物理的に同時に実行している必要はありません. 実際どうであれ, 同時に実行しているように見えれば OK で, 複数のタスクで CPU を細かく交代で使用しながら実行していくといった実行モデルも Concurrent であるといえます.
 
-<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>のスレッド</h2>
+Parallel は物理的に同時に実行されることです. 必然的に複数の CPU が必要になります. 物理的に同時に実行されているタスクは, 論理的にも同時に実行しているとみなせるので, Parallel であれば Concurrent です.
 
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>は処理系実装の軽量スレッドを持ちます. OSが提供するネイティブスレッドと違い, <a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%C6%A5%AD%A5%B9%A5%C8%A5%B9%A5%A4%A5%C3%A5%C1">コンテキストスイッチ</a>(スレッドの切り替え)のオーバーヘッドが少なく, より気軽に扱えるスレッドのようです. 軽量スレッドといえば <a class="keyword" href="http://d.hatena.ne.jp/keyword/Erlang">Erlang</a> や <a class="keyword" href="http://d.hatena.ne.jp/keyword/Golang">Golang</a> が思い浮かびますね.(<a class="keyword" href="http://d.hatena.ne.jp/keyword/Erlang">Erlang</a>は軽量プロセスっていうんでしたっけ)</p>
+この記事では Concurrent について言及しているつもりです.
 
-<p>実際に<a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>で軽量スレッドを立ち上げてみます.  <br/>
-まずはスレッドを立ち上げない場合です. (threadDelayは指定したマイクロ秒分スレッドをスリープします)</p>
+## Haskell のスレッド
 
-<pre class="code" data-lang="" data-unlink>module Main where
+Haskell は処理系実装の軽量スレッドを持ちます. OS が提供するネイティブスレッドと違い, コンテキストスイッチ(スレッドの切り替え)のオーバーヘッドが少なく, より気軽に扱えるスレッドのようです. 軽量スレッドといえば Erlang や Golang が思い浮かびますね.(Erlang は軽量プロセスっていうんでしたっけ)
+
+実際に Haskell で軽量スレッドを立ち上げてみます.
+
+まずはスレッドを立ち上げない場合です. (threadDelay は指定したマイクロ秒分スレッドをスリープします)
+
+```
+module Main where
 
 import Control.Concurrent (threadDelay)
 
-sleepN :: Int -&gt; IO ()
+sleepN :: Int -> IO ()
 sleepN n = do
-    putStrLn $ &#34;sleep &#34; ++ show n
+    putStrLn $ "sleep " ++ show n
     threadDelay $ n * 10 ^ 6
-    putStrLn $ &#34;wake up &#34; ++ show n
+    putStrLn $ "wake up " ++ show n
 
 main :: IO ()
 main = do
     sleepN 3
     threadDelay $ 2 * 10 ^ 6
-    putStrLn &#34;sleep 2 and wakeup&#34;
+    putStrLn "sleep 2 and wakeup"
     threadDelay $ 2 * 10 ^ 6
-    putStrLn &#34;end&#34;</pre>
+    putStrLn "end"
+```
 
-<p>実行結果</p>
+実行結果
 
-<pre class="code" data-lang="" data-unlink>sleep 3
+```
+sleep 3
 wake up 3
 sleep 2 and wakeup
-end</pre>
+end
+```
 
-<p>全体として, 3秒->2秒->2秒とスリープするので7秒ほどの実行時間になります.</p>
+全体として, 3 秒->2 秒->2 秒とスリープするので 7 秒ほどの実行時間になります.
 
-<p>つぎにスレッドを立ち上げる場合です<br/>
-<a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>でスレッドを立ち上げるには <code>forkIO :: IO () -&gt; IO ThreadId</code> を使用します. <code>IO ()</code>を渡すと, それを新しく立ち上げたスレッド上で実行してくれます.<br/>
-(<code>forkOS :: IO () -&gt; IO ThreadId</code> というものもありますが, こちらは<a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>の軽量スレッドではなく, ネイティブスレッドを立ち上げます)</p>
+つぎにスレッドを立ち上げる場合です
 
-<pre class="code" data-lang="" data-unlink>module Main where
+Haskell でスレッドを立ち上げるには `forkIO :: IO () -> IO ThreadId` を使用します. `IO ()`を渡すと, それを新しく立ち上げたスレッド上で実行してくれます.
+
+(`forkOS :: IO () -> IO ThreadId` というものもありますが, こちらは Haskell の軽量スレッドではなく, ネイティブスレッドを立ち上げます)
+
+```
+module Main where
 
 import Control.Concurrent (forkIO, threadDelay)
 
-sleepN :: Int -&gt; IO ()
+sleepN :: Int -> IO ()
 sleepN n = do
-    putStrLn $ &#34;sleep &#34; ++ show n
+    putStrLn $ "sleep " ++ show n
     threadDelay $ n * 10 ^ 6
-    putStrLn $ &#34;wake up &#34; ++ show n
+    putStrLn $ "wake up " ++ show n
 
 main :: IO ()
 main = do
     forkIO $ sleepN 3
     threadDelay $ 2 * 10 ^ 6
-    putStrLn &#34;sleep 2 and wakeup&#34;
+    putStrLn "sleep 2 and wakeup"
     threadDelay $ 2 * 10 ^ 6
-    putStrLn &#34;end&#34;</pre>
+    putStrLn "end"
+```
 
-<p>実行結果</p>
+実行結果
 
-<pre class="code" data-lang="" data-unlink>sleep 3
+```
+sleep 3
 sleep 2 and wakeup
 wake up 3
-end</pre>
+end
+```
 
-<p>１つのスレッドが3秒スリープしている間に, もう一つのスレッドのスリープが始まるので, 全体で4秒ほどの実行時間になります.</p>
+１つのスレッドが 3 秒スリープしている間に, もう一つのスレッドのスリープが始まるので, 全体で 4 秒ほどの実行時間になります.
 
-<h2>共有変数</h2>
+## 共有変数
 
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%CA%A3%BF%F4">複数</a>スレッドによる並行実行を扱うと, どうしても共有変数的なものが欲しくなる場合があります. <a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>でスレッド間共有をしたい場合はいくつかの方法があるようです.<br/>
-もっとも直感的(手続きプログラミング出身者にとって)で馴染みやすいのは <code>Data.IORef</code> かと思います. <code>IO</code> の世界の内側でのみ読み書きができる"変数"です.</p>
+複数スレッドによる並行実行を扱うと, どうしても共有変数的なものが欲しくなる場合があります. Haskell でスレッド間共有をしたい場合はいくつかの方法があるようです.
 
-<p>まずは単一スレッドで実際に使ってみます.(以後import などは省略します)</p>
+もっとも直感的(手続きプログラミング出身者にとって)で馴染みやすいのは `Data.IORef` かと思います. `IO` の世界の内側でのみ読み書きができる"変数"です.
 
-<pre class="code" data-lang="" data-unlink>add1 :: IORef Int -&gt; IO ()
+まずは単一スレッドで実際に使ってみます.(以後 import などは省略します)
+
+```
+add1 :: IORef Int -> IO ()
 add1 v = do
     modifyIORef v (+1)
 
 main :: IO ()
 main = do
-    ref &lt;- newIORef 0
-    v &lt;- readIORef ref
+    ref <- newIORef 0
+    v <- readIORef ref
     print v
     add1 ref
-    v&#39; &lt;- readIORef ref
-    print v&#39;</pre>
+    v' <- readIORef ref
+    print v'
+```
 
-<p>実行結果</p>
+実行結果
 
-<pre class="code" data-lang="" data-unlink>0
-1</pre>
+```
+0
+1
+```
 
-<p>このように変数として中身を書き換えることができます.<br/>
-これは変数なので, ひとつのスレッドで行った書き換えが他のスレッドにも影響を及ぼします.(State<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%E2%A5%CA%A5%C9">モナド</a>のように変数を模倣しているだけではこれはできない)</p>
+このように変数として中身を書き換えることができます.
 
-<pre class="code" data-lang="" data-unlink>add1 :: IORef Int -&gt; IO ()
+これは変数なので, ひとつのスレッドで行った書き換えが他のスレッドにも影響を及ぼします.(State モナドのように変数を模倣しているだけではこれはできない)
+
+```
+add1 :: IORef Int -> IO ()
 add1 v = modifyIORef v (+1)
 
-spawn :: IORef Int -&gt; IO ()
+spawn :: IORef Int -> IO ()
 spawn ref = do
     forkIO $ add1 ref
     return ()
 
 main :: IO ()
 main = do
-    ref &lt;- newIORef 0
+    ref <- newIORef 0
     spawn ref
     spawn ref
     spawn ref
     threadDelay 1000000
-    v &lt;- readIORef ref
-    print v</pre>
+    v <- readIORef ref
+    print v
+```
 
-<h2>データ競合</h2>
+## データ競合
 
-<p>一方これを<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CA%A3%BF%F4">複数</a>スレッドで並列に動かすことを考えます. <code>modifyIORef</code> はアトミックではないので,</p>
+一方これを複数スレッドで並列に動かすことを考えます. `modifyIORef` はアトミックではないので,
 
-<pre><code>v の中身を読む
+```
+v の中身を読む
 v の中身 + 1 を計算する
 v にその結果を入れる
-</code></pre>
 
-<p>というそれぞれの計算の間に別のスレッドでの計算が割り込まれる可能性がある.<br/>
-上の例で, <code>spawn ref &gt;&gt; spawn ref &gt;&gt; spawn ref</code> という部分は<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CA%A3%BF%F4">複数</a>スレッドから一つの変数を同時に変更しようとしている. そのため, 変更が競合し意図しない動作になる可能性がある.</p>
+```
 
-<p>IORefで競合を防ぐ方法としては <code>atomicModifyIORef :: IORef a -&gt; (a -&gt; (a, b)) -&gt; IO b</code> を使用する方法がある.<br/>
-<code>atomicModifyIORef</code> の第2引数は <code>a -&gt; (a, b)</code> である. これは <code>IORef</code> の中身を引数にとって, <code>(変更後の値, atomicModifyIORefの返り値にしたい値)</code> を返す関数である.</p>
+というそれぞれの計算の間に別のスレッドでの計算が割り込まれる可能性がある.
 
-<pre class="code" data-lang="" data-unlink>inc :: IORef Int -&gt; IO Int
-inc ref = atomicModifyIORef ref (\n -&gt; (n + 1, n))
+上の例で, `spawn ref >> spawn ref >> spawn ref` という部分は複数スレッドから一つの変数を同時に変更しようとしている. そのため, 変更が競合し意図しない動作になる可能性がある.
+
+IORef で競合を防ぐ方法としては `atomicModifyIORef :: IORef a -> (a -> (a, b)) -> IO b` を使用する方法がある.
+
+`atomicModifyIORef` の第 2 引数は `a -> (a, b)` である. これは `IORef` の中身を引数にとって, `(変更後の値, atomicModifyIORefの返り値にしたい値)` を返す関数である.
+
+```
+inc :: IORef Int -> IO Int
+inc ref = atomicModifyIORef ref (\n -> (n + 1, n))
 
 main :: IO ()
 main = do
-    ref &lt;- newIORef 0
-    res &lt;- inc ref
-    v &lt;- readIORef ref
+    ref <- newIORef 0
+    res <- inc ref
+    v <- readIORef ref
     print res
-    print v</pre>
+    print v
+```
 
-<p><code>inc</code> は<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%B8%C0%B8%EC">C言語</a>の<code>i++;</code>のような動きをする. 加算する前の値を返し, 変数をインクリメントする.<br/>
-<code>atomicModifyIORef</code> は名前の通り atomic な操作であり, 分割不可能になるため他のスレッドと処理が競合することがなくなる.</p>
+`inc` は C 言語の`i++;`のような動きをする. 加算する前の値を返し, 変数をインクリメントする.
 
-<h2>一旦まとめ</h2>
+`atomicModifyIORef` は名前の通り atomic な操作であり, 分割不可能になるため他のスレッドと処理が競合することがなくなる.
 
-<p>長くなってきた &amp; 疲れてきたので一旦きります.<br/>
-今回はスレッド間共有変数のために <code>IORef</code> を使用し, その変更に <code>atomicModifyIORef</code> を使用することでデータ競合を防ぐ方法を紹介した.</p>
+## 一旦まとめ
 
-<p><code>MVar</code> や <code>STM</code> を使用する方法もあり, そっちのほうが良い場合もあるっぽいのでそっちについてもまとめたいと思います.</p>
+長くなってきた & 疲れてきたので一旦きります.
+
+今回はスレッド間共有変数のために `IORef` を使用し, その変更に `atomicModifyIORef` を使用することでデータ競合を防ぐ方法を紹介した.
+
+`MVar` や `STM` を使用する方法もあり, そっちのほうが良い場合もあるっぽいのでそっちについてもまとめたいと思います.
 
 ---
 
