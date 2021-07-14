@@ -10,7 +10,7 @@ export const SEO: React.VFC<{
 }> = (props) => {
   const { title, description, image } = props;
   const titleString = title != null ? `${title} | ${SITE_TITLE}` : SITE_TITLE;
-  const imageUrl = image || "https://blog.agatan.dev/favicon.ico";
+  const imageUrl = image || "https://blog.agatan.dev/logo-240.png";
   return (
     <Head>
       <title>{titleString}</title>
