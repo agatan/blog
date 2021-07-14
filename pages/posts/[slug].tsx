@@ -187,7 +187,7 @@ export default PostPage;
 
 export async function getStaticPaths() {
   const postMetas = await getPostMetasOrderByDate();
-  const paths = postMetas.map((v) => `/posts/${v.slug}`);
+  const paths = postMetas.map((v) => `/posts/${encodeURIComponent(v.slug)}`);
   return {
     paths,
     fallback: false,
