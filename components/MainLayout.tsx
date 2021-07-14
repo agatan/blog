@@ -13,6 +13,7 @@ import {
   VStack,
   Center,
   Divider,
+  Wrap,
 } from "@chakra-ui/react";
 import { FaGithub, FaTwitter, FaTags, FaRss } from "react-icons/fa";
 
@@ -21,6 +22,19 @@ import { Link } from "./Link";
 type Props = {
   children: React.ReactNode;
 };
+
+const GoogleAnalyticsTerm = () => (
+  <Wrap paddingX="4" paddingTop="8" align="center" justify="center">
+    <Text fontSize={{ base: "8", lg: "sm" }}>
+      このサイトはGoogle Analyticsを使用しています。
+    </Text>
+    <Text fontSize={{ base: "8", lg: "sm" }}>
+      <Link href="https://policies.google.com/technologies/partner-sites?hl=ja">
+        詳しく見る
+      </Link>
+    </Text>
+  </Wrap>
+);
 
 export const MainLayout: React.VFC<Props> = (props) => {
   return (
@@ -61,14 +75,19 @@ export const MainLayout: React.VFC<Props> = (props) => {
           </Box>
         </Flex>
         <Flex paddingTop="4" paddingBottom="4" width="100%" wrap="wrap">
-          <Box width={{ base: "100%", lg: "85%" }}>{props.children}</Box>
-          <Container width="auto" paddingLeft="0">
+          <Box width={{ base: "100%", lg: "85%" }}>
+            {props.children}
+            <Box display={{ base: "none", lg: "block" }}>
+              <GoogleAnalyticsTerm />
+            </Box>
+          </Box>
+          <Container width="auto" paddingLeft={{ base: "4", lg: "0" }}>
             <Flex
               direction="column"
               justify="center"
               align="center"
               padding="4"
-              paddingLeft="0"
+              paddingLeft={{ base: "4", lg: "0" }}
             >
               <Link href="https://twitter.com/@agatan_">
                 <Center>
@@ -103,8 +122,11 @@ export const MainLayout: React.VFC<Props> = (props) => {
               </HStack>
             </Flex>
           </Container>
+          <Box display={{ base: "block", lg: "none" }}>
+            <GoogleAnalyticsTerm />
+          </Box>
+          <Spacer display={{ base: "none", lg: "block" }} />
         </Flex>
-        <Spacer />
       </VStack>
     </Center>
   );
