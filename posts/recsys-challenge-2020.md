@@ -12,4 +12,5 @@ RecSys は推薦システムに関するトップカンファレンスのひと�
 チームメイトがひっぱってくれたのでとても感謝しています🙏
 
 くわしくはチームメイトが会社のブログに書いてくれているので、ぜひそちらをご覧ください！！
-**https://www.wantedly.com/companies/wantedly/post_articles/249713**
+
+**[「Team Wantedly」 が RecSys Challenge 2020 で３位に入賞しました](https://www.wantedly.com/companies/wantedly/post_articles/249713)**
