@@ -1,7 +1,7 @@
 ---
 title: "Rust のパーサコンビネータライブラリ combine を使う時の tips"
 date: 2016-05-14T16:03:19.000Z
-tags: []
+tags: ["Rust"]
 ---
 
 <p>Rust のパーサ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D3%A5%CD%A1%BC%A5%BF">コンビネータ</a>ライブラリの一つである <a href="https://github.com/Marwes/combine">Marwes/combine: A parser combinator library for Rust</a> を使ってみています．<br/>

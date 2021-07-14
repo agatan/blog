@@ -1,7 +1,7 @@
 ---
 title: "mio で echo サーバメモ"
 date: 2017-01-07T06:14:55.000Z
-tags: []
+tags: ["Rust"]
 ---
 
 <p>Rust の非同期 IO ライブラリのなかでももっとも低レベルなレイヤーを担っている <a href="https://github.com/carllerche/mio">mio</a> を使ってecho サーバを書いた。

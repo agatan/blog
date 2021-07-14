@@ -1,7 +1,7 @@
 ---
 title: "【論文読み】Semi-convolutional Operators for Instance Segmentation"
 date: 2019-02-11T16:59:46+09:00
-tags: ["DeepLearning", "論文読み"]
+tags: ["DeepLearning", "論文読み", "MachineLearning", "画像処理"]
 url: https://qiita.com/agatan/items/2cf1209b7370db45eba5
 ---
 

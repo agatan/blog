@@ -1,7 +1,7 @@
 ---
 title: "Rust の Result と Iterator"
 date: 2016-09-05T14:47:25.000Z
-tags: []
+tags: ["Rust"]
 ---
 
 <p>Rust には失敗するかもしれない値を表す <code>Result&lt;T, E&gt;</code> という型があります。

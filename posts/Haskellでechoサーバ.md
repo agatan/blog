@@ -1,7 +1,7 @@
 ---
 title: "Haskellでechoサーバ"
 date: 2015-07-23T12:43:44.000Z
-tags: []
+tags: ["Haskell"]
 ---
 
 <p>はいどうもー<br/>

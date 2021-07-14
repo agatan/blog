@@ -1,7 +1,7 @@
 ---
 title: "簡単な問題は省エネで解き、難しい問題には全力を出すネットワーク: Multi-Scale Dense Networks"
 date: 2018-12-07T22:34:37+09:00
-tags: ["DeepLearning", "論文読み"]
+tags: ["画像処理", "MachineLearning", "DeepLearning", "論文読み"]
 url: https://qiita.com/agatan/items/9ea14206bf7a3881ed6d
 ---
 

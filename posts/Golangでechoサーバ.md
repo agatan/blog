@@ -1,7 +1,7 @@
 ---
 title: "Golangでechoサーバ"
 date: 2015-09-08T07:14:10.000Z
-tags: []
+tags: ["Go"]
 ---
 
 <p>最近 <a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> が気になります<br/>

@@ -1,7 +1,7 @@
 ---
 title: "BK-tree を golang で実装した"
 date: 2017-05-13T09:33:10.000Z
-tags: []
+tags: ["Go"]
 ---
 
 <p>先日はてぶに  <a href="http://postd.cc/bk-tree/">&#x8208;&#x5473;&#x6DF1;&#x3044;&#x30C7;&#x30FC;&#x30BF;&#x69CB;&#x9020;&#xFF1A;BK&#x6728; | &#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0; | POSTD</a> という翻訳記事 ( 元記事 <a href="http://signal-to-noise.xyz/post/bk-tree/">http://signal-to-noise.xyz/post/bk-tree/</a>) があがっているのをみて初めて BK-tree というものを知ったので，<a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> で実装してみました．</p>

@@ -1,7 +1,7 @@
 ---
 title: "NCurses の Crystal binding を作った"
 date: 2016-12-08T13:33:17.000Z
-tags: []
+tags: ["Crystal"]
 ---
 
 <p>この記事は、 Crystal Advent Calendar 2016 の８日目の記事です。

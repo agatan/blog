@@ -1,7 +1,7 @@
 ---
 title: "コンパイラ内部の AST 表現について"
 date: 2015-12-29T14:25:44.000Z
-tags: []
+tags: ["OCaml", "コンパイラ"]
 ---
 
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%E9">コンパイラ</a>は大体，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%BD%A1%BC%A5%B9%A5%B3%A1%BC%A5%C9">ソースコード</a>を<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B9%BD%CA%B8%B2%F2%C0%CF">構文解析</a>し，AST を作り，意味解析，コード生成という流れで実装されると思います．</p>

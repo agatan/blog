@@ -1,7 +1,7 @@
 ---
 title: "Rust における return文の LLVM IR 表現について"
 date: 2016-04-13T09:34:03.000Z
-tags: []
+tags: ["Rust", "LLVM", "コンパイラ"]
 ---
 
 <ul>

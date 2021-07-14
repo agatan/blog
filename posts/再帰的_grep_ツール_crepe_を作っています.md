@@ -1,7 +1,7 @@
 ---
 title: "再帰的 grep ツール crepe を作っています"
 date: 2016-07-08T15:36:15.000Z
-tags: []
+tags: ["C++"]
 ---
 
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%BA%C6%B5%A2">再帰</a>的にパスをたどりながらパターンにマッチする行を検索する <a class="keyword" href="http://d.hatena.ne.jp/keyword/grep">grep</a> 系のツールを作っています。</p>

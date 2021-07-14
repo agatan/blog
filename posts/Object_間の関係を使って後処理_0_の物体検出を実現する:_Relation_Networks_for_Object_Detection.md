@@ -1,7 +1,7 @@
 ---
 title: "Object 間の関係を使って後処理 0 の物体検出を実現する: Relation Networks for Object Detection"
 date: 2018-12-10T23:35:40+09:00
-tags: ["画像処理", "DeepLearning", "論文読み", "物体検出"]
+tags: ["画像処理", "MachineLearning", "DeepLearning", "論文読み"]
 url: https://qiita.com/agatan/items/1c2cadeaabfc9f122f6f
 ---
 

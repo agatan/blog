@@ -1,7 +1,7 @@
 ---
 title: "#include をソートするVimプラグインを作りました"
 date: 2016-01-24T10:11:25.000Z
-tags: []
+tags: ["C++", "Vim"]
 ---
 
 <p><a href="http://itchyny.hatenablog.com/entry/2016/01/23/190000">Haskellでimport文をソートするプラグイン vim-haskell-sort-import を作りました - プログラムモグモグ</a>という記事を拝見して，コードを見たらすごくわかりやすくて，これの <a class="keyword" href="http://d.hatena.ne.jp/keyword/C/C%2B%2B">C/C++</a> 版がほしいと思い，書いてみました．</p>

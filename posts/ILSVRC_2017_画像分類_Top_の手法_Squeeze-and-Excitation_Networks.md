@@ -1,7 +1,7 @@
 ---
 title: "ILSVRC 2017 画像分類 Top の手法 Squeeze-and-Excitation Networks"
 date: 2018-12-13T22:25:45+09:00
-tags: ["画像処理", "ComputerVision", "MachineLearning", "DeepLearning", "CNN"]
+tags: ["画像処理", "MachineLearning", "DeepLearning", "論文読み"]
 url: https://qiita.com/agatan/items/8cf2566908228eaa5450
 ---
 

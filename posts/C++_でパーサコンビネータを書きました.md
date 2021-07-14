@@ -1,7 +1,7 @@
 ---
 title: "C++ でパーサコンビネータを書きました"
 date: 2016-04-29T15:30:09.000Z
-tags: []
+tags: ["C++"]
 ---
 
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> で<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B9%BD%CA%B8%B2%F2%C0%CF">構文解析</a>といえば，Boost.Spirit や <a class="keyword" href="http://d.hatena.ne.jp/keyword/yacc">yacc</a>系などが有名ですが，どうにも使うの辛かったので作りました．</p>

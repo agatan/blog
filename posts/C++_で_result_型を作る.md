@@ -1,7 +1,7 @@
 ---
 title: "C++ で result 型を作る"
 date: 2016-07-01T14:30:09.000Z
-tags: []
+tags: ["C++"]
 ---
 
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a> や Rust など多くの強力な型システムを持つ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%B0%A5%E9%A5%DF%A5%F3%A5%B0%B8%C0%B8%EC">プログラミング言語</a>は、<code>Either</code> とか <code>Result</code> といった「失敗するかもしれない」計算の値を示す型を持っています。</p>
@@ -108,7 +108,7 @@ Rust では、<code>Ok(1isize)</code> とか <code>Err("error!".to_owned())</cod
 <p>一方、<a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> では <code>result&lt;int, std::string&gt; f() { return 1; }</code> は <code>int</code> から <code>result&lt;int, std::string&gt;</code> の暗黙変換がきくので可能ですが、<code>result&lt;int, int&gt;</code> などとした瞬間、暗黙変換に頼ることはできなくなります。
 そこで、出来れば <code>ok(1)</code> とか <code>err("test")</code> という感じにしたいのですが、これは一筋縄では行きません。</p>
 
-<pre class="code lang-cpp" data-lang="cpp" data-unlink><span class="synType">template</span> &lt;<span class="synType">typename</span> T, <span class="synType">typename</span> E&gt; 
+<pre class="code lang-cpp" data-lang="cpp" data-unlink><span class="synType">template</span> &lt;<span class="synType">typename</span> T, <span class="synType">typename</span> E&gt;
 result&lt;T, E&gt; ok(T);
 </pre>
 

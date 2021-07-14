@@ -1,7 +1,7 @@
 ---
 title: "【論文紹介】Concurrent Spatial and Channel Squeeze & Excitation in Fully Convolutional Networks"
 date: 2019-01-04T14:51:07+09:00
-tags: ["Python", "DeepLearning", "Keras", "TensorFlow", "論文読み"]
+tags: ["DeepLearning", "論文読み", "MachineLearning", "画像処理"]
 url: https://qiita.com/agatan/items/61546d71e7ea7ad14b11
 ---
 

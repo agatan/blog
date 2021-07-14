@@ -1,7 +1,7 @@
 ---
 title: "Sokoban.nim を書いてみた"
 date: 2015-10-29T13:10:42.000Z
-tags: []
+tags: ["Nim"]
 ---
 
 <h1>Sokoban.nim を書いてみた</h1>

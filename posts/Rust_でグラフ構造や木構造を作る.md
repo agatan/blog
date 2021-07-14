@@ -1,7 +1,7 @@
 ---
 title: "Rust でグラフ構造や木構造を作る"
 date: 2017-01-16T06:17:45.000Z
-tags: []
+tags: ["Rust"]
 ---
 
 <p>プログラムを書いていると何かしら<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a>っぽいものやグラフっぽいものを作りたい場面が多々あると思います．

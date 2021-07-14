@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 
-const SITE_TITLE = "右上↗";
+const SITE_TITLE = "↗agatan blog↗";
 
 export const SEO: React.VFC<{ title: string; description?: string }> = (
   props

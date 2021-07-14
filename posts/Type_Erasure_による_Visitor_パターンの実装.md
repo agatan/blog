@@ -1,7 +1,7 @@
 ---
 title: "Type Erasure による Visitor パターンの実装"
 date: 2016-01-25T11:07:38.000Z
-tags: []
+tags: ["C++"]
 ---
 
 <p>プログラミングしていて，<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%DA%B9%BD%C2%A4">木構造</a>をうまく扱いたいという状況は結構良くあると思います．<br/>

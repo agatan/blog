@@ -1,7 +1,7 @@
 ---
 title: "golang でテストのために時間を操作するライブラリ timejump"
 date: 2017-12-14T14:21:24.000Z
-tags: []
+tags: ["Go"]
 ---
 
 <p>現在時刻に依存するコードをテストするとき，<a class="keyword" href="http://d.hatena.ne.jp/keyword/golang">golang</a> で <code>time.Now</code> を普通に使っているとモックできずうまくテストが書けないという問題があります．

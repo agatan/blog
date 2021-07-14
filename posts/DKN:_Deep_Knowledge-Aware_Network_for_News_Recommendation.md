@@ -1,7 +1,7 @@
 ---
 title: "DKN: Deep Knowledge-Aware Network for News Recommendation"
 date: 2018-12-19T21:02:20+09:00
-tags: ["DeepLearning", "WWW", "Recommendation", "論文読み"]
+tags: ["MachineLearning", "DeepLearning", "Recommendation", "論文読み"]
 url: https://qiita.com/agatan/items/24c6d8e00f2fc861bb04
 ---
 

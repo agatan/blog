@@ -1,7 +1,7 @@
 ---
 title: "Boost.Spirit.X3 の練習1"
 date: 2015-12-17T10:05:05.000Z
-tags: []
+tags: ["C++", "Boost"]
 ---
 
 <h1>Boost.Spirit.X3 の練習1</h1>

@@ -1,7 +1,7 @@
 ---
 title: "Boost.Spirit.X3 で簡易電卓を実装 1"
 date: 2015-12-18T14:27:05.000Z
-tags: []
+tags: ["C++", "Boost"]
 ---
 
 <p><iframe src="http://agtn.hatenablog.com/embed/2015/12/17/190505" title="Boost.Spirit.X3 の練習1 - プログラミングのメモ帳➚" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://agtn.hatenablog.com/entry/2015/12/17/190505">agtn.hatenablog.com</a></cite>

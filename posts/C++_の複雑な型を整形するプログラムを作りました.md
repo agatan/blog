@@ -1,7 +1,7 @@
 ---
 title: "C++ の複雑な型を整形するプログラムを作りました"
 date: 2016-03-08T11:55:10.000Z
-tags: []
+tags: ["C++"]
 ---
 
 <p>テンプレートをバリバリ使っている <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%2B%2B">C++</a> プログラムの<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%D1%A5%A4%A5%EB">コンパイル</a>エラーが，死ぬほど辛かったので作りました．

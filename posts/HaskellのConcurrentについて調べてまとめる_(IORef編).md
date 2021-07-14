@@ -1,7 +1,7 @@
 ---
 title: "HaskellのConcurrentについて調べてまとめる (IORef編)"
 date: 2015-07-21T14:46:58.000Z
-tags: []
+tags: ["Haskell"]
 ---
 
 <p>こんばんは. <a class="keyword" href="http://d.hatena.ne.jp/keyword/Haskell">Haskell</a>(<a class="keyword" href="http://d.hatena.ne.jp/keyword/GHC">GHC</a>)で並行処理を必要とするアプリケーションを書いてみようと思ったのですが, 並列処理に関するいろいろについてよくわかっていない部分が多かったので, 調べたついでにまとめておこうと思います.</p>

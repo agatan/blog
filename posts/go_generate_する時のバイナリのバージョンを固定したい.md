@@ -1,7 +1,7 @@
 ---
 title: "go generate する時のバイナリのバージョンを固定したい"
 date: 2017-08-05T16:58:13.000Z
-tags: []
+tags: ["Go"]
 ---
 
 <p><a href="https://github.com/golang/mock">https://github.com/golang/mock</a> は <code>mockgen</code> というコマンドを提供しています．

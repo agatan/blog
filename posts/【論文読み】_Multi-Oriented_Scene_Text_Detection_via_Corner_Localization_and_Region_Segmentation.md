@@ -1,7 +1,7 @@
 ---
 title: "【論文読み】 Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation"
 date: 2019-02-13T00:12:22+09:00
-tags: ["画像処理", "DeepLearning", "OCR", "論文読み"]
+tags: ["DeepLearning", "論文読み", "MachineLearning", "画像処理"]
 url: https://qiita.com/agatan/items/afbdb922688984283775
 ---
 

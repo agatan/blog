@@ -1,7 +1,7 @@
 ---
 title: "[論文紹介] Focal Loss for Dense Object Detection"
 date: 2018-12-02T18:41:00+09:00
-tags: ["DeepLearning", "論文読み", "ICCV"]
+tags: ["DeepLearning", "論文読み", "MachineLearning", "画像処理"]
 url: https://qiita.com/agatan/items/53fe8d21f2147b0ac982
 ---
 

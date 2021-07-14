@@ -1,7 +1,7 @@
 ---
 title: "HaskellのConcurrentについて調べてまとめる (MVar編)"
 date: 2015-07-22T01:21:48.000Z
-tags: []
+tags: ["Haskell"]
 ---
 
 <p>どうもこんにちは.</p>

@@ -1,7 +1,7 @@
 ---
 title: "Boost.Spirit.X3 の練習 2"
 date: 2015-12-17T14:20:03.000Z
-tags: []
+tags: ["C++", "Boost"]
 ---
 
 <p><a href="http://agtn.hatenablog.com/entry/2015/12/17/190505">Boost.Spirit.X3 の練習1 - プログラミングのメモ帳➚</a>に引き続き，<code>Boost.Spirit.X3</code> のお勉強メモです．</p>
