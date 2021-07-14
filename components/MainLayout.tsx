@@ -121,10 +121,10 @@ export const MainLayout: React.VFC<Props> = (props) => {
                 </Link>
               </HStack>
             </Flex>
+            <Box display={{ base: "block", lg: "none" }}>
+              <GoogleAnalyticsTerm />
+            </Box>
           </Container>
-          <Box display={{ base: "block", lg: "none" }}>
-            <GoogleAnalyticsTerm />
-          </Box>
           <Spacer display={{ base: "none", lg: "block" }} />
         </Flex>
       </VStack>
