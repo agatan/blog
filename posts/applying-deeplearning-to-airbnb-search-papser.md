@@ -1,7 +1,7 @@
 ---
 title: "'Applying Deep Learning To Airbnb Search'  を読んだ"
 date: 2018-11-21T12:52:58.000Z
-tags: ["DeepLearning", "MachineLearning" "論文読み"]
+tags: ["DeepLearning", "MachineLearning", "論文読み"]
 ---
 
 <p><a href="https://arxiv.org/abs/1810.09591">[1810.09591] Applying Deep Learning To Airbnb Search</a> を読んだときのメモをそのまま出してみます。面白かった。
