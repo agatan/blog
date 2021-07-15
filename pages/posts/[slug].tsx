@@ -13,7 +13,6 @@ import {
   Link as ChakraLink,
   ListItem,
   OrderedList,
-  Spacer,
   Text,
   UnorderedList,
 } from "@chakra-ui/react";
@@ -32,6 +31,23 @@ import { TagLink } from "../../components/TagLink";
 type Props = {
   post: Post;
 };
+
+const ContentH1 = (props: any) => (
+  <Heading
+    fontSize={{ base: "large", lg: "x-large" }}
+    paddingTop="2"
+    paddingBottom="2"
+    {...props}
+  >
+    <Flex align="center">
+      <ChakraLink href={`#${props.id}`} padding="2">
+        <Icon as={FaLink} color="gray.500" boxSize="4" />
+      </ChakraLink>
+      {props.children}
+    </Flex>
+    <Divider />
+  </Heading>
+);
 
 const ContentH2 = (props: any) => (
   <Heading
@@ -73,12 +89,7 @@ const ContentH4 = (props: any) => (
     paddingBottom="2"
     {...props}
   >
-    <Flex align="center">
-      <ChakraLink href={`#${props.id}`} padding="2">
-        <Icon as={FaLink} color="gray.500" boxSize="4" />
-      </ChakraLink>
-      {props.children}
-    </Flex>
+    <Flex align="center">{props.children}</Flex>
   </Heading>
 );
 
@@ -118,8 +129,17 @@ const ContentAnchor = (props: any) => (
 const ContentImage = (props: any) => <Image src={props.src} alt={props.alt} />;
 
 const ContentCode = (props: any) => (
-  <Code fontSize={{ base: "xs", lg: "md" }} {...props} />
+  <Code fontSize={{ base: "xs", lg: "sm" }} {...props} />
 );
+
+const ContentDiv = (props: any) => {
+  if (props.className === "remark-highlight") {
+    return (
+      <chakra.div fontSize={{ base: "xs", lg: "sm" }} paddingX="2" {...props} />
+    );
+  }
+  return <chakra.div {...props} />;
+};
 
 const PostPage: React.VFC<Props> = (props: Props) => {
   const { post } = props;
@@ -139,6 +159,7 @@ const PostPage: React.VFC<Props> = (props: Props) => {
         a: ContentAnchor,
         img: ContentImage,
         code: ContentCode,
+        div: ContentDiv,
       },
     })
     .processSync(post.content);
