@@ -14,7 +14,9 @@ export const PostItem: React.VFC<Props> = (props) => {
   return (
     <Box width="100%" padding="2">
       <Heading fontSize={{ base: "14", lg: "20" }}>
-        <Link href={`/posts/${encodeURIComponent(postMeta.slug)}`}>{postMeta.title}</Link>
+        <Link href={`/posts/${encodeURIComponent(postMeta.slug)}`}>
+          {postMeta.title}
+        </Link>
       </Heading>
       <Text color="gray.500" fontSize={{ base: "10", lg: "14" }} paddingY="1">
         {new Date(postMeta.timestamp).toLocaleDateString()} 公開
