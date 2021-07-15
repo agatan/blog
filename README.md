@@ -1,1 +1,1 @@
-## ↗agatan blog↗
+## [↗agatan blog↗](https://blog.agatan.dev/)
