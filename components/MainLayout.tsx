@@ -42,7 +42,7 @@ export const MainLayout: React.VFC<Props> = (props) => {
       <VStack
         minHeight="100vh"
         width="100%"
-        maxWidth="container.xl"
+        maxWidth="container.lg"
         spacing="0"
         backgroundColor="white"
         shadow="md"
