@@ -104,7 +104,9 @@ const ContentOl = (props: any) => (
 );
 
 const ContentLi = (props: any) => (
-  <ListItem>{props.children as React.ReactNode}</ListItem>
+  <ListItem padding="1" fontSize={{ base: "sm", lg: "medium" }}>
+    {props.children as React.ReactNode}
+  </ListItem>
 );
 
 const ContentParagraph = (props: any) => (
@@ -112,7 +114,7 @@ const ContentParagraph = (props: any) => (
     as="p"
     fontSize={{ base: "sm", lg: "medium" }}
     lineHeight={{ base: "2", lg: "8" }}
-    padding="1"
+    padding="2"
   >
     {props.children as React.ReactNode}
   </Text>
@@ -168,7 +170,7 @@ const PostPage: React.VFC<Props> = (props: Props) => {
       <SEO title={post.meta.title} />
       <MainLayout>
         <Container maxWidth="container.md">
-          <Heading fontSize={{ base: "16", lg: "24" }}>
+          <Heading fontSize={{ base: "16", lg: "24" }} paddingY="4">
             {post.meta.title}
           </Heading>
           <Text
