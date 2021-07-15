@@ -50,6 +50,10 @@ Next.js はそういう [サンプル](https://github.com/vercel/next.js/tree/ma
 
 og も一応最低限は設定しました。
 
+このブログは記事もソースコードも https://github.com/agatan/blog で管理しています。
+なので各記事の最下部に GitHub 上の該当ファイルへのリンクを置いてみました。
+なにか間違いを見つけたら PR ください。
+
 ホスティングは最初は GitHub Pages にしようとおもったのですが、Netlify も Vercel も Cloudflare Pages もさわったことがなかったので、なにかしら新しいものに触れたくなり、ユースケース的にもぴったりだった Cloudflare Pages にのせることにしました。
 デプロイまわりの設定がぽちぽちやるだけで一瞬で完了し、カスタムドメインをあてるのも異常に簡単で驚きました。
 
