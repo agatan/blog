@@ -107,6 +107,7 @@ ISUCON7 以来の本戦出場で、またこのメンバーで本戦出場をき
 ## おまけ
 
 go1.17 から(フラグで有効にすれば部分的に) Generics がつかえるようになったので、実は前日まで Generics つかいたおしてみようか、という話をしていました。
-意外とやりたいシーンがなく、結局お蔵になったのですが、izumin が Go Generics で snippet を用意してくれていたので、せっかくだし載せておきます。
+~~意外とやりたいシーンがなく、~~ 結局お蔵になったのですが、izumin が Go Generics で snippet を用意してくれていたので、せっかくだし載せておきます。
+(「やりたいシーン4回くらいあったぞ！！！！！」とのことです。 by izumin)
 
 [izumin5210-sandbox/go-generics](https://github.com/izumin5210-sandbox/go-generics)
