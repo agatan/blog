@@ -67,7 +67,7 @@ ISUCON7 以来の本戦出場で、またこのメンバーで本戦出場をき
   - 198583
 - 16:16 書き込みが限界だったので、DB を 2 台にして最新コンディションのテーブルへの書きこみを分離 (DB, DB + APP, APP 構成)
   - 214492
-- ??:?? dropProbability や Load Balancing の調整をなんやかんやした
+- ??:?? dropProbability や Load Balancing の調整、middleware の設定をなんやかんやした
   - 30 万くらい
   - ここからひたすら書き込み負荷を減らす努力を開始
 - 18:12 postIsuCondition の書き込みを非同期 & Batch 化
