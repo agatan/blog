@@ -79,7 +79,7 @@ ISUCON7 以来の本戦出場で、またこのメンバーで本戦出場をき
 - 18:19 slow query log などを disable
   - 593482
   - !?
-- 18:30 prepared statement をつかわないようにした
+- 18:30 interpolateParams=true
   - 1045520
   - !??!??
 
