@@ -58,7 +58,9 @@ Python wrapper 側の変更だけならビルドしなおす必要がなくな�
 
 `maturin build` で配布用の wheel を生成できるのですが、これがまた便利そうで、システムに存在しているすべての Python バージョンに対して wheel を生成してくれます。
 たとえば、仮に現在アクティブな virtualenv が Python 3.10 系だとしても、Python 3.9 系がインストールされているシステム上で `maturin build` をすると、3.9, 3.10 用の wheel をそれぞれビルドしてくれるのです。
+
 さらに、もろもろセットアップが必要ですが、クロスコンパイルのための仕組みも充実しており、 `maturin build --universal2` で macOS 用の universal binary (x86_64, arm 両対応)を出力したり、 `maturin build --target=...` でクロスコンパイルしたりできます。
+
 さらにさらに Python の Native Package のお作法である manylinux 対応(特定の動的ライブラリとしかリンクしないことで、いろんな Linux 環境でうごくことを保証する) もビルドオプションで解決可能です。 (`maturin build --release --target aarch64-unknown-linux-gnu --zig`。 ここで zig がでてくるのにちょっと感動しました。)
 
 [Docker イメージ](https://hub.docker.com/r/konstin2/maturin) や [GitHub Actions](https://github.com/messense/maturin-action) もすでにコミュニティによってサポートされており、CI 上でも簡単に build & publish ができそうです。
@@ -67,4 +69,5 @@ Python wrapper 側の変更だけならビルドしなおす必要がなくな�
 
 Python だと遅いけど C++ や Rust でかいてブリッジするのも面倒だし、そこまでやるのは大袈裟かなーとかおもって結局 Python のままいったり Cython, numba でいったりする、という経験をいままで何度かしてきました。
 が、maturin が想像以上に体験が良く、開発効率もよかったので、今後はより気軽に Python プロジェクトに Rust をつっこんでいくスタイルが通用しそうだなと思いました。
+
 また、Rust は効率追いもとめたいときには本当に優秀なツールだと改めて実感しました。PyO3 もめちゃくちゃ良くできていて、混み入ったアルゴリズムだったら Rust で書いたほうが、開発効率的にも好ましいんじゃないかと思います。
