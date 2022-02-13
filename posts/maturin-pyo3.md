@@ -4,8 +4,6 @@ date: 2022-02-13
 tags: ["Rust", "Python"]
 ---
 
-## maturin
-
 機械学習やデータ処理をやっていると、一部だけ Python では遅すぎるので C, C++, Rust のような高速な言語で処理を書きたくなることがまれによくあります。
 C++ なら [pybind11](https://github.com/pybind/pybind11)、Rust なら [PyO3](https://github.com/PyO3/pyo3) が非常に有名で、これらをつかえばかなり簡単に Python <-> C++ / Rust を相互に行き来する処理を書くことができます。
 
