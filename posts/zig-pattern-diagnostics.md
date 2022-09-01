@@ -1,6 +1,6 @@
 ---
 title: "Zig Patterns: Diagnostics"
-date: 2022-08-31
+date: 2022-08-31T12:56:32.000Z
 tags: ["zig"]
 ---
 
