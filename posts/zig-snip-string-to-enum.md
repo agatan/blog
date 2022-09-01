@@ -1,6 +1,6 @@
 ---
 title: "Zig Snippets: string to enum"
-date: 2022-08-31
+date: 2022-08-31T13:14:35.000Z
 tags: ["zig"]
 ---
 
