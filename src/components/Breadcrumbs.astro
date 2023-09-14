@@ -16,10 +16,12 @@ breadcrumbList[0] === "posts" &&
   <ul>
     <li>
       <a href="/">Home</a>
-      <span aria-hidden="true" class="px-1">&#62;</span>
+      <span aria-hidden="true" class="px-1">
+        {">"}
+      </span>
     </li>
     {
-      breadcrumbList.map((breadcrumb, index) =>
+      breadcrumbList.map(decodeURIComponent).map((breadcrumb, index) =>
         index + 1 === breadcrumbList.length ? (
           <li>
             <span
@@ -34,7 +36,7 @@ breadcrumbList[0] === "posts" &&
           <li>
             <a href={`/${breadcrumb}`}>{breadcrumb}</a>
             <span aria-hidden="true" class="px-1">
-              &#62;
+              {">"}
             </span>
           </li>
         )
