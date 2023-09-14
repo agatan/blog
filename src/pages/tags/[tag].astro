@@ -40,10 +40,7 @@ const sortTagsPost = getSortedPosts(tagPosts);
 
 <Layout title={`Tag:${tag} | ${SITE.title}`}>
   <Header activeNav="tags" />
-  <Main
-    pageTitle={`Tag:${tag}`}
-    pageDesc={`All the articles with the tag "${tag}".`}
-  >
+  <Main pageTitle={`Tag:${tag}`}>
     <ul>
       {
         sortTagsPost.map(({ data }) => (
