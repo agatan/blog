@@ -71,7 +71,7 @@ var msg Message
 json.Unmarshal(body, &msg)
 ```
 
-このようにすると， `msg.Payload` には `` []byte(`{"value": 1}`) `` がそのまま残ります．
+このようにすると， `msg.Payload` には ``[]byte(`{"value": 1}`)`` がそのまま残ります．
 
 そこで，それぞれの action ごとの payload 型を定義しておき
 

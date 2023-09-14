@@ -15,7 +15,7 @@ const { activeNav } = Astro.props;
   <div class="nav-container">
     <div class="top-nav-wrap">
       <a href="/" class="logo">
-        { SITE.title }
+        {SITE.title}
       </a>
       <nav id="nav-menu">
         <button
@@ -61,7 +61,7 @@ const { activeNav } = Astro.props;
               </a>
             </li>
           </ul>
-          <ul class="flex sm:px-6 justify-center">
+          <ul class="flex justify-center sm:px-6">
             <li>
               <LinkButton
                 href="/search"
@@ -108,7 +108,9 @@ const { activeNav } = Astro.props;
                 aria-label="rss feed"
                 title="RSS Feed"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" class="scale-125 sm:scale-100"
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="scale-125 sm:scale-100"
                   ><path
                     d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
                   ></path><path
@@ -149,7 +151,7 @@ const { activeNav } = Astro.props;
     @apply flex w-full flex-col items-center bg-skin-fill sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0;
   }
   nav ul {
-    @apply mt-4 w-44 gap-x-2 gap-y-2 sm:ml-0 sm:mt-0 sm:w-auto sm:gap-x-5 sm:gap-y-0 sm:flex;
+    @apply mt-4 w-44 gap-x-2 gap-y-2 sm:ml-0 sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0;
   }
   nav ul li {
     @apply col-span-2 flex items-center justify-center;
