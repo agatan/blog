@@ -61,7 +61,7 @@ const { activeNav } = Astro.props;
               </a>
             </li>
           </ul>
-          <ul class="flex px-6">
+          <ul class="flex sm:px-6 justify-center">
             <li>
               <LinkButton
                 href="/search"
@@ -108,7 +108,7 @@ const { activeNav } = Astro.props;
                 aria-label="rss feed"
                 title="RSS Feed"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
+                <svg xmlns="http://www.w3.org/2000/svg" class="scale-125 sm:scale-100"
                   ><path
                     d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
                   ></path><path
@@ -168,6 +168,10 @@ const { activeNav } = Astro.props;
     @apply p-1;
   }
   nav button svg {
+    @apply h-6 w-6 fill-skin-base hover:fill-skin-accent;
+  }
+
+  nav a svg {
     @apply h-6 w-6 fill-skin-base hover:fill-skin-accent;
   }
   #theme-btn {
