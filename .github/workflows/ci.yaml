@@ -1,18 +1,22 @@
 name: CI
-on: [push, pull_request]
+on: [push]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 18
           cache: yarn
       - name: Install dependencies
         run: yarn --frozen-lockfile
       - name: Run linters
         run: yarn lint
+      - name: Check format
+        run: yarn format:check
+      - name: Astro Check
+        run: yarn astro check
       - name: Build
         run: yarn build

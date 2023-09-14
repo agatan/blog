@@ -1,0 +1,7 @@
+.husky
+.vscode
+node_modules
+public/
+public/analytics.js
+dist/
+.yarn

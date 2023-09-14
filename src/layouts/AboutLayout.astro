@@ -1,0 +1,28 @@
+---
+import { SITE } from "@config";
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import Layout from "./Layout.astro";
+import Main from "@layouts/Main.astro";
+
+export interface Props {
+  frontmatter: {
+    title: string;
+    description?: string;
+  };
+}
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={`${frontmatter.title} | ${SITE.title}`}>
+  <Header activeNav="about" />
+  <Main pageTitle="About Author">
+    <main id="main-content">
+      <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
+        <slot />
+      </article>
+    </main>
+  </Main>
+  <Footer />
+</Layout>
