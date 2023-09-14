@@ -16,7 +16,7 @@ jobs:
         run: yarn lint
       - name: Check format
         run: yarn format:check
-      - name: Astro Check 
+      - name: Astro Check
         run: yarn astro check
       - name: Build
         run: yarn build
