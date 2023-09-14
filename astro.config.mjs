@@ -11,28 +11,40 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   site: "https://blog.agatan.dev/",
   // replace this with your deployed domain
-  integrations: [tailwind({
-    config: {
-      applyBaseStyles: false
-    }
-  }), react(), sitemap(), partytown({
-    config: {
-      forward: ["dataLayer.push"]
-    }
-  }), mdx()],
+  integrations: [
+    tailwind({
+      config: {
+        applyBaseStyles: false,
+      },
+    }),
+    react(),
+    sitemap(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
+    mdx(),
+  ],
   markdown: {
-    remarkPlugins: [remarkToc, [remarkCollapse, {
-      test: "Table of contents"
-    }]],
+    remarkPlugins: [
+      remarkToc,
+      [
+        remarkCollapse,
+        {
+          test: "Table of contents",
+        },
+      ],
+    ],
     shikiConfig: {
       theme: "one-dark-pro",
-      wrap: true
+      wrap: true,
     },
-    extendDefaultPlugins: true
+    extendDefaultPlugins: true,
   },
   vite: {
     optimizeDeps: {
-      exclude: ["@resvg/resvg-js"]
-    }
-  }
+      exclude: ["@resvg/resvg-js"],
+    },
+  },
 });
