@@ -1,6 +1,7 @@
 .husky
 .vscode
 node_modules
-public
-dist
+public/
+public/analytics.js
+dist/
 .yarn
