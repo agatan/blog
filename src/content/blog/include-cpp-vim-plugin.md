@@ -1,5 +1,5 @@
 ---
-title: "#include をソートするVimプラグインを作りました"
+title: "include をソートするVimプラグインを作りました"
 pubDatetime: 2016-01-24T10:11:25.000Z
 tags: ["C++", "Vim"]
 ---

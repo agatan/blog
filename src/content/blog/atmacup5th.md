@@ -1,5 +1,5 @@
 ---
-title: "atmaCup #5 に参加してきて Private 29 位（Public 27 位）でした！"
+title: "atmaCup5 に参加してきて Private 29 位（Public 27 位）でした！"
 pubDatetime: 2020-06-07T11:00:00.000Z
 tags: ["atmaCup", "データ分析コンペ"]
 ---

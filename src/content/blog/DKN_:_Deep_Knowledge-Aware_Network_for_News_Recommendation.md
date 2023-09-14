@@ -1,5 +1,5 @@
 ---
-title: "DKN: Deep Knowledge-Aware Network for News Recommendation"
+title: "DKN : Deep Knowledge-Aware Network for News Recommendation"
 pubDatetime: 2018-12-19T21:02:20+09:00
 tags: ["MachineLearning", "DeepLearning", "Recommendation", "論文読み"]
 ---
