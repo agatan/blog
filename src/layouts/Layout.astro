@@ -74,9 +74,14 @@ const socialImageURL = new URL(
         />
       )
     }
-    <script
-      type="text/partytown"
-      src="https://www.googletagmanager.com/gtag/js?id=G-BGESQXXECB"></script>
+    {
+      import.meta.env.PROD && (
+        <script
+          type="text/partytown"
+          src="https://www.googletagmanager.com/gtag/js?id=G-BGESQXXECB"
+        />
+      )
+    }
     <script type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
