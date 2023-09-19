@@ -1,5 +1,6 @@
 ---
 title: "HaskellのConcurrentについて調べてまとめる (IORef編)"
+postSlug: HaskellのConcurrentについて調べてまとめる_(IORef編)
 pubDatetime: 2015-07-21T14:46:58.000Z
 tags: ["Haskell"]
 ---

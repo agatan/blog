@@ -1,5 +1,6 @@
 ---
 title: "再帰的 grep ツール crepe を作っています"
+postSlug: 再帰的_grep_ツール_crepe_を作っています
 pubDatetime: 2016-07-08T15:36:15.000Z
 tags: ["C++"]
 ---

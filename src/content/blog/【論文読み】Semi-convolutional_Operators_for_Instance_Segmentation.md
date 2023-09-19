@@ -1,5 +1,6 @@
 ---
 title: "【論文読み】Semi-convolutional Operators for Instance Segmentation"
+postSlug: 【論文読み】Semi-convolutional_Operators_for_Instance_Segmentation
 pubDatetime: 2019-02-11T16:59:46+09:00
 tags: ["DeepLearning", "論文読み", "MachineLearning", "画像処理"]
 ---

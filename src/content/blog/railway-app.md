@@ -1,5 +1,6 @@
 ---
 title: "railway.app というサービスを知った"
+postSlug: railway-app
 pubDatetime: 2022-05-06
 tags: ["雑談"]
 ---

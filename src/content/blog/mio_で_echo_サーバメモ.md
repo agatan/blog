@@ -1,5 +1,6 @@
 ---
 title: "mio で echo サーバメモ"
+postSlug: mio_で_echo_サーバメモ
 pubDatetime: 2017-01-07T06:14:55.000Z
 tags: ["Rust"]
 ---

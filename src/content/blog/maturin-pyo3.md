@@ -1,5 +1,6 @@
 ---
 title: "maturin でさくっと Rust 製 Python 拡張を書く"
+postSlug: maturin-pyo3
 pubDatetime: 2022-02-13
 tags: ["Rust", "Python"]
 ---

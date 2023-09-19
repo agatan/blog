@@ -1,5 +1,6 @@
 ---
 title: "Rust でグラフ構造や木構造を作る"
+postSlug: Rust_でグラフ構造や木構造を作る
 pubDatetime: 2017-01-16T06:17:45.000Z
 tags: ["Rust"]
 ---

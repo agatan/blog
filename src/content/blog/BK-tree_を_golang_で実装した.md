@@ -1,5 +1,6 @@
 ---
 title: "BK-tree を golang で実装した"
+postSlug: BK-tree_を_golang_で実装した
 pubDatetime: 2017-05-13T09:33:10.000Z
 tags: ["Go"]
 ---

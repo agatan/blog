@@ -1,5 +1,6 @@
 ---
 title: "【論文読み】 Multi-Oriented Scene Text Detection via Corner Localization and Region Segmentation"
+postSlug: 【論文読み】_Multi-Oriented_Scene_Text_Detection_via_Corner_Localization_and_Region_Segmentation
 pubDatetime: 2019-02-13T00:12:22+09:00
 tags: ["DeepLearning", "論文読み", "MachineLearning", "画像処理"]
 ---

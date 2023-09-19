@@ -1,5 +1,6 @@
 ---
 title: "Rust の Result と Iterator"
+postSlug: Rust_の_Result_と_Iterator
 pubDatetime: 2016-09-05T14:47:25.000Z
 tags: ["Rust"]
 ---

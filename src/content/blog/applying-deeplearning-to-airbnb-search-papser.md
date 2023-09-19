@@ -1,5 +1,6 @@
 ---
 title: "'Applying Deep Learning To Airbnb Search'  を読んだ"
+postSlug: applying-deeplearning-to-airbnb-search-papser
 pubDatetime: 2018-11-21T12:52:58.000Z
 tags: ["DeepLearning", "MachineLearning", "論文読み"]
 ---

@@ -1,5 +1,6 @@
 ---
 title: "ILSVRC 2017 画像分類 Top の手法 Squeeze-and-Excitation Networks"
+postSlug: ILSVRC_2017_画像分類_Top_の手法_Squeeze-and-Excitation_Networks
 pubDatetime: 2018-12-13T22:25:45+09:00
 tags: ["画像処理", "MachineLearning", "DeepLearning", "論文読み"]
 ---

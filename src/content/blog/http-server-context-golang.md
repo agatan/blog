@@ -1,5 +1,6 @@
 ---
 title: HTTPサーバとcontext.Context
+postSlug: http-server-context-golang
 pubDatetime: 2017-12-25
 tags: ["Go"]
 ---

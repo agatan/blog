@@ -1,5 +1,6 @@
 ---
 title: "Rust で Unix のシグナルを channel 経由でキャッチする"
+postSlug: Rust_で_Unix_のシグナルを_channel_経由でキャッチする
 pubDatetime: 2017-07-10T11:59:04.000Z
 tags: ["Rust"]
 ---

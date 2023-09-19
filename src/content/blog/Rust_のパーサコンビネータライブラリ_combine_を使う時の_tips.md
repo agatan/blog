@@ -1,5 +1,6 @@
 ---
 title: "Rust のパーサコンビネータライブラリ combine を使う時の tips"
+postSlug: Rust_のパーサコンビネータライブラリ_combine_を使う時の_tips
 pubDatetime: 2016-05-14T16:03:19.000Z
 tags: ["Rust"]
 ---

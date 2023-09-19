@@ -1,5 +1,6 @@
 ---
 title: RecSys Challenge 2020 に "Team Wantedly" で参加し３位に入賞しました！
+postSlug: recsys-challenge-2020
 pubDatetime: 2020-06-23
 tags:
   - データ分析コンペ

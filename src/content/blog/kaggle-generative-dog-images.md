@@ -1,5 +1,6 @@
 ---
 title: Generative Dog Images コンペで Kaggle に初参加し、24th で銀メダルを獲得しました！
+postSlug: kaggle-generative-dog-images
 pubDatetime: 2019-09-20
 tags:
   - データ分析コンペ

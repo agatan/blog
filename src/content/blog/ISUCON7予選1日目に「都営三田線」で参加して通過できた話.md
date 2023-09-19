@@ -1,5 +1,6 @@
 ---
 title: "ISUCON7予選1日目に「都営三田線」で参加して通過できた話"
+postSlug: ISUCON7予選1日目に「都営三田線」で参加して通過できた話
 pubDatetime: 2017-10-23T11:33:42.000Z
 tags: ["ISUCON"]
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Golangでechoサーバ"
+postSlug: Golangでechoサーバ
 pubDatetime: 2015-09-08T07:14:10.000Z
 tags: ["Go"]
 ---
