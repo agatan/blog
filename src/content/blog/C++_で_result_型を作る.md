@@ -1,5 +1,6 @@
 ---
 title: "C++ で result 型を作る"
+postSlug: C++_で_result_型を作る
 pubDatetime: 2016-07-01T14:30:09.000Z
 tags: ["C++"]
 ---

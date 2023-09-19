@@ -1,5 +1,6 @@
 ---
 title: "Zig Patterns: Diagnostics"
+postSlug: zig-pattern-diagnostics
 pubDatetime: 2022-08-31T12:56:32.000Z
 tags: ["zig"]
 ---

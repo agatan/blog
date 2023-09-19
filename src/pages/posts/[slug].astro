@@ -19,11 +19,24 @@ export async function getStaticPaths() {
     props: { post },
   }));
 
+  const titlePostResult = posts.flatMap(post => {
+    const postWithoutSlug = { ...post.data, postSlug: undefined };
+    const newSlug = slugify(postWithoutSlug);
+    const defaultSlug = slugify(post.data);
+    if (newSlug === defaultSlug) return [];
+    return [
+      {
+        params: { slug: newSlug },
+        props: { post },
+      },
+    ];
+  });
+
   const pagePaths = getPageNumbers(posts.length).map(pageNum => ({
     params: { slug: String(pageNum) },
   }));
 
-  return [...postResult, ...pagePaths];
+  return [...postResult, ...titlePostResult, ...pagePaths];
 }
 
 const { slug } = Astro.params;

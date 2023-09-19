@@ -1,5 +1,6 @@
 ---
 title: "include をソートするVimプラグインを作りました"
+postSlug: include-cpp-vim-plugin
 pubDatetime: 2016-01-24T10:11:25.000Z
 tags: ["C++", "Vim"]
 ---

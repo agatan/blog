@@ -1,5 +1,6 @@
 ---
 title: "コンパイラ内部の AST 表現について"
+postSlug: コンパイラ内部の_AST_表現について
 pubDatetime: 2015-12-29T14:25:44.000Z
 tags: ["OCaml", "コンパイラ"]
 ---

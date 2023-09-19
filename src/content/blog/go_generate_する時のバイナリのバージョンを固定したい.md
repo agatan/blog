@@ -1,5 +1,6 @@
 ---
 title: "go generate する時のバイナリのバージョンを固定したい"
+postSlug: go_generate_する時のバイナリのバージョンを固定したい
 pubDatetime: 2017-08-05T16:58:13.000Z
 tags: ["Go"]
 ---

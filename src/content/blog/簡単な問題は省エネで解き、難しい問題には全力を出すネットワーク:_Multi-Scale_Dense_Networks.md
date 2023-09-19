@@ -1,5 +1,6 @@
 ---
 title: "簡単な問題は省エネで解き、難しい問題には全力を出すネットワーク: Multi-Scale Dense Networks"
+postSlug: 簡単な問題は省エネで解き、難しい問題には全力を出すネットワーク:_Multi-Scale_Dense_Networks
 pubDatetime: 2018-12-07T22:34:37+09:00
 tags: ["画像処理", "MachineLearning", "DeepLearning", "論文読み"]
 ---

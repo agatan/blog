@@ -1,5 +1,6 @@
 ---
 title: "Object 間の関係を使って後処理 0 の物体検出を実現する: Relation Networks for Object Detection"
+postSlug: Object_間の関係を使って後処理_0_の物体検出を実現する:_Relation_Networks_for_Object_Detection
 pubDatetime: 2018-12-10T23:35:40+09:00
 tags: ["画像処理", "MachineLearning", "DeepLearning", "論文読み"]
 ---

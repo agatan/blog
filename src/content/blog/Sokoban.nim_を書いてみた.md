@@ -1,5 +1,6 @@
 ---
 title: "Sokoban.nim を書いてみた"
+postSlug: Sokoban.nim_を書いてみた
 pubDatetime: 2015-10-29T13:10:42.000Z
 tags: ["Nim"]
 ---

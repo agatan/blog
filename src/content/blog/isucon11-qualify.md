@@ -1,5 +1,6 @@
 ---
 title: "ISUCON11予選に「都営三田線」で参加して予選2位で本戦出場きまりました!!"
+postSlug: isucon11-qualify
 pubDatetime: 2021-08-23
 tags: ["ISUCON"]
 ---

@@ -1,5 +1,6 @@
 ---
 title: "[論文紹介] Focal Loss for Dense Object Detection"
+postSlug: "[論文紹介]_Focal_Loss_for_Dense_Object_Detection"
 pubDatetime: 2018-12-02T18:41:00+09:00
 tags: ["DeepLearning", "論文読み", "MachineLearning", "画像処理"]
 ---

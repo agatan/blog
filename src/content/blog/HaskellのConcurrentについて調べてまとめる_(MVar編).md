@@ -1,5 +1,6 @@
 ---
 title: "HaskellのConcurrentについて調べてまとめる (MVar編)"
+postSlug: HaskellのConcurrentについて調べてまとめる_(MVar編)
 pubDatetime: 2015-07-22T01:21:48.000Z
 tags: ["Haskell"]
 ---

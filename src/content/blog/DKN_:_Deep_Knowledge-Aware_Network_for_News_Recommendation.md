@@ -1,5 +1,6 @@
 ---
 title: "DKN : Deep Knowledge-Aware Network for News Recommendation"
+postSlug: DKN_:_Deep_Knowledge-Aware_Network_for_News_Recommendation
 pubDatetime: 2018-12-19T21:02:20+09:00
 tags: ["MachineLearning", "DeepLearning", "Recommendation", "論文読み"]
 ---

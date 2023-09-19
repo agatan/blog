@@ -1,5 +1,6 @@
 ---
 title: "Zig Snippets: string to enum"
+postSlug: zig-snip-string-to-enum
 pubDatetime: 2022-08-31T13:14:35.000Z
 tags: ["zig"]
 ---

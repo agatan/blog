@@ -1,5 +1,6 @@
 ---
 title: "C++テンプレートイディオム CRTP"
+postSlug: C++テンプレートイディオム_CRTP
 pubDatetime: 2016-06-16T10:27:08.000Z
 tags: ["C++"]
 ---

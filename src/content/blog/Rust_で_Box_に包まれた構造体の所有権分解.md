@@ -1,5 +1,6 @@
 ---
 title: "Rust で Box に包まれた構造体の所有権分解"
+postSlug: Rust_で_Box_に包まれた構造体の所有権分解
 pubDatetime: 2016-12-04T07:45:12.000Z
 tags: ["Rust"]
 ---

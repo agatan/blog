@@ -1,5 +1,6 @@
 ---
 title: "NCurses の Crystal binding を作った"
+postSlug: NCurses_の_Crystal_binding_を作った
 pubDatetime: 2016-12-08T13:33:17.000Z
 tags: ["Crystal"]
 ---

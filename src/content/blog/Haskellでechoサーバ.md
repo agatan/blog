@@ -1,5 +1,6 @@
 ---
 title: "Haskellでechoサーバ"
+postSlug: Haskellでechoサーバ
 pubDatetime: 2015-07-23T12:43:44.000Z
 tags: ["Haskell"]
 ---

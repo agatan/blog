@@ -1,5 +1,6 @@
 ---
 title: "Type Erasure による Visitor パターンの実装"
+postSlug: Type_Erasure_による_Visitor_パターンの実装
 pubDatetime: 2016-01-25T11:07:38.000Z
 tags: ["C++"]
 ---

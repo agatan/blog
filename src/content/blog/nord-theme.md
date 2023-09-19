@@ -1,5 +1,6 @@
 ---
 title: Nord Theme を使い始めた
+postSlug: nord-theme
 pubDatetime: 2023-09-13
 tags: ["雑談"]
 description: "気分転換にいろんなツールのカラーテーマをNordに変えてみた"

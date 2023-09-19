@@ -1,5 +1,6 @@
 ---
 title: "Boost.Spirit.X3 の練習1"
+postSlug: Boost.Spirit.X3_の練習1
 pubDatetime: 2015-12-17T10:05:05.000Z
 tags: ["C++", "Boost"]
 ---

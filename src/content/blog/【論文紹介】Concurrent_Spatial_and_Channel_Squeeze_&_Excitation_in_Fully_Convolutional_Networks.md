@@ -1,5 +1,6 @@
 ---
 title: "【論文紹介】Concurrent Spatial and Channel Squeeze & Excitation in Fully Convolutional Networks"
+postSlug: 【論文紹介】Concurrent_Spatial_and_Channel_Squeeze_&_Excitation_in_Fully_Convolutional_Networks
 pubDatetime: 2019-01-04T14:51:07+09:00
 tags: ["DeepLearning", "論文読み", "MachineLearning", "画像処理"]
 ---

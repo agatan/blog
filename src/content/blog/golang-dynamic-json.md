@@ -1,5 +1,6 @@
 ---
 title: Go で構造の一部が動的に変わる JSON を扱いたい
+postSlug: golang-dynamic-json
 pubDatetime: 2018-01-03
 tags: ["Go"]
 ---

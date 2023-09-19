@@ -1,5 +1,6 @@
 ---
 title: "Boost.Spirit.X3 で簡易電卓を実装 1"
+postSlug: Boost.Spirit.X3_で簡易電卓を実装_1
 pubDatetime: 2015-12-18T14:27:05.000Z
 tags: ["C++", "Boost"]
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Golang での文字列連結に関するベンチマーク"
+postSlug: Golang_での文字列連結に関するベンチマーク
 pubDatetime: 2015-09-08T08:09:45.000Z
 tags: ["Go"]
 ---

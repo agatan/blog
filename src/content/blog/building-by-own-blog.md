@@ -1,5 +1,6 @@
 ---
 title: 個人ブログをつくりました
+postSlug: building-by-own-blog
 pubDatetime: 2021-07-16
 tags: ["雑談"]
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Rust における return文の LLVM IR 表現について"
+postSlug: Rust_における_return文の_LLVM_IR_表現について
 pubDatetime: 2016-04-13T09:34:03.000Z
 tags: ["Rust", "LLVM", "コンパイラ"]
 ---

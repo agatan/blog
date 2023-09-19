@@ -1,5 +1,6 @@
 ---
 title: "golang でテストのために時間を操作するライブラリ timejump"
+postSlug: golang_でテストのために時間を操作するライブラリ_timejump
 pubDatetime: 2017-12-14T14:21:24.000Z
 tags: ["Go"]
 ---

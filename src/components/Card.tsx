@@ -8,7 +8,7 @@ export interface Props {
 }
 
 export default function Card({ href, frontmatter, secHeading = true }: Props) {
-  const { title, pubDatetime, description, tags } = frontmatter;
+  const { title, pubDatetime, description } = frontmatter;
   return (
     <li className="my-6">
       <a
