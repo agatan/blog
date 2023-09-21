@@ -4,6 +4,7 @@ postSlug: recsys-challenge-2020
 pubDatetime: 2020-06-23
 tags:
   - データ分析コンペ
+featured: true
 ---
 
 Wantedly の同僚二名とチームを組んで、国際学会 RecSys 2020 の併設コンペである RecSys Challenge 2020 に参加しました。
