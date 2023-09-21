@@ -6,6 +6,7 @@ tags:
   - データ分析コンペ
   - 画像処理
   - DeepLearning
+featured: true
 ---
 
 表題のとおりです！ Kaggle に初参戦し、銀メダルを獲得しました。

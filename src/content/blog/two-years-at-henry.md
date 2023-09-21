@@ -3,6 +3,7 @@ title: ヘンリーに入社して2年が経ちました
 postSlug: two-years-at-henry
 pubDatetime: 2023-04-16
 tags: ["雑談"]
+featured: true
 ---
 
 [株式会社ヘンリー](https://jobs.henry-app.jp/)（レセコン一体型クラウド電子カルテサービスを主力として医療 DX に取り組んでいるスタートアップ）に転職して早くも 2 年が経過しました。
