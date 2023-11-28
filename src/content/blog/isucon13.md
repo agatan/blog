@@ -148,7 +148,8 @@ https://github.com/mitasen/isucon13/pull/46/commits/81bf3201e07d88e1d74f370f16bd
 - 3. livestream を INSERT する
 - 4. livestream_tags を INSERT する
 - 5. 作った livestream を JSON で返すために、関連データも合わせて DB から取得する
-     ということをしている部分です。
+
+ということをしている部分です。
 
 ここで、少なくとも 5 は transaction をコミットしたあとにやっても問題ないはず、ということで、5 を transaction の外に出す変更をすでに入れていました。
 追加で最終盤にもうちょっと攻めようとして、3, 4も transaction の外に出すというのをやりました。（17:42ごろ）
