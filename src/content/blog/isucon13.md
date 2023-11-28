@@ -139,7 +139,7 @@ Count: 9883  Time=0.00s (2s)  Lock=0.00s (0s)  Rows=15.1 (149160), isucon[isucon
 
 さきほどの slow query を見ると、一番上が reservation_slots のロックを取るクエリになっています。
 これが遅いせいで CPU を使い切れていない / リクエスト速度が上がり切っていないのでは？と考え、このロックを最小化する変更をいれようとしました。
-https://github.com/mitasen/isucon13/pull/46/commits/81bf3201e07d88e1d74f370f16bdaeca974e8ceb
+[ref](https://github.com/mitasen/isucon13/pull/46/commits/81bf3201e07d88e1d74f370f16bdaeca974e8ceb)
 
 処理としては、
 
