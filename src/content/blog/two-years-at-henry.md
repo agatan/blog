@@ -1,5 +1,6 @@
 ---
 title: ヘンリーに入社して2年が経ちました
+description: "いまさらながら、入社エントリー（？）を書いてみる"
 postSlug: two-years-at-henry
 pubDatetime: 2023-04-16
 tags: ["雑談"]
