@@ -1,5 +1,6 @@
 ---
 title: "ISUCON13に「都営三田線」で参加して 227,377 → failしました！"
+description: "3位か！？と思ったら fail でした！！！くやしい！"
 postSlug: isucon13
 pubDatetime: 2023-11-28
 tags: ["ISUCON"]
