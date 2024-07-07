@@ -1,6 +1,6 @@
 ---
-title: "jOOQとExposedでトランザクションを共有する方法"
-postSlug: transaction-in-jooq-and-exposed
+title: "jOOQとExposedでトランザクションを無理やり共有する"
+postSlug: sharing-transactions-in-jooq-and-exposed
 pubDatetime: 2024-07-07
 tags: ["Kotlin"]
 ---
